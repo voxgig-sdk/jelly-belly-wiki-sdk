@@ -1,0 +1,42 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 5
+  metrics: count: path: 6
+  metrics: count: method: 6
+
+  entity: bean: {
+    path: "/beans": {
+      op: list: method: *GET
+    }
+    path: "/beans/{beanId}": {
+      rename: param: "beanId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: combination: {
+    path: "/combinations": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: fact: {
+    path: "/facts": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: history: {
+    path: "/history": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: recipe: {
+    path: "/recipes": {
+      op: list: method: *GET
+    }
+  }
+
+}

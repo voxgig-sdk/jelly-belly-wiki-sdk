@@ -1,0 +1,672 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Jelly Belly Wiki",
+    "description": "API for Jelly Belly beans, facts, recipes, combinations, and history sourced from the official Jelly Belly website. Utilizes GET method for data retrieval and showcases full database integration in the UI.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://jelly-belly-wiki.netlify.app/api"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://jelly-belly-wiki.netlify.app/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/beans": {
+      "get": {
+        "summary": "Get Jelly Belly beans",
+        "description": "Retrieve a list of Jelly Belly beans with their details including flavors, colors, and descriptions",
+        "operationId": "getBeans",
+        "tags": [
+          "Beans"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of Jelly Belly beans",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Bean"
+                      }
+                    },
+                    "totalCount": {
+                      "type": "integer",
+                      "description": "Total number of beans available"
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of items per page"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/beans/{beanId}": {
+      "get": {
+        "summary": "Get a specific Jelly Belly bean by ID",
+        "description": "Retrieve detailed information about a specific Jelly Belly bean including flavor profile, ingredients, and history",
+        "operationId": "getBeanById",
+        "tags": [
+          "Beans"
+        ],
+        "parameters": [
+          {
+            "name": "beanId",
+            "in": "path",
+            "description": "Unique identifier of the Jelly Belly bean",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with bean details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bean"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bean not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/facts": {
+      "get": {
+        "summary": "Get Jelly Belly facts",
+        "description": "Retrieve interesting facts about Jelly Belly beans and the company history",
+        "operationId": "getFacts",
+        "tags": [
+          "Facts"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of Jelly Belly facts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Fact"
+                      }
+                    },
+                    "totalCount": {
+                      "type": "integer",
+                      "description": "Total number of facts available"
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of items per page"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recipes": {
+      "get": {
+        "summary": "Get Jelly Belly recipes",
+        "description": "Retrieve recipes that incorporate Jelly Belly beans as ingredients",
+        "operationId": "getRecipes",
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of recipes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Recipe"
+                      }
+                    },
+                    "totalCount": {
+                      "type": "integer",
+                      "description": "Total number of recipes available"
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of items per page"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/combinations": {
+      "get": {
+        "summary": "Get Jelly Belly flavor combinations",
+        "description": "Retrieve recommended flavor combinations of Jelly Belly beans",
+        "operationId": "getCombinations",
+        "tags": [
+          "Combinations"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of flavor combinations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Combination"
+                      }
+                    },
+                    "totalCount": {
+                      "type": "integer",
+                      "description": "Total number of combinations available"
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of items per page"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/history": {
+      "get": {
+        "summary": "Get Jelly Belly history",
+        "description": "Retrieve historical information about Jelly Belly company and products",
+        "operationId": "getHistory",
+        "tags": [
+          "History"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with historical information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/HistoryEntry"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Bean": {
+        "type": "object",
+        "properties": {
+          "beanId": {
+            "type": "string",
+            "description": "Unique identifier for the bean"
+          },
+          "groupName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Group or category names the bean belongs to"
+          },
+          "flavorName": {
+            "type": "string",
+            "description": "Name of the flavor"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the bean flavor"
+          },
+          "colorGroup": {
+            "type": "string",
+            "description": "Color category of the bean"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "description": "Hex color code for the bean's background color"
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the bean image"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of ingredients"
+          },
+          "glutenFree": {
+            "type": "boolean",
+            "description": "Indicates if the bean is gluten-free"
+          },
+          "sugarFree": {
+            "type": "boolean",
+            "description": "Indicates if the bean is sugar-free"
+          },
+          "kosher": {
+            "type": "boolean",
+            "description": "Indicates if the bean is kosher certified"
+          }
+        }
+      },
+      "Fact": {
+        "type": "object",
+        "properties": {
+          "factId": {
+            "type": "string",
+            "description": "Unique identifier for the fact"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the fact"
+          },
+          "description": {
+            "type": "string",
+            "description": "Full text of the fact"
+          }
+        }
+      },
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "recipeId": {
+            "type": "string",
+            "description": "Unique identifier for the recipe"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the recipe"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the recipe"
+          },
+          "prepTime": {
+            "type": "string",
+            "description": "Preparation time"
+          },
+          "cookTime": {
+            "type": "string",
+            "description": "Cooking time"
+          },
+          "totalTime": {
+            "type": "string",
+            "description": "Total time required"
+          },
+          "makingAmount": {
+            "type": "string",
+            "description": "Amount the recipe makes"
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the recipe image"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of ingredients"
+          },
+          "directions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Step-by-step directions"
+          }
+        }
+      },
+      "Combination": {
+        "type": "object",
+        "properties": {
+          "combinationId": {
+            "type": "string",
+            "description": "Unique identifier for the combination"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the flavor combination"
+          },
+          "tag": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags associated with the combination"
+          },
+          "beans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of bean flavors in the combination"
+          }
+        }
+      },
+      "HistoryEntry": {
+        "type": "object",
+        "properties": {
+          "historyId": {
+            "type": "string",
+            "description": "Unique identifier for the history entry"
+          },
+          "year": {
+            "type": "integer",
+            "description": "Year of the historical event"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the historical event"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error description"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Beans",
+      "description": "Operations related to Jelly Belly beans"
+    },
+    {
+      "name": "Facts",
+      "description": "Operations related to Jelly Belly facts"
+    },
+    {
+      "name": "Recipes",
+      "description": "Operations related to recipes using Jelly Belly beans"
+    },
+    {
+      "name": "Combinations",
+      "description": "Operations related to flavor combinations"
+    },
+    {
+      "name": "History",
+      "description": "Operations related to Jelly Belly history"
+    }
+  ]
+}

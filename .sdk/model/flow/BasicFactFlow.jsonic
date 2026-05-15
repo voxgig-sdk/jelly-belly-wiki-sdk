@@ -1,0 +1,22 @@
+# BasicFactFlow
+
+main: kit: flow: BasicFactFlow:
+{
+  entity: "fact",
+  kind: "basic",
+  name: "BasicFactFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "fact_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFactFlow"
+}

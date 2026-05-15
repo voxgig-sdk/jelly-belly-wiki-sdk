@@ -1,0 +1,151 @@
+# Entity: bean
+
+main: kit: entity: bean: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "background_color"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "bean_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "color_group"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "flavor_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "gluten_free"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "group_name"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ingredient"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "kosher"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "sugar_free"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "bean"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 10
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/beans"
+          parts: [
+            "beans"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "bean_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/beans/{beanId}"
+          parts: [
+            "beans"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              beanId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

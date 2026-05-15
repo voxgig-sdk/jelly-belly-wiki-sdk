@@ -1,0 +1,108 @@
+# Entity: recipe
+
+main: kit: entity: recipe: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cook_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "direction"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ingredient"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "making_amount"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "prep_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "recipe_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "total_time"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "recipe"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 10
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/recipes"
+          parts: [
+            "recipes"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

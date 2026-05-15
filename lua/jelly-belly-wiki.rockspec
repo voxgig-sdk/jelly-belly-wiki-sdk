@@ -1,0 +1,22 @@
+package = "voxgig-sdk-jelly-belly-wiki"
+version = "0.0-1"
+source = {
+  url = "git://github.com/voxgig-sdk/jelly-belly-wiki-sdk.git"
+}
+description = {
+  summary = "JellyBellyWiki SDK for Lua",
+  license = "MIT"
+}
+dependencies = {
+  "lua >= 5.3",
+  "dkjson >= 2.5",
+  "dkjson >= 2.5",
+}
+build = {
+  type = "builtin",
+  modules = {
+    ["jelly-belly-wiki_sdk"] = "jelly-belly-wiki_sdk.lua",
+    ["config"] = "config.lua",
+    ["features"] = "features.lua",
+  }
+}

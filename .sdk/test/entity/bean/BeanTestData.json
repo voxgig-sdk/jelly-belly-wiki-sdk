@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "bean": {
+      "BEAN00": {
+        "background_color": "s6e",
+        "bean_id": "BEAN01",
+        "color_group": "s70",
+        "description": "s71",
+        "flavor_name": "s72",
+        "gluten_free": false,
+        "group_name": [],
+        "image_url": "s75",
+        "ingredient": [],
+        "kosher": false,
+        "sugar_free": true
+      },
+      "BEAN01": {
+        "background_color": "sdc",
+        "bean_id": "BEAN01",
+        "color_group": "sde",
+        "description": "sdf",
+        "flavor_name": "se0",
+        "gluten_free": false,
+        "group_name": [],
+        "image_url": "se3",
+        "ingredient": [],
+        "kosher": false,
+        "sugar_free": true
+      },
+      "BEAN02": {
+        "background_color": "s14a",
+        "bean_id": "BEAN01",
+        "color_group": "s14c",
+        "description": "s14d",
+        "flavor_name": "s14e",
+        "gluten_free": false,
+        "group_name": [],
+        "image_url": "s151",
+        "ingredient": [],
+        "kosher": false,
+        "sugar_free": true
+      }
+    }
+  },
+  "new": {
+    "bean": {
+      "bean_ref01": {
+        "background_color": "s1b8",
+        "bean_id": "BEAN01",
+        "color_group": "s1ba",
+        "description": "s1bb",
+        "flavor_name": "s1bc",
+        "gluten_free": false,
+        "group_name": [],
+        "image_url": "s1bf",
+        "ingredient": [],
+        "kosher": false,
+        "sugar_free": true
+      }
+    }
+  }
+}

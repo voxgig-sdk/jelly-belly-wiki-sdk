@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://jelly-belly-wiki.netlify.app/api"
+      }
+      description: "API for Jelly Belly beans, facts, recipes, combinations, and history sourced from the official Jelly Belly website. Utilizes GET method for data retrieval and showcases full database integration in the UI."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://jelly-belly-wiki.netlify.app/api"
+        }
+      ]
+      title: "Jelly Belly Wiki"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

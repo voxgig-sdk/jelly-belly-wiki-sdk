@@ -1,0 +1,22 @@
+# BasicCombinationFlow
+
+main: kit: flow: BasicCombinationFlow:
+{
+  entity: "combination",
+  kind: "basic",
+  name: "BasicCombinationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "combination_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCombinationFlow"
+}

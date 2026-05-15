@@ -1,0 +1,7 @@
+# Entity Models
+
+@"bean.jsonic"
+@"combination.jsonic"
+@"fact.jsonic"
+@"history.jsonic"
+@"recipe.jsonic"

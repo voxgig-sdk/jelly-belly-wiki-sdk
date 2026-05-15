@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "fact": {
+      "FACT00": {
+        "description": "s1e",
+        "fact_id": "FACT01",
+        "title": "s20"
+      },
+      "FACT01": {
+        "description": "s3c",
+        "fact_id": "FACT01",
+        "title": "s3e"
+      },
+      "FACT02": {
+        "description": "s5a",
+        "fact_id": "FACT01",
+        "title": "s5c"
+      }
+    }
+  },
+  "new": {
+    "fact": {
+      "fact_ref01": {
+        "description": "s78",
+        "fact_id": "FACT01",
+        "title": "s7a"
+      }
+    }
+  }
+}

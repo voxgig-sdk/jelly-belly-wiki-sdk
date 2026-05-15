@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "history": {
+      "HISTORY00": {
+        "description": "s1e",
+        "history_id": "HISTORY01",
+        "year": "s20"
+      },
+      "HISTORY01": {
+        "description": "s3c",
+        "history_id": "HISTORY01",
+        "year": "s3e"
+      },
+      "HISTORY02": {
+        "description": "s5a",
+        "history_id": "HISTORY01",
+        "year": "s5c"
+      }
+    }
+  },
+  "new": {
+    "history": {
+      "history_ref01": {
+        "description": "s78",
+        "history_id": "HISTORY01",
+        "year": "s7a"
+      }
+    }
+  }
+}
