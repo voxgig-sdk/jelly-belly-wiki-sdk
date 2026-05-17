@@ -12,7 +12,8 @@
         "image_url": "s75",
         "ingredient": [],
         "kosher": false,
-        "sugar_free": true
+        "sugar_free": true,
+        "id": "BEAN00"
       },
       "BEAN01": {
         "background_color": "sdc",
@@ -25,7 +26,8 @@
         "image_url": "se3",
         "ingredient": [],
         "kosher": false,
-        "sugar_free": true
+        "sugar_free": true,
+        "id": "BEAN01"
       },
       "BEAN02": {
         "background_color": "s14a",
@@ -38,7 +40,8 @@
         "image_url": "s151",
         "ingredient": [],
         "kosher": false,
-        "sugar_free": true
+        "sugar_free": true,
+        "id": "BEAN02"
       }
     }
   },

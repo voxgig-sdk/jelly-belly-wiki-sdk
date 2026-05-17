@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk"
+	sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk"
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/utility/struct"
 )
 
 func TestCombinationEntity(t *testing.T) {

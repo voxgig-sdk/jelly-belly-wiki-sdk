@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 )
 
 type LogFeature struct {

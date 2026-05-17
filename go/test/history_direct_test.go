@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk"
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 )
 
 func TestHistoryDirect(t *testing.T) {

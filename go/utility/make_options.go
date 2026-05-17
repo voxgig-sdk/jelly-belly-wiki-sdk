@@ -3,9 +3,9 @@ package utility
 import (
 	"strings"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 )
 
 func makeOptionsUtil(ctx *core.Context) map[string]any {

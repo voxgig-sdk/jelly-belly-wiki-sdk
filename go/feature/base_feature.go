@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 )
 
 type BaseFeature struct {

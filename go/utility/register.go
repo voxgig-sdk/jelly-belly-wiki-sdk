@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+import "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

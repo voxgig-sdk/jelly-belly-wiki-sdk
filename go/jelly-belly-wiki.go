@@ -1,10 +1,10 @@
 package voxgigjellybellywikisdk
 
 import (
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/entity"
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/feature"
-	_ "github.com/voxgig-sdk/jelly-belly-wiki-sdk/utility"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/entity"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/feature"
+	_ "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

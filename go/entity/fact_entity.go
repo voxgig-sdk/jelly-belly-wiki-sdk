@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/utility/struct"
 )
 
 type FactEntity struct {

@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/core"
+	"github.com/voxgig-sdk/jelly-belly-wiki-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {
