@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://jelly-belly-wiki.netlify.app/api",
+      "url": "https://jellybellywikiapi.onrender.com/api",
       "description": "Production server"
     }
   ],

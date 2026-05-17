@@ -19,7 +19,7 @@ class JellyBellyWikiConfig
         ],
             ],
             "options" => [
-                "base" => "https://jelly-belly-wiki.netlify.app/api",
+                "base" => "https://jellybellywikiapi.onrender.com/api",
                 "auth" => [
                     "prefix" => "Bearer",
                 ],
