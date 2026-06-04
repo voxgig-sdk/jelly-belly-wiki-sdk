@@ -83,7 +83,6 @@ def history_basic_setup(extra)
     "JELLYBELLYWIKI_TEST_HISTORY_ENTID" => idmap,
     "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
     "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-    "JELLYBELLYWIKI_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +94,6 @@ def history_basic_setup(extra)
   if env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["JELLYBELLYWIKI_APIKEY"],
       },
       extra || {},
     ])

@@ -123,14 +123,12 @@ function bean_direct_setup($mockres)
     $env = Runner::env_override([
         "JELLYBELLYWIKI_TEST_BEAN_ENTID" => [],
         "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
-        "JELLYBELLYWIKI_APIKEY" => "NONE",
     ]);
 
     $live = $env["JELLYBELLYWIKI_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["JELLYBELLYWIKI_APIKEY"],
         ];
         $client = new JellyBellyWikiSDK($merged_opts);
         return [

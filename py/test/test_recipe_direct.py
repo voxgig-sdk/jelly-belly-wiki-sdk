@@ -61,14 +61,12 @@ def _recipe_direct_setup(mockres):
     env = runner.env_override({
         "JELLYBELLYWIKI_TEST_RECIPE_ENTID": {},
         "JELLYBELLYWIKI_TEST_LIVE": "FALSE",
-        "JELLYBELLYWIKI_APIKEY": "NONE",
     })
 
     live = env.get("JELLYBELLYWIKI_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("JELLYBELLYWIKI_APIKEY"),
         }
         client = JellyBellyWikiSDK(merged_opts)
         return {
