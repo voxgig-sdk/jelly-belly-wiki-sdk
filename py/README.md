@@ -10,7 +10,7 @@ The Python SDK for the JellyBellyWiki API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install jelly-belly-wiki-sdk
+pip install voxgig-sdk-jelly-belly-wiki
 ```
 
 Or install from source:

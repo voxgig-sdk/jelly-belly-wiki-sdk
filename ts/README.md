@@ -10,7 +10,7 @@ The TypeScript SDK for the JellyBellyWiki API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install jelly-belly-wiki
+npm install @voxgig-sdk/jelly-belly-wiki
 ```
 ## Tutorial: your first API call
 

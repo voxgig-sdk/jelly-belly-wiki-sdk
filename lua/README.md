@@ -10,7 +10,7 @@ The Lua SDK for the JellyBellyWiki API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install jelly-belly-wiki-sdk
+luarocks install voxgig-sdk-jelly-belly-wiki
 ```
 
 If the module is not yet published, add the source directory to

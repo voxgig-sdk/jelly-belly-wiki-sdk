@@ -10,7 +10,7 @@ The PHP SDK for the JellyBellyWiki API — an entity-oriented client using PHP c
 
 ## Install
 ```bash
-composer require voxgig/jelly-belly-wiki-sdk
+composer require voxgig-sdk/jelly-belly-wiki
 ```
 
 

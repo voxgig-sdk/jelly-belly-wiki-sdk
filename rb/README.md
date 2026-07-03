@@ -10,13 +10,13 @@ The Ruby SDK for the JellyBellyWiki API — an entity-oriented client using idio
 
 ## Install
 ```bash
-gem install jelly-belly-wiki-sdk
+gem install voxgig-sdk-jelly-belly-wiki
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "jelly-belly-wiki-sdk"
+gem "voxgig-sdk-jelly-belly-wiki"
 ```
 
 Then run:
