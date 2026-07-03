@@ -62,12 +62,14 @@ def history_direct_setup(mockres)
   env = Runner.env_override({
     "JELLYBELLYWIKI_TEST_HISTORY_ENTID" => {},
     "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
+    "JELLYBELLYWIKI_APIKEY" => "NONE",
   })
 
   live = env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["JELLYBELLYWIKI_APIKEY"],
     }
     client = JellyBellyWikiSDK.new(merged_opts)
     return {

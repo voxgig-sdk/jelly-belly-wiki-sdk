@@ -93,12 +93,14 @@ func historyDirectSetup(mockres any) *historyDirectSetupResult {
 	env := envOverride(map[string]any{
 		"JELLYBELLYWIKI_TEST_HISTORY_ENTID": map[string]any{},
 		"JELLYBELLYWIKI_TEST_LIVE":    "FALSE",
+		"JELLYBELLYWIKI_APIKEY":       "NONE",
 	})
 
 	live := env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["JELLYBELLYWIKI_APIKEY"],
 		}
 		client := sdk.NewJellyBellyWikiSDK(mergedOpts)
 

@@ -16,28 +16,7 @@ main: {
       ]
       title: "Jelly Belly Wiki"
       version: "1.0.0"
-      tagline: "Look up Jelly Belly jelly beans along with recipes, flavour combinations, fun facts, and brand history"
-      homepage: "https://jellybellywikiapi.onrender.com/api"
-      docs_url: "https://jelly-belly-wiki.netlify.app/"
-      about_md: `The Jelly Belly Wiki API is a community-maintained REST API that mirrors the catalogue of Jelly Belly jelly beans together with recipes, suggested flavour combinations, trivia facts, and brand history sourced from the official Jelly Belly website. The service is hosted on Render at \`https://jellybellywikiapi.onrender.com/api\`.
-
-What you can pull from the API:
-
-- Individual beans and paginated bean lists (e.g. \`GET /api/beans\`, \`GET /api/Beans/{id}\`)
-- Recipes that use Jelly Belly beans
-- Suggested bean combinations (mix two or more beans to mimic another flavour)
-- Short trivia facts about the brand and its products
-- Notable events from the company's history
-
-Operational notes: the API is read-only over HTTP GET and does not require authentication or an API key. CORS is reported as disabled on the public endpoints, so browser clients may need to proxy requests. The instance runs on Render's free tier, so cold-start latency and occasional 503s are expected.`
-      entity_desc: {
-        bean: "An individual Jelly Belly jelly bean flavour with its descriptive metadata; listed and fetched via `GET /api/beans` and `GET /api/Beans/{id}`."
-        combination: "A suggested mix of two or more beans that together approximate another flavour."
-        fact: "A short trivia fact about Jelly Belly beans or the brand."
-        history: "A notable event or milestone from the history of the Jelly Belly company."
-        recipe: "A recipe that uses Jelly Belly beans as an ingredient."
-      }
-      auth: false
     }
   }
 }
+

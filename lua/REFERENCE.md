@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -126,7 +126,7 @@ local bean = client:Bean(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Bean(nil):list(nil, nil)
+local results, err = client:Bean():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -134,7 +134,7 @@ local results, err = client:Bean(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Bean(nil):load({ id = "bean_id" }, nil)
+local result, err = client:Bean():load({ id = "bean_id" })
 ```
 
 ### Common Methods
@@ -189,7 +189,7 @@ local combination = client:Combination(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Combination(nil):list(nil, nil)
+local results, err = client:Combination():list()
 ```
 
 ### Common Methods
@@ -243,7 +243,7 @@ local fact = client:Fact(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Fact(nil):list(nil, nil)
+local results, err = client:Fact():list()
 ```
 
 ### Common Methods
@@ -297,7 +297,7 @@ local history = client:History(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:History(nil):list(nil, nil)
+local results, err = client:History():list()
 ```
 
 ### Common Methods
@@ -358,7 +358,7 @@ local recipe = client:Recipe(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Recipe(nil):list(nil, nil)
+local results, err = client:Recipe():list()
 ```
 
 ### Common Methods

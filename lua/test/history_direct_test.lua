@@ -63,12 +63,14 @@ function history_direct_setup(mockres)
   local env = runner.env_override({
     ["JELLYBELLYWIKI_TEST_HISTORY_ENTID"] = {},
     ["JELLYBELLYWIKI_TEST_LIVE"] = "FALSE",
+    ["JELLYBELLYWIKI_APIKEY"] = "NONE",
   })
 
   local live = env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["JELLYBELLYWIKI_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -119,6 +119,7 @@ func recipeBasicSetup(extra map[string]any) *entityTestSetup {
 		"JELLYBELLYWIKI_TEST_RECIPE_ENTID": idmap,
 		"JELLYBELLYWIKI_TEST_LIVE":      "FALSE",
 		"JELLYBELLYWIKI_TEST_EXPLAIN":   "FALSE",
+		"JELLYBELLYWIKI_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["JELLYBELLYWIKI_TEST_RECIPE_ENTID"])
@@ -129,6 +130,7 @@ func recipeBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["JELLYBELLYWIKI_APIKEY"],
 			},
 			extra,
 		})

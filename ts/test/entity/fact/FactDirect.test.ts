@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'JELLYBELLYWIKI_TEST_FACT_ENTID': {},
     'JELLYBELLYWIKI_TEST_LIVE': 'FALSE',
+    'JELLYBELLYWIKI_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.JELLYBELLYWIKI_TEST_LIVE
 
   if (live) {
     const client = new JellyBellyWikiSDK({
+      apikey: env.JELLYBELLYWIKI_APIKEY,
     })
 
     let idmap: any = env['JELLYBELLYWIKI_TEST_FACT_ENTID']

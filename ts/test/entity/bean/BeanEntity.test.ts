@@ -114,6 +114,7 @@ function basicSetup(extra?: any) {
     'JELLY_BELLY_WIKI_TEST_BEAN_ENTID': idmap,
     'JELLY_BELLY_WIKI_TEST_LIVE': 'FALSE',
     'JELLY_BELLY_WIKI_TEST_EXPLAIN': 'FALSE',
+    'JELLY_BELLY_WIKI_APIKEY': 'NONE',
   })
 
   idmap = env['JELLY_BELLY_WIKI_TEST_BEAN_ENTID']
@@ -123,6 +124,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new JellyBellyWikiSDK(merge([
       {
+        apikey: env.JELLY_BELLY_WIKI_APIKEY,
       },
       extra
     ]))

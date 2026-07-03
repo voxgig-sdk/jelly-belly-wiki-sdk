@@ -1,22 +1,8 @@
 # JellyBellyWiki SDK
 
-Look up Jelly Belly jelly beans along with recipes, flavour combinations, fun facts, and brand history
+Jelly Belly Wiki client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Jelly Belly Wiki
-
-The Jelly Belly Wiki API is a community-maintained REST API that mirrors the catalogue of Jelly Belly jelly beans together with recipes, suggested flavour combinations, trivia facts, and brand history sourced from the official Jelly Belly website. The service is hosted on Render at `https://jellybellywikiapi.onrender.com/api`.
-
-What you can pull from the API:
-
-- Individual beans and paginated bean lists (e.g. `GET /api/beans`, `GET /api/Beans/{id}`)
-- Recipes that use Jelly Belly beans
-- Suggested bean combinations (mix two or more beans to mimic another flavour)
-- Short trivia facts about the brand and its products
-- Notable events from the company's history
-
-Operational notes: the API is read-only over HTTP GET and does not require authentication or an API key. CORS is reported as disabled on the public endpoints, so browser clients may need to proxy requests. The instance runs on Render's free tier, so cold-start latency and occasional 503s are expected.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install jelly-belly-wiki-sdk
 luarocks install jelly-belly-wiki-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { JellyBellyWikiSDK } from 'jelly-belly-wiki'
 
-const client = new JellyBellyWikiSDK({})
+const client = new JellyBellyWikiSDK({
+  apikey: process.env.JELLY-BELLY-WIKI_APIKEY,
+})
 
 // List all beans
 const beans = await client.Bean().list()
+console.log(beans.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Bean** | An individual Jelly Belly jelly bean flavour with its descriptive metadata; listed and fetched via `GET /api/beans` and `GET /api/Beans/{id}`. | `/beans` |
-| **Combination** | A suggested mix of two or more beans that together approximate another flavour. | `/combinations` |
-| **Fact** | A short trivia fact about Jelly Belly beans or the brand. | `/facts` |
-| **History** | A notable event or milestone from the history of the Jelly Belly company. | `/history` |
-| **Recipe** | A recipe that uses Jelly Belly beans as an ingredient. | `/recipes` |
+| **Bean** |  | `/beans` |
+| **Combination** |  | `/combinations` |
+| **Fact** |  | `/facts` |
+| **History** |  | `/history` |
+| **Recipe** |  | `/recipes` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -116,17 +104,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from jellybellywiki_sdk import JellyBellyWikiSDK
 
-client = JellyBellyWikiSDK({})
+client = JellyBellyWikiSDK({
+    "apikey": os.environ.get("JELLY-BELLY-WIKI_APIKEY"),
+})
 
 # List all beans
-beans, err = client.Bean(None).list(None, None)
+beans, err = client.Bean().list()
+print(beans)
 
 # Load a specific bean
-bean, err = client.Bean(None).load(
-    {"id": "example_id"}, None
-)
+bean, err = client.Bean().load({"id": "example_id"})
+print(bean)
 ```
 
 ### PHP
@@ -135,15 +126,17 @@ bean, err = client.Bean(None).load(
 <?php
 require_once 'jellybellywiki_sdk.php';
 
-$client = new JellyBellyWikiSDK([]);
+$client = new JellyBellyWikiSDK([
+    "apikey" => getenv("JELLY-BELLY-WIKI_APIKEY"),
+]);
 
 // List all beans
-[$beans, $err] = $client->Bean(null)->list(null, null);
+[$beans, $err] = $client->Bean()->list();
+print_r($beans);
 
 // Load a specific bean
-[$bean, $err] = $client->Bean(null)->load(
-    ["id" => "example_id"], null
-);
+[$bean, $err] = $client->Bean()->load(["id" => "example_id"]);
+print_r($bean);
 ```
 
 ### Golang
@@ -151,10 +144,13 @@ $client = new JellyBellyWikiSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/jelly-belly-wiki-sdk/go"
 
-client := sdk.NewJellyBellyWikiSDK(map[string]any{})
+client := sdk.NewJellyBellyWikiSDK(map[string]any{
+    "apikey": os.Getenv("JELLY-BELLY-WIKI_APIKEY"),
+})
 
 // List all beans
 beans, err := client.Bean(nil).List(nil, nil)
+fmt.Println(beans)
 ```
 
 ### Ruby
@@ -162,15 +158,17 @@ beans, err := client.Bean(nil).List(nil, nil)
 ```ruby
 require_relative "JellyBellyWiki_sdk"
 
-client = JellyBellyWikiSDK.new({})
+client = JellyBellyWikiSDK.new({
+  "apikey" => ENV["JELLY-BELLY-WIKI_APIKEY"],
+})
 
 # List all beans
-beans, err = client.Bean(nil).list(nil, nil)
+beans, err = client.Bean().list
+puts beans
 
 # Load a specific bean
-bean, err = client.Bean(nil).load(
-  { "id" => "example_id" }, nil
-)
+bean, err = client.Bean().load({ "id" => "example_id" })
+puts bean
 ```
 
 ### Lua
@@ -178,15 +176,17 @@ bean, err = client.Bean(nil).load(
 ```lua
 local sdk = require("jelly-belly-wiki_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("JELLY-BELLY-WIKI_APIKEY"),
+})
 
 -- List all beans
-local beans, err = client:Bean(nil):list(nil, nil)
+local beans, err = client:Bean():list()
+print(beans)
 
 -- Load a specific bean
-local bean, err = client:Bean(nil):load(
-  { id = "example_id" }, nil
-)
+local bean, err = client:Bean():load({ id = "example_id" })
+print(bean)
 ```
 
 ## Unit testing in offline mode
@@ -205,25 +205,21 @@ const result = await client.Bean().load({ id: 'test01' })
 ### Python
 
 ```python
-client = JellyBellyWikiSDK.test(None, None)
-result, err = client.Bean(None).load(
-    {"id": "test01"}, None
-)
+client = JellyBellyWikiSDK.test()
+result, err = client.Bean().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = JellyBellyWikiSDK::test(null, null);
-[$result, $err] = $client->Bean(null)->load(
-    ["id" => "test01"], null
-);
+$client = JellyBellyWikiSDK::test();
+[$result, $err] = $client->Bean()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Bean(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -232,19 +228,15 @@ result, err := client.Bean(nil).Load(
 ### Ruby
 
 ```ruby
-client = JellyBellyWikiSDK.test(nil, nil)
-result, err = client.Bean(nil).load(
-  { "id" => "test01" }, nil
-)
+client = JellyBellyWikiSDK.test
+result, err = client.Bean().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Bean(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Bean():load({ id = "test01" })
 ```
 
 ## How it works
@@ -348,11 +340,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Jelly Belly Wiki
-
-- Upstream: [https://jellybellywikiapi.onrender.com/api](https://jellybellywikiapi.onrender.com/api)
-- API docs: [https://jelly-belly-wiki.netlify.app/](https://jelly-belly-wiki.netlify.app/)
 
 ---
 
