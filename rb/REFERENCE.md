@@ -102,7 +102,7 @@ same parameters as `direct()`. Raises on error.
 ## BeanEntity
 
 ```ruby
-bean = client.bean
+bean = client.Bean
 ```
 
 ### Fields
@@ -128,7 +128,7 @@ bean = client.bean
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.bean.list(nil)
+results = client.Bean.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -136,7 +136,7 @@ results = client.bean.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.bean.load({ "id" => "bean_id" })
+result = client.Bean.load({ "id" => "bean_id" })
 ```
 
 ### Common Methods
@@ -172,7 +172,7 @@ Return the entity name.
 ## CombinationEntity
 
 ```ruby
-combination = client.combination
+combination = client.Combination
 ```
 
 ### Fields
@@ -191,7 +191,7 @@ combination = client.combination
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.combination.list(nil)
+results = client.Combination.list(nil)
 ```
 
 ### Common Methods
@@ -227,7 +227,7 @@ Return the entity name.
 ## FactEntity
 
 ```ruby
-fact = client.fact
+fact = client.Fact
 ```
 
 ### Fields
@@ -245,7 +245,7 @@ fact = client.fact
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.fact.list(nil)
+results = client.Fact.list(nil)
 ```
 
 ### Common Methods
@@ -281,7 +281,7 @@ Return the entity name.
 ## HistoryEntity
 
 ```ruby
-history = client.history
+history = client.History
 ```
 
 ### Fields
@@ -299,7 +299,7 @@ history = client.history
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.history.list(nil)
+results = client.History.list(nil)
 ```
 
 ### Common Methods
@@ -335,7 +335,7 @@ Return the entity name.
 ## RecipeEntity
 
 ```ruby
-recipe = client.recipe
+recipe = client.Recipe
 ```
 
 ### Fields
@@ -360,7 +360,7 @@ recipe = client.recipe
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.recipe.list(nil)
+results = client.Recipe.list(nil)
 ```
 
 ### Common Methods

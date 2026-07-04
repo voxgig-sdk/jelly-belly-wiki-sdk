@@ -157,7 +157,7 @@ Alias for `JellyBellyWikiSDK.test()`.
 ## BeanEntity
 
 ```ts
-const bean = client.bean
+const bean = client.Bean()
 ```
 
 ### Fields
@@ -183,7 +183,7 @@ const bean = client.bean
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.bean.list()
+const results = await client.Bean().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -191,7 +191,7 @@ const results = await client.bean.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.bean.load({ id: 'bean_id' })
+const result = await client.Bean().load({ id: 'bean_id' })
 ```
 
 ### Common Methods
@@ -225,7 +225,7 @@ Return a copy of the entity options.
 ## CombinationEntity
 
 ```ts
-const combination = client.combination
+const combination = client.Combination()
 ```
 
 ### Fields
@@ -244,7 +244,7 @@ const combination = client.combination
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.combination.list()
+const results = await client.Combination().list()
 ```
 
 ### Common Methods
@@ -278,7 +278,7 @@ Return a copy of the entity options.
 ## FactEntity
 
 ```ts
-const fact = client.fact
+const fact = client.Fact()
 ```
 
 ### Fields
@@ -296,7 +296,7 @@ const fact = client.fact
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.fact.list()
+const results = await client.Fact().list()
 ```
 
 ### Common Methods
@@ -330,7 +330,7 @@ Return a copy of the entity options.
 ## HistoryEntity
 
 ```ts
-const history = client.history
+const history = client.History()
 ```
 
 ### Fields
@@ -348,7 +348,7 @@ const history = client.history
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.history.list()
+const results = await client.History().list()
 ```
 
 ### Common Methods
@@ -382,7 +382,7 @@ Return a copy of the entity options.
 ## RecipeEntity
 
 ```ts
-const recipe = client.recipe
+const recipe = client.Recipe()
 ```
 
 ### Fields
@@ -407,7 +407,7 @@ const recipe = client.recipe
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.recipe.list()
+const results = await client.Recipe().list()
 ```
 
 ### Common Methods

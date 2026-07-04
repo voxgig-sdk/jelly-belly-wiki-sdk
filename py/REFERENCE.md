@@ -96,7 +96,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## BeanEntity
 
 ```python
-bean = client.bean
+bean = client.Bean()
 ```
 
 ### Fields
@@ -122,7 +122,9 @@ bean = client.bean
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.bean.list({})
+results = client.Bean().list({})
+for bean in results:
+    print(bean)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -130,7 +132,7 @@ results = client.bean.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.bean.load({"id": "bean_id"})
+result = client.Bean().load({"id": "bean_id"})
 ```
 
 ### Common Methods
@@ -165,7 +167,7 @@ Return the entity name.
 ## CombinationEntity
 
 ```python
-combination = client.combination
+combination = client.Combination()
 ```
 
 ### Fields
@@ -184,7 +186,9 @@ combination = client.combination
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.combination.list({})
+results = client.Combination().list({})
+for combination in results:
+    print(combination)
 ```
 
 ### Common Methods
@@ -219,7 +223,7 @@ Return the entity name.
 ## FactEntity
 
 ```python
-fact = client.fact
+fact = client.Fact()
 ```
 
 ### Fields
@@ -237,7 +241,9 @@ fact = client.fact
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.fact.list({})
+results = client.Fact().list({})
+for fact in results:
+    print(fact)
 ```
 
 ### Common Methods
@@ -272,7 +278,7 @@ Return the entity name.
 ## HistoryEntity
 
 ```python
-history = client.history
+history = client.History()
 ```
 
 ### Fields
@@ -290,7 +296,9 @@ history = client.history
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.history.list({})
+results = client.History().list({})
+for history in results:
+    print(history)
 ```
 
 ### Common Methods
@@ -325,7 +333,7 @@ Return the entity name.
 ## RecipeEntity
 
 ```python
-recipe = client.recipe
+recipe = client.Recipe()
 ```
 
 ### Fields
@@ -350,7 +358,9 @@ recipe = client.recipe
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.recipe.list({})
+results = client.Recipe().list({})
+for recipe in results:
+    print(recipe)
 ```
 
 ### Common Methods

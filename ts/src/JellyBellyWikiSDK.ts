@@ -208,70 +208,35 @@ class JellyBellyWikiSDK {
 
 
 
-  _bean?: BeanEntity
-
-  // Idiomatic facade: `client.bean.list()` / `client.bean.load({ id })`.
-  get bean(): BeanEntity {
-    return (this._bean ??= new BeanEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.bean` instead. */
+  // Entity access: `client.Bean().list()` / `client.Bean().load({ id })`.
   Bean(data?: any) {
     const self = this
     return new BeanEntity(self,data)
   }
 
 
-  _combination?: CombinationEntity
-
-  // Idiomatic facade: `client.combination.list()` / `client.combination.load({ id })`.
-  get combination(): CombinationEntity {
-    return (this._combination ??= new CombinationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.combination` instead. */
+  // Entity access: `client.Combination().list()` / `client.Combination().load({ id })`.
   Combination(data?: any) {
     const self = this
     return new CombinationEntity(self,data)
   }
 
 
-  _fact?: FactEntity
-
-  // Idiomatic facade: `client.fact.list()` / `client.fact.load({ id })`.
-  get fact(): FactEntity {
-    return (this._fact ??= new FactEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.fact` instead. */
+  // Entity access: `client.Fact().list()` / `client.Fact().load({ id })`.
   Fact(data?: any) {
     const self = this
     return new FactEntity(self,data)
   }
 
 
-  _history?: HistoryEntity
-
-  // Idiomatic facade: `client.history.list()` / `client.history.load({ id })`.
-  get history(): HistoryEntity {
-    return (this._history ??= new HistoryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.history` instead. */
+  // Entity access: `client.History().list()` / `client.History().load({ id })`.
   History(data?: any) {
     const self = this
     return new HistoryEntity(self,data)
   }
 
 
-  _recipe?: RecipeEntity
-
-  // Idiomatic facade: `client.recipe.list()` / `client.recipe.load({ id })`.
-  get recipe(): RecipeEntity {
-    return (this._recipe ??= new RecipeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.recipe` instead. */
+  // Entity access: `client.Recipe().list()` / `client.Recipe().load({ id })`.
   Recipe(data?: any) {
     const self = this
     return new RecipeEntity(self,data)

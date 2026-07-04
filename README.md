@@ -26,9 +26,11 @@ import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
 
 const client = new JellyBellyWikiSDK()
 
-// List all beans
-const beans = await client.bean.list()
-console.log(beans.data)
+// List all beans (returns Bean[])
+const beans = await client.Bean().list()
+for (const bean of beans) {
+  console.log(bean)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,12 +89,13 @@ from jellybellywiki_sdk import JellyBellyWikiSDK
 
 client = JellyBellyWikiSDK()
 
-# List all beans
-beans = client.bean.list()
-print(beans)
+# List all beans (returns a list, raises on error)
+beans = client.Bean().list({})
+for bean in beans:
+    print(bean)
 
-# Load a specific bean
-bean = client.bean.load({"id": "example_id"})
+# Load a specific bean (returns the record, raises on error)
+bean = client.Bean().load({"id": "example_id"})
 print(bean)
 ```
 
@@ -104,12 +107,12 @@ require_once 'jellybellywiki_sdk.php';
 
 $client = new JellyBellyWikiSDK();
 
-// List all beans (throws on error)
-$beans = $client->bean()->list();
+// List all beans (returns an array; throws on error)
+$beans = $client->Bean()->list();
 print_r($beans);
 
-// Load a specific bean
-$bean = $client->bean()->load(["id" => "example_id"]);
+// Load a specific bean (returns the bare record; throws on error)
+$bean = $client->Bean()->load(["id" => "example_id"]);
 print_r($bean);
 ```
 
@@ -132,12 +135,12 @@ require_relative "JellyBellyWiki_sdk"
 
 client = JellyBellyWikiSDK.new
 
-# List all beans
-beans = client.bean.list
+# List all beans (returns an Array; raises on error)
+beans = client.Bean.list
 puts beans
 
-# Load a specific bean
-bean = client.bean.load({ "id" => "example_id" })
+# Load a specific bean (returns the bare record; raises on error)
+bean = client.Bean.load({ "id" => "example_id" })
 puts bean
 ```
 
@@ -149,11 +152,11 @@ local sdk = require("jelly-belly-wiki_sdk")
 local client = sdk.new()
 
 -- List all beans
-local beans, err = client:bean():list()
+local beans, err = client:Bean():list()
 print(beans)
 
 -- Load a specific bean
-local bean, err = client:bean():load({ id = "example_id" })
+local bean, err = client:Bean():load({ id = "example_id" })
 print(bean)
 ```
 
@@ -166,22 +169,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = JellyBellyWikiSDK.test()
-const result = await client.bean.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const bean = await client.Bean().load({ id: 'test01' })
+// bean is a bare Bean populated with mock data
+console.log(bean)
 ```
 
 ### Python
 
 ```python
 client = JellyBellyWikiSDK.test()
-result = client.bean.load({"id": "test01"})
+bean = client.Bean().load({"id": "test01"})
+print(bean)
 ```
 
 ### PHP
 
 ```php
-$client = JellyBellyWikiSDK::test();
-$result = $client->bean()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = JellyBellyWikiSDK::test([
+    "entity" => ["bean" => ["test01" => ["id" => "test01"]]],
+]);
+$bean = $client->Bean()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -196,15 +204,18 @@ result, err := client.Bean(nil).Load(
 ### Ruby
 
 ```ruby
-client = JellyBellyWikiSDK.test
-result = client.bean.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = JellyBellyWikiSDK.test({
+  "entity" => { "bean" => { "test01" => { "id" => "test01" } } },
+})
+bean = client.Bean.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:bean():load({ id = "test01" })
+local result, err = client:Bean():load({ id = "test01" })
 ```
 
 ## How it works
@@ -252,6 +263,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

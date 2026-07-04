@@ -101,7 +101,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BeanEntity
 
 ```php
-$bean = $client->bean();
+$bean = $client->Bean();
 ```
 
 ### Fields
@@ -127,7 +127,7 @@ $bean = $client->bean();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->bean()->list([]);
+$results = $client->Bean()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -135,7 +135,7 @@ $results = $client->bean()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->bean()->load(["id" => "bean_id"]);
+$result = $client->Bean()->load(["id" => "bean_id"]);
 ```
 
 ### Common Methods
@@ -171,7 +171,7 @@ Return the entity name.
 ## CombinationEntity
 
 ```php
-$combination = $client->combination();
+$combination = $client->Combination();
 ```
 
 ### Fields
@@ -190,7 +190,7 @@ $combination = $client->combination();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->combination()->list([]);
+$results = $client->Combination()->list([]);
 ```
 
 ### Common Methods
@@ -226,7 +226,7 @@ Return the entity name.
 ## FactEntity
 
 ```php
-$fact = $client->fact();
+$fact = $client->Fact();
 ```
 
 ### Fields
@@ -244,7 +244,7 @@ $fact = $client->fact();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->fact()->list([]);
+$results = $client->Fact()->list([]);
 ```
 
 ### Common Methods
@@ -280,7 +280,7 @@ Return the entity name.
 ## HistoryEntity
 
 ```php
-$history = $client->history();
+$history = $client->History();
 ```
 
 ### Fields
@@ -298,7 +298,7 @@ $history = $client->history();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->history()->list([]);
+$results = $client->History()->list([]);
 ```
 
 ### Common Methods
@@ -334,7 +334,7 @@ Return the entity name.
 ## RecipeEntity
 
 ```php
-$recipe = $client->recipe();
+$recipe = $client->Recipe();
 ```
 
 ### Fields
@@ -359,7 +359,7 @@ $recipe = $client->recipe();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->recipe()->list([]);
+$results = $client->Recipe()->list([]);
 ```
 
 ### Common Methods

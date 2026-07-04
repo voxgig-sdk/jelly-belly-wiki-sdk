@@ -233,10 +233,10 @@ class JellyBellyWikiSDK
 
     private $_bean = null;
 
-    // Idiomatic facade: $client->bean()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Bean() (PHP method
-    // names are case-insensitive).
-    public function bean($data = null)
+    // Canonical facade: $client->Bean()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->bean()
+    // resolves here too.
+    public function Bean($data = null)
     {
         require_once __DIR__ . '/entity/bean_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class JellyBellyWikiSDK
 
     private $_combination = null;
 
-    // Idiomatic facade: $client->combination()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Combination() (PHP method
-    // names are case-insensitive).
-    public function combination($data = null)
+    // Canonical facade: $client->Combination()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->combination()
+    // resolves here too.
+    public function Combination($data = null)
     {
         require_once __DIR__ . '/entity/combination_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class JellyBellyWikiSDK
 
     private $_fact = null;
 
-    // Idiomatic facade: $client->fact()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Fact() (PHP method
-    // names are case-insensitive).
-    public function fact($data = null)
+    // Canonical facade: $client->Fact()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->fact()
+    // resolves here too.
+    public function Fact($data = null)
     {
         require_once __DIR__ . '/entity/fact_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class JellyBellyWikiSDK
 
     private $_history = null;
 
-    // Idiomatic facade: $client->history()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias History() (PHP method
-    // names are case-insensitive).
-    public function history($data = null)
+    // Canonical facade: $client->History()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->history()
+    // resolves here too.
+    public function History($data = null)
     {
         require_once __DIR__ . '/entity/history_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class JellyBellyWikiSDK
 
     private $_recipe = null;
 
-    // Idiomatic facade: $client->recipe()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Recipe() (PHP method
-    // names are case-insensitive).
-    public function recipe($data = null)
+    // Canonical facade: $client->Recipe()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->recipe()
+    // resolves here too.
+    public function Recipe($data = null)
     {
         require_once __DIR__ . '/entity/recipe_entity.php';
         if ($data === null) {

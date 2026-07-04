@@ -208,65 +208,35 @@ class JellyBellyWikiSDK
   end
 
 
-  # Idiomatic facade: client.bean.list / client.bean.load({ "id" => ... })
-  def bean
-    require_relative 'entity/bean_entity'
-    @bean ||= BeanEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.bean instead.
+  # Canonical facade: client.Bean.list / client.Bean.load({ "id" => ... })
   def Bean(data = nil)
     require_relative 'entity/bean_entity'
     BeanEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.combination.list / client.combination.load({ "id" => ... })
-  def combination
-    require_relative 'entity/combination_entity'
-    @combination ||= CombinationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.combination instead.
+  # Canonical facade: client.Combination.list / client.Combination.load({ "id" => ... })
   def Combination(data = nil)
     require_relative 'entity/combination_entity'
     CombinationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.fact.list / client.fact.load({ "id" => ... })
-  def fact
-    require_relative 'entity/fact_entity'
-    @fact ||= FactEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.fact instead.
+  # Canonical facade: client.Fact.list / client.Fact.load({ "id" => ... })
   def Fact(data = nil)
     require_relative 'entity/fact_entity'
     FactEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.history.list / client.history.load({ "id" => ... })
-  def history
-    require_relative 'entity/history_entity'
-    @history ||= HistoryEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.history instead.
+  # Canonical facade: client.History.list / client.History.load({ "id" => ... })
   def History(data = nil)
     require_relative 'entity/history_entity'
     HistoryEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.recipe.list / client.recipe.load({ "id" => ... })
-  def recipe
-    require_relative 'entity/recipe_entity'
-    @recipe ||= RecipeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.recipe instead.
+  # Canonical facade: client.Recipe.list / client.Recipe.load({ "id" => ... })
   def Recipe(data = nil)
     require_relative 'entity/recipe_entity'
     RecipeEntity.new(self, data)

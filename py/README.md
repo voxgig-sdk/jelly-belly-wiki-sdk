@@ -31,24 +31,28 @@ from jellybellywiki_sdk import JellyBellyWikiSDK
 client = JellyBellyWikiSDK()
 ```
 
-### 2. List beans
+### 2. List bean records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.bean.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    beans = client.Bean().list({})
+    for bean in beans:
+        print(bean)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a bean
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.bean.load({"id": "example_id"})
-    print(result)
+    bean = client.Bean().load({"id": "example_id"})
+    print(bean)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = JellyBellyWikiSDK.test()
 
-result = client.bean.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+bean = client.Bean().load({"id": "test01"})
+# bean contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -300,7 +305,7 @@ API path: `/recipes`
 
 ### Bean
 
-Create an instance: `const bean = client.bean`
+Create an instance: `bean = client.Bean()`
 
 #### Operations
 
@@ -327,20 +332,20 @@ Create an instance: `const bean = client.bean`
 
 #### Example: Load
 
-```ts
-const bean = await client.bean.load({ id: 'bean_id' })
+```python
+bean = client.Bean().load({"id": "bean_id"})
 ```
 
 #### Example: List
 
-```ts
-const beans = await client.bean.list()
+```python
+beans = client.Bean().list({})
 ```
 
 
 ### Combination
 
-Create an instance: `const combination = client.combination`
+Create an instance: `combination = client.Combination()`
 
 #### Operations
 
@@ -359,14 +364,14 @@ Create an instance: `const combination = client.combination`
 
 #### Example: List
 
-```ts
-const combinations = await client.combination.list()
+```python
+combinations = client.Combination().list({})
 ```
 
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `fact = client.Fact()`
 
 #### Operations
 
@@ -384,14 +389,14 @@ Create an instance: `const fact = client.fact`
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```python
+facts = client.Fact().list({})
 ```
 
 
 ### History
 
-Create an instance: `const history = client.history`
+Create an instance: `history = client.History()`
 
 #### Operations
 
@@ -409,14 +414,14 @@ Create an instance: `const history = client.history`
 
 #### Example: List
 
-```ts
-const historys = await client.history.list()
+```python
+historys = client.History().list({})
 ```
 
 
 ### Recipe
 
-Create an instance: `const recipe = client.recipe`
+Create an instance: `recipe = client.Recipe()`
 
 #### Operations
 
@@ -441,8 +446,8 @@ Create an instance: `const recipe = client.recipe`
 
 #### Example: List
 
-```ts
-const recipes = await client.recipe.list()
+```python
+recipes = client.Recipe().list({})
 ```
 
 
@@ -516,7 +521,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bean = client.bean
+bean = client.Bean()
 bean.load({"id": "example_id"})
 
 # bean.data_get() now returns the loaded bean data

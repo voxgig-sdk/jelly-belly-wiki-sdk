@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:bean():list() / client:bean():load({ id = ... })
-function JellyBellyWikiSDK:bean(data)
+-- Idiomatic facade: client:Bean():list() / client:Bean():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function JellyBellyWikiSDK:Bean(data)
   local EntityMod = require("entity.bean_entity")
   if data == nil then
     if self._bean == nil then
@@ -256,15 +257,10 @@ function JellyBellyWikiSDK:bean(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:bean() instead.
-function JellyBellyWikiSDK:Bean(data)
-  local EntityMod = require("entity.bean_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:combination():list() / client:combination():load({ id = ... })
-function JellyBellyWikiSDK:combination(data)
+-- Idiomatic facade: client:Combination():list() / client:Combination():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function JellyBellyWikiSDK:Combination(data)
   local EntityMod = require("entity.combination_entity")
   if data == nil then
     if self._combination == nil then
@@ -275,15 +271,10 @@ function JellyBellyWikiSDK:combination(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:combination() instead.
-function JellyBellyWikiSDK:Combination(data)
-  local EntityMod = require("entity.combination_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:fact():list() / client:fact():load({ id = ... })
-function JellyBellyWikiSDK:fact(data)
+-- Idiomatic facade: client:Fact():list() / client:Fact():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function JellyBellyWikiSDK:Fact(data)
   local EntityMod = require("entity.fact_entity")
   if data == nil then
     if self._fact == nil then
@@ -294,15 +285,10 @@ function JellyBellyWikiSDK:fact(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:fact() instead.
-function JellyBellyWikiSDK:Fact(data)
-  local EntityMod = require("entity.fact_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:history():list() / client:history():load({ id = ... })
-function JellyBellyWikiSDK:history(data)
+-- Idiomatic facade: client:History():list() / client:History():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function JellyBellyWikiSDK:History(data)
   local EntityMod = require("entity.history_entity")
   if data == nil then
     if self._history == nil then
@@ -313,15 +299,10 @@ function JellyBellyWikiSDK:history(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:history() instead.
-function JellyBellyWikiSDK:History(data)
-  local EntityMod = require("entity.history_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:recipe():list() / client:recipe():load({ id = ... })
-function JellyBellyWikiSDK:recipe(data)
+-- Idiomatic facade: client:Recipe():list() / client:Recipe():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function JellyBellyWikiSDK:Recipe(data)
   local EntityMod = require("entity.recipe_entity")
   if data == nil then
     if self._recipe == nil then
@@ -329,12 +310,6 @@ function JellyBellyWikiSDK:recipe(data)
     end
     return self._recipe
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:recipe() instead.
-function JellyBellyWikiSDK:Recipe(data)
-  local EntityMod = require("entity.recipe_entity")
   return EntityMod.new(self, data)
 end
 

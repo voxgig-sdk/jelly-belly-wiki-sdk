@@ -28,16 +28,14 @@ require_relative "JellyBellyWiki_sdk"
 client = JellyBellyWikiSDK.new
 ```
 
-### 2. List beans
+### 2. List bean records
 
 ```ruby
 begin
-  result = client.bean.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Bean records — iterate directly.
+  beans = client.Bean.list
+  beans.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.bean.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Bean record (raises on error).
+  bean = client.Bean.load({ "id" => "example_id" })
+  puts bean
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = JellyBellyWikiSDK.test
+client = JellyBellyWikiSDK.test({
+  "entity" => { "bean" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.bean.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+bean = client.Bean.load({ "id" => "test01" })
+puts bean
 ```
 
 ### Use a custom fetch function
@@ -304,7 +307,7 @@ API path: `/recipes`
 
 ### Bean
 
-Create an instance: `const bean = client.bean`
+Create an instance: `bean = client.Bean`
 
 #### Operations
 
@@ -331,20 +334,22 @@ Create an instance: `const bean = client.bean`
 
 #### Example: Load
 
-```ts
-const bean = await client.bean.load({ id: 'bean_id' })
+```ruby
+# load returns the bare Bean record (raises on error).
+bean = client.Bean.load({ "id" => "bean_id" })
 ```
 
 #### Example: List
 
-```ts
-const beans = await client.bean.list()
+```ruby
+# list returns an Array of Bean records (raises on error).
+beans = client.Bean.list
 ```
 
 
 ### Combination
 
-Create an instance: `const combination = client.combination`
+Create an instance: `combination = client.Combination`
 
 #### Operations
 
@@ -363,14 +368,15 @@ Create an instance: `const combination = client.combination`
 
 #### Example: List
 
-```ts
-const combinations = await client.combination.list()
+```ruby
+# list returns an Array of Combination records (raises on error).
+combinations = client.Combination.list
 ```
 
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `fact = client.Fact`
 
 #### Operations
 
@@ -388,14 +394,15 @@ Create an instance: `const fact = client.fact`
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```ruby
+# list returns an Array of Fact records (raises on error).
+facts = client.Fact.list
 ```
 
 
 ### History
 
-Create an instance: `const history = client.history`
+Create an instance: `history = client.History`
 
 #### Operations
 
@@ -413,14 +420,15 @@ Create an instance: `const history = client.history`
 
 #### Example: List
 
-```ts
-const historys = await client.history.list()
+```ruby
+# list returns an Array of History records (raises on error).
+historys = client.History.list
 ```
 
 
 ### Recipe
 
-Create an instance: `const recipe = client.recipe`
+Create an instance: `recipe = client.Recipe`
 
 #### Operations
 
@@ -445,8 +453,9 @@ Create an instance: `const recipe = client.recipe`
 
 #### Example: List
 
-```ts
-const recipes = await client.recipe.list()
+```ruby
+# list returns an Array of Recipe records (raises on error).
+recipes = client.Recipe.list
 ```
 
 
@@ -521,7 +530,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bean = client.bean
+bean = client.Bean
 bean.load({ "id" => "example_id" })
 
 # bean.data_get now returns the loaded bean data

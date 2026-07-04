@@ -31,26 +31,26 @@ local sdk = require("jelly-belly-wiki_sdk")
 local client = sdk.new()
 ```
 
-### 2. List beans
+### 2. List bean records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:bean():list()
+local beans, err = client:Bean():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(beans) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a bean
 
 ```lua
-local result, err = client:bean():load({ id = "example_id" })
+local bean, err = client:Bean():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(bean)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:bean():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Bean():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -201,17 +201,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local bean, err = client:Bean():load({ id = "example_id" })
+    if err then error(err) end
+    -- bean is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -298,7 +303,7 @@ API path: `/recipes`
 
 ### Bean
 
-Create an instance: `const bean = client.bean`
+Create an instance: `local bean = client:Bean(nil)`
 
 #### Operations
 
@@ -325,20 +330,20 @@ Create an instance: `const bean = client.bean`
 
 #### Example: Load
 
-```ts
-const bean = await client.bean.load({ id: 'bean_id' })
+```lua
+local bean, err = client:Bean():load({ id = "bean_id" })
 ```
 
 #### Example: List
 
-```ts
-const beans = await client.bean.list()
+```lua
+local beans, err = client:Bean():list()
 ```
 
 
 ### Combination
 
-Create an instance: `const combination = client.combination`
+Create an instance: `local combination = client:Combination(nil)`
 
 #### Operations
 
@@ -357,14 +362,14 @@ Create an instance: `const combination = client.combination`
 
 #### Example: List
 
-```ts
-const combinations = await client.combination.list()
+```lua
+local combinations, err = client:Combination():list()
 ```
 
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `local fact = client:Fact(nil)`
 
 #### Operations
 
@@ -382,14 +387,14 @@ Create an instance: `const fact = client.fact`
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```lua
+local facts, err = client:Fact():list()
 ```
 
 
 ### History
 
-Create an instance: `const history = client.history`
+Create an instance: `local history = client:History(nil)`
 
 #### Operations
 
@@ -407,14 +412,14 @@ Create an instance: `const history = client.history`
 
 #### Example: List
 
-```ts
-const historys = await client.history.list()
+```lua
+local historys, err = client:History():list()
 ```
 
 
 ### Recipe
 
-Create an instance: `const recipe = client.recipe`
+Create an instance: `local recipe = client:Recipe(nil)`
 
 #### Operations
 
@@ -439,8 +444,8 @@ Create an instance: `const recipe = client.recipe`
 
 #### Example: List
 
-```ts
-const recipes = await client.recipe.list()
+```lua
+local recipes, err = client:Recipe():list()
 ```
 
 
@@ -515,7 +520,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bean = client:bean()
+local bean = client:Bean()
 bean:load({ id = "example_id" })
 
 -- bean:data_get() now returns the loaded bean data

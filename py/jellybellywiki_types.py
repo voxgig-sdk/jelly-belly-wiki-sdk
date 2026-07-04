@@ -4,116 +4,109 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Bean:
-    background_color: Optional[str] = None
-    bean_id: Optional[str] = None
-    color_group: Optional[str] = None
-    description: Optional[str] = None
-    flavor_name: Optional[str] = None
-    gluten_free: Optional[bool] = None
-    group_name: Optional[list] = None
-    image_url: Optional[str] = None
-    ingredient: Optional[list] = None
-    kosher: Optional[bool] = None
-    sugar_free: Optional[bool] = None
+class Bean(TypedDict, total=False):
+    background_color: str
+    bean_id: str
+    color_group: str
+    description: str
+    flavor_name: str
+    gluten_free: bool
+    group_name: list
+    image_url: str
+    ingredient: list
+    kosher: bool
+    sugar_free: bool
 
 
-@dataclass
-class BeanLoadMatch:
+class BeanLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class BeanListMatch:
-    background_color: Optional[str] = None
-    bean_id: Optional[str] = None
-    color_group: Optional[str] = None
-    description: Optional[str] = None
-    flavor_name: Optional[str] = None
-    gluten_free: Optional[bool] = None
-    group_name: Optional[list] = None
-    image_url: Optional[str] = None
-    ingredient: Optional[list] = None
-    kosher: Optional[bool] = None
-    sugar_free: Optional[bool] = None
+class BeanListMatch(TypedDict, total=False):
+    background_color: str
+    bean_id: str
+    color_group: str
+    description: str
+    flavor_name: str
+    gluten_free: bool
+    group_name: list
+    image_url: str
+    ingredient: list
+    kosher: bool
+    sugar_free: bool
 
 
-@dataclass
-class Combination:
-    bean: Optional[list] = None
-    combination_id: Optional[str] = None
-    name: Optional[str] = None
-    tag: Optional[list] = None
+class Combination(TypedDict, total=False):
+    bean: list
+    combination_id: str
+    name: str
+    tag: list
 
 
-@dataclass
-class CombinationListMatch:
-    bean: Optional[list] = None
-    combination_id: Optional[str] = None
-    name: Optional[str] = None
-    tag: Optional[list] = None
+class CombinationListMatch(TypedDict, total=False):
+    bean: list
+    combination_id: str
+    name: str
+    tag: list
 
 
-@dataclass
-class Fact:
-    description: Optional[str] = None
-    fact_id: Optional[str] = None
-    title: Optional[str] = None
+class Fact(TypedDict, total=False):
+    description: str
+    fact_id: str
+    title: str
 
 
-@dataclass
-class FactListMatch:
-    description: Optional[str] = None
-    fact_id: Optional[str] = None
-    title: Optional[str] = None
+class FactListMatch(TypedDict, total=False):
+    description: str
+    fact_id: str
+    title: str
 
 
-@dataclass
-class History:
-    description: Optional[str] = None
-    history_id: Optional[str] = None
-    year: Optional[int] = None
+class History(TypedDict, total=False):
+    description: str
+    history_id: str
+    year: int
 
 
-@dataclass
-class HistoryListMatch:
-    description: Optional[str] = None
-    history_id: Optional[str] = None
-    year: Optional[int] = None
+class HistoryListMatch(TypedDict, total=False):
+    description: str
+    history_id: str
+    year: int
 
 
-@dataclass
-class Recipe:
-    cook_time: Optional[str] = None
-    description: Optional[str] = None
-    direction: Optional[list] = None
-    image_url: Optional[str] = None
-    ingredient: Optional[list] = None
-    making_amount: Optional[str] = None
-    name: Optional[str] = None
-    prep_time: Optional[str] = None
-    recipe_id: Optional[str] = None
-    total_time: Optional[str] = None
+class Recipe(TypedDict, total=False):
+    cook_time: str
+    description: str
+    direction: list
+    image_url: str
+    ingredient: list
+    making_amount: str
+    name: str
+    prep_time: str
+    recipe_id: str
+    total_time: str
 
 
-@dataclass
-class RecipeListMatch:
-    cook_time: Optional[str] = None
-    description: Optional[str] = None
-    direction: Optional[list] = None
-    image_url: Optional[str] = None
-    ingredient: Optional[list] = None
-    making_amount: Optional[str] = None
-    name: Optional[str] = None
-    prep_time: Optional[str] = None
-    recipe_id: Optional[str] = None
-    total_time: Optional[str] = None
-
+class RecipeListMatch(TypedDict, total=False):
+    cook_time: str
+    description: str
+    direction: list
+    image_url: str
+    ingredient: list
+    making_amount: str
+    name: str
+    prep_time: str
+    recipe_id: str
+    total_time: str

@@ -220,89 +220,39 @@ class JellyBellyWikiSDK:
         }
 
 
-    @property
-    def bean(self):
-        """Idiomatic facade: client.bean.list() / client.bean.load({"id": ...})."""
-        from entity.bean_entity import BeanEntity
-        cached = getattr(self, "_bean", None)
-        if cached is None:
-            cached = BeanEntity(self, None)
-            self._bean = cached
-        return cached
-
-    def Bean(self, data=None):
-        # Deprecated: use client.bean instead.
+    def Bean(self, data=None) -> "BeanEntity":
+        """Entity factory: client.Bean().list({}) / client.Bean().load({"id": ...})."""
         from entity.bean_entity import BeanEntity
         return BeanEntity(self, data)
 
 
-    @property
-    def combination(self):
-        """Idiomatic facade: client.combination.list() / client.combination.load({"id": ...})."""
-        from entity.combination_entity import CombinationEntity
-        cached = getattr(self, "_combination", None)
-        if cached is None:
-            cached = CombinationEntity(self, None)
-            self._combination = cached
-        return cached
-
-    def Combination(self, data=None):
-        # Deprecated: use client.combination instead.
+    def Combination(self, data=None) -> "CombinationEntity":
+        """Entity factory: client.Combination().list({}) / client.Combination().load({"id": ...})."""
         from entity.combination_entity import CombinationEntity
         return CombinationEntity(self, data)
 
 
-    @property
-    def fact(self):
-        """Idiomatic facade: client.fact.list() / client.fact.load({"id": ...})."""
-        from entity.fact_entity import FactEntity
-        cached = getattr(self, "_fact", None)
-        if cached is None:
-            cached = FactEntity(self, None)
-            self._fact = cached
-        return cached
-
-    def Fact(self, data=None):
-        # Deprecated: use client.fact instead.
+    def Fact(self, data=None) -> "FactEntity":
+        """Entity factory: client.Fact().list({}) / client.Fact().load({"id": ...})."""
         from entity.fact_entity import FactEntity
         return FactEntity(self, data)
 
 
-    @property
-    def history(self):
-        """Idiomatic facade: client.history.list() / client.history.load({"id": ...})."""
-        from entity.history_entity import HistoryEntity
-        cached = getattr(self, "_history", None)
-        if cached is None:
-            cached = HistoryEntity(self, None)
-            self._history = cached
-        return cached
-
-    def History(self, data=None):
-        # Deprecated: use client.history instead.
+    def History(self, data=None) -> "HistoryEntity":
+        """Entity factory: client.History().list({}) / client.History().load({"id": ...})."""
         from entity.history_entity import HistoryEntity
         return HistoryEntity(self, data)
 
 
-    @property
-    def recipe(self):
-        """Idiomatic facade: client.recipe.list() / client.recipe.load({"id": ...})."""
-        from entity.recipe_entity import RecipeEntity
-        cached = getattr(self, "_recipe", None)
-        if cached is None:
-            cached = RecipeEntity(self, None)
-            self._recipe = cached
-        return cached
-
-    def Recipe(self, data=None):
-        # Deprecated: use client.recipe instead.
+    def Recipe(self, data=None) -> "RecipeEntity":
+        """Entity factory: client.Recipe().list({}) / client.Recipe().load({"id": ...})."""
         from entity.recipe_entity import RecipeEntity
         return RecipeEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "JellyBellyWikiSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class JellyBellyWikiSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.bean_entity import BeanEntity
+    from entity.combination_entity import CombinationEntity
+    from entity.fact_entity import FactEntity
+    from entity.history_entity import HistoryEntity
+    from entity.recipe_entity import RecipeEntity
