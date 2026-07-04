@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Bean,
+  BeanLoadMatch,
+  BeanListMatch,
+} from '../JellyBellyWikiTypes'
 
 // TODO: needs Entity superclass
-class BeanEntity extends JellyBellyWikiEntityBase {
+class BeanEntity extends JellyBellyWikiEntityBase<Bean> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class BeanEntity extends JellyBellyWikiEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: BeanLoadMatch, ctrl?: Control): Promise<Bean> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class BeanEntity extends JellyBellyWikiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Bean> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: BeanListMatch, ctrl?: Control): Promise<Bean[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class BeanEntity extends JellyBellyWikiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Bean[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Fact,
+  FactListMatch,
+} from '../JellyBellyWikiTypes'
 
 // TODO: needs Entity superclass
-class FactEntity extends JellyBellyWikiEntityBase {
+class FactEntity extends JellyBellyWikiEntityBase<Fact> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class FactEntity extends JellyBellyWikiEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: FactListMatch, ctrl?: Control): Promise<Fact[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class FactEntity extends JellyBellyWikiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Fact[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

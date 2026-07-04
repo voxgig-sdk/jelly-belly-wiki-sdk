@@ -15,9 +15,6 @@ module JellyBellyWikiConfig
       },
       "options" => {
         "base" => "https://jellybellywikiapi.onrender.com/api",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -175,6 +172,7 @@ module JellyBellyWikiConfig
                         "orig" => "bean_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

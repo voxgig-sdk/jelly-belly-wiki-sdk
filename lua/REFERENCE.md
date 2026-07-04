@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -100,7 +99,7 @@ same parameters as `direct()`.
 ## BeanEntity
 
 ```lua
-local bean = client:Bean(nil)
+local bean = client:bean(nil)
 ```
 
 ### Fields
@@ -126,7 +125,7 @@ local bean = client:Bean(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Bean():list()
+local results, err = client:bean():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -134,7 +133,7 @@ local results, err = client:Bean():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Bean():load({ id = "bean_id" })
+local result, err = client:bean():load({ id = "bean_id" })
 ```
 
 ### Common Methods
@@ -170,7 +169,7 @@ Return the entity name.
 ## CombinationEntity
 
 ```lua
-local combination = client:Combination(nil)
+local combination = client:combination(nil)
 ```
 
 ### Fields
@@ -189,7 +188,7 @@ local combination = client:Combination(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Combination():list()
+local results, err = client:combination():list()
 ```
 
 ### Common Methods
@@ -225,7 +224,7 @@ Return the entity name.
 ## FactEntity
 
 ```lua
-local fact = client:Fact(nil)
+local fact = client:fact(nil)
 ```
 
 ### Fields
@@ -243,7 +242,7 @@ local fact = client:Fact(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Fact():list()
+local results, err = client:fact():list()
 ```
 
 ### Common Methods
@@ -279,7 +278,7 @@ Return the entity name.
 ## HistoryEntity
 
 ```lua
-local history = client:History(nil)
+local history = client:history(nil)
 ```
 
 ### Fields
@@ -297,7 +296,7 @@ local history = client:History(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:History():list()
+local results, err = client:history():list()
 ```
 
 ### Common Methods
@@ -333,7 +332,7 @@ Return the entity name.
 ## RecipeEntity
 
 ```lua
-local recipe = client:Recipe(nil)
+local recipe = client:recipe(nil)
 ```
 
 ### Fields
@@ -358,7 +357,7 @@ local recipe = client:Recipe(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Recipe():list()
+local results, err = client:recipe():list()
 ```
 
 ### Common Methods

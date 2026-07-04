@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CombinationListMatch
+---@param ctrl? table
+---@return Combination[]
+---@return string? err
 function CombinationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

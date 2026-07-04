@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch BeanLoadMatch
+---@param ctrl? table
+---@return Bean
+---@return string? err
 function BeanEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch BeanListMatch
+---@param ctrl? table
+---@return Bean[]
+---@return string? err
 function BeanEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

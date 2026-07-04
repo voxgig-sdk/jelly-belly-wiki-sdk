@@ -103,7 +103,7 @@ class JellyBellyWikiSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class JellyBellyWikiSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class JellyBellyWikiSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,52 +216,107 @@ class JellyBellyWikiSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Bean($data = null)
+    private $_bean = null;
+
+    // Idiomatic facade: $client->bean()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Bean() (PHP method
+    // names are case-insensitive).
+    public function bean($data = null)
     {
         require_once __DIR__ . '/entity/bean_entity.php';
+        if ($data === null) {
+            if ($this->_bean === null) {
+                $this->_bean = new BeanEntity($this, null);
+            }
+            return $this->_bean;
+        }
         return new BeanEntity($this, $data);
     }
 
 
-    public function Combination($data = null)
+    private $_combination = null;
+
+    // Idiomatic facade: $client->combination()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Combination() (PHP method
+    // names are case-insensitive).
+    public function combination($data = null)
     {
         require_once __DIR__ . '/entity/combination_entity.php';
+        if ($data === null) {
+            if ($this->_combination === null) {
+                $this->_combination = new CombinationEntity($this, null);
+            }
+            return $this->_combination;
+        }
         return new CombinationEntity($this, $data);
     }
 
 
-    public function Fact($data = null)
+    private $_fact = null;
+
+    // Idiomatic facade: $client->fact()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Fact() (PHP method
+    // names are case-insensitive).
+    public function fact($data = null)
     {
         require_once __DIR__ . '/entity/fact_entity.php';
+        if ($data === null) {
+            if ($this->_fact === null) {
+                $this->_fact = new FactEntity($this, null);
+            }
+            return $this->_fact;
+        }
         return new FactEntity($this, $data);
     }
 
 
-    public function History($data = null)
+    private $_history = null;
+
+    // Idiomatic facade: $client->history()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias History() (PHP method
+    // names are case-insensitive).
+    public function history($data = null)
     {
         require_once __DIR__ . '/entity/history_entity.php';
+        if ($data === null) {
+            if ($this->_history === null) {
+                $this->_history = new HistoryEntity($this, null);
+            }
+            return $this->_history;
+        }
         return new HistoryEntity($this, $data);
     }
 
 
-    public function Recipe($data = null)
+    private $_recipe = null;
+
+    // Idiomatic facade: $client->recipe()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Recipe() (PHP method
+    // names are case-insensitive).
+    public function recipe($data = null)
     {
         require_once __DIR__ . '/entity/recipe_entity.php';
+        if ($data === null) {
+            if ($this->_recipe === null) {
+                $this->_recipe = new RecipeEntity($this, null);
+            }
+            return $this->_recipe;
+        }
         return new RecipeEntity($this, $data);
     }
 

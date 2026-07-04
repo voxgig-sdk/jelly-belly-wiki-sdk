@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         url: "https://jelly-belly-wiki.netlify.app/api"
       }

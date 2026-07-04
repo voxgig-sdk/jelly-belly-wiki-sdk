@@ -43,8 +43,7 @@ class HistoryEntityTest < Minitest::Test
     history_ref01_ent = client.History(nil)
     history_ref01_match = {}
 
-    history_ref01_list_result, err = history_ref01_ent.list(history_ref01_match, nil)
-    assert_nil err
+    history_ref01_list_result = history_ref01_ent.list(history_ref01_match, nil)
     assert history_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def history_basic_setup(extra)
     "JELLYBELLYWIKI_TEST_HISTORY_ENTID" => idmap,
     "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
     "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-    "JELLYBELLYWIKI_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def history_basic_setup(extra)
   if env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["JELLYBELLYWIKI_APIKEY"],
       },
       extra || {},
     ])

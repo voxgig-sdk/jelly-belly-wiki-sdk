@@ -244,30 +244,95 @@ end
 
 
 
+-- Idiomatic facade: client:bean():list() / client:bean():load({ id = ... })
+function JellyBellyWikiSDK:bean(data)
+  local EntityMod = require("entity.bean_entity")
+  if data == nil then
+    if self._bean == nil then
+      self._bean = EntityMod.new(self, nil)
+    end
+    return self._bean
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:bean() instead.
 function JellyBellyWikiSDK:Bean(data)
   local EntityMod = require("entity.bean_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:combination():list() / client:combination():load({ id = ... })
+function JellyBellyWikiSDK:combination(data)
+  local EntityMod = require("entity.combination_entity")
+  if data == nil then
+    if self._combination == nil then
+      self._combination = EntityMod.new(self, nil)
+    end
+    return self._combination
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:combination() instead.
 function JellyBellyWikiSDK:Combination(data)
   local EntityMod = require("entity.combination_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:fact():list() / client:fact():load({ id = ... })
+function JellyBellyWikiSDK:fact(data)
+  local EntityMod = require("entity.fact_entity")
+  if data == nil then
+    if self._fact == nil then
+      self._fact = EntityMod.new(self, nil)
+    end
+    return self._fact
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:fact() instead.
 function JellyBellyWikiSDK:Fact(data)
   local EntityMod = require("entity.fact_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:history():list() / client:history():load({ id = ... })
+function JellyBellyWikiSDK:history(data)
+  local EntityMod = require("entity.history_entity")
+  if data == nil then
+    if self._history == nil then
+      self._history = EntityMod.new(self, nil)
+    end
+    return self._history
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:history() instead.
 function JellyBellyWikiSDK:History(data)
   local EntityMod = require("entity.history_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:recipe():list() / client:recipe():load({ id = ... })
+function JellyBellyWikiSDK:recipe(data)
+  local EntityMod = require("entity.recipe_entity")
+  if data == nil then
+    if self._recipe == nil then
+      self._recipe = EntityMod.new(self, nil)
+    end
+    return self._recipe
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:recipe() instead.
 function JellyBellyWikiSDK:Recipe(data)
   local EntityMod = require("entity.recipe_entity")
   return EntityMod.new(self, data)

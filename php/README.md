@@ -9,9 +9,10 @@ The PHP SDK for the JellyBellyWiki API — an entity-oriented client using PHP c
 
 
 ## Install
-```bash
-composer require voxgig-sdk/jelly-belly-wiki
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,31 +26,34 @@ loading a specific record.
 <?php
 require_once 'jellybellywiki_sdk.php';
 
-$client = new JellyBellyWikiSDK([
-    "apikey" => getenv("JELLY-BELLY-WIKI_APIKEY"),
-]);
+$client = new JellyBellyWikiSDK();
 ```
 
 ### 2. List beans
 
 ```php
-[$result, $err] = $client->Bean()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->bean()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a bean
 
 ```php
-[$result, $err] = $client->Bean()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->bean()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +64,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = JellyBellyWikiSDK::test();
 
-[$result, $err] = $client->JellyBellyWiki()->load(["id" => "test01"]);
+$result = $client->bean()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -129,8 +136,7 @@ $client = new JellyBellyWikiSDK([
 Create a `.env.local` file at the project root:
 
 ```
-JELLY-BELLY-WIKI_TEST_LIVE=TRUE
-JELLY-BELLY-WIKI_APIKEY=<your-key>
+JELLY_BELLY_WIKI_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -153,7 +159,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -203,8 +208,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -300,7 +309,7 @@ API path: `/recipes`
 
 ### Bean
 
-Create an instance: `const bean = client.Bean()`
+Create an instance: `const bean = client.bean`
 
 #### Operations
 
@@ -328,19 +337,19 @@ Create an instance: `const bean = client.Bean()`
 #### Example: Load
 
 ```ts
-const bean = await client.Bean().load({ id: 'bean_id' })
+const bean = await client.bean.load({ id: 'bean_id' })
 ```
 
 #### Example: List
 
 ```ts
-const beans = await client.Bean().list()
+const beans = await client.bean.list()
 ```
 
 
 ### Combination
 
-Create an instance: `const combination = client.Combination()`
+Create an instance: `const combination = client.combination`
 
 #### Operations
 
@@ -360,13 +369,13 @@ Create an instance: `const combination = client.Combination()`
 #### Example: List
 
 ```ts
-const combinations = await client.Combination().list()
+const combinations = await client.combination.list()
 ```
 
 
 ### Fact
 
-Create an instance: `const fact = client.Fact()`
+Create an instance: `const fact = client.fact`
 
 #### Operations
 
@@ -385,13 +394,13 @@ Create an instance: `const fact = client.Fact()`
 #### Example: List
 
 ```ts
-const facts = await client.Fact().list()
+const facts = await client.fact.list()
 ```
 
 
 ### History
 
-Create an instance: `const history = client.History()`
+Create an instance: `const history = client.history`
 
 #### Operations
 
@@ -410,13 +419,13 @@ Create an instance: `const history = client.History()`
 #### Example: List
 
 ```ts
-const historys = await client.History().list()
+const historys = await client.history.list()
 ```
 
 
 ### Recipe
 
-Create an instance: `const recipe = client.Recipe()`
+Create an instance: `const recipe = client.recipe`
 
 #### Operations
 
@@ -442,7 +451,7 @@ Create an instance: `const recipe = client.Recipe()`
 #### Example: List
 
 ```ts
-const recipes = await client.Recipe().list()
+const recipes = await client.recipe.list()
 ```
 
 
@@ -517,11 +526,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$bean = $client->bean();
+$bean->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $bean->dataGet() now returns the loaded bean data
+// $bean->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

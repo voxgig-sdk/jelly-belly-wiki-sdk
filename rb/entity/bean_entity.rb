@@ -45,6 +45,7 @@ class BeanEntity
     end
   end
 
+  # @return [Bean, Hash] the current Bean data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class BeanEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Bean fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Bean.
+  #
+  # @param reqmatch [BeanLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Bean, Hash] the loaded Bean; raises JellyBellyWikiError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class BeanEntity
 
 
   
+  # List Bean items matching the given filter.
+  #
+  # @param reqmatch [BeanListMatch, Hash, nil] match filter (any subset of Bean fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Bean>, Array] the matching Bean items; raises JellyBellyWikiError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

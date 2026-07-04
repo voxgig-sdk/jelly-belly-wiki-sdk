@@ -50,8 +50,7 @@ class RecipeEntityTest extends TestCase
         $recipe_ref01_ent = $client->Recipe(null);
         $recipe_ref01_match = [];
 
-        [$recipe_ref01_list_result, $err] = $recipe_ref01_ent->list($recipe_ref01_match, null);
-        $this->assertNull($err);
+        $recipe_ref01_list_result = $recipe_ref01_ent->list($recipe_ref01_match, null);
         $this->assertIsArray($recipe_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function recipe_basic_setup($extra)
         "JELLYBELLYWIKI_TEST_RECIPE_ENTID" => $idmap,
         "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-        "JELLYBELLYWIKI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function recipe_basic_setup($extra)
     if ($env["JELLYBELLYWIKI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JELLYBELLYWIKI_APIKEY"],
             ],
             $extra ?? [],
         ]);

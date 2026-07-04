@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Combination,
+  CombinationListMatch,
+} from '../JellyBellyWikiTypes'
 
 // TODO: needs Entity superclass
-class CombinationEntity extends JellyBellyWikiEntityBase {
+class CombinationEntity extends JellyBellyWikiEntityBase<Combination> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CombinationEntity extends JellyBellyWikiEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CombinationListMatch, ctrl?: Control): Promise<Combination[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CombinationEntity extends JellyBellyWikiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Combination[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

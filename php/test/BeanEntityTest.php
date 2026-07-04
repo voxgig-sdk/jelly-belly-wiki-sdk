@@ -50,14 +50,12 @@ class BeanEntityTest extends TestCase
         $bean_ref01_ent = $client->Bean(null);
         $bean_ref01_match = [];
 
-        [$bean_ref01_list_result, $err] = $bean_ref01_ent->list($bean_ref01_match, null);
-        $this->assertNull($err);
+        $bean_ref01_list_result = $bean_ref01_ent->list($bean_ref01_match, null);
         $this->assertIsArray($bean_ref01_list_result);
 
         // LOAD
         $bean_ref01_match_dt0 = [];
-        [$bean_ref01_data_dt0_loaded, $err] = $bean_ref01_ent->load($bean_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $bean_ref01_data_dt0_loaded = $bean_ref01_ent->load($bean_ref01_match_dt0, null);
         $this->assertNotNull($bean_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function bean_basic_setup($extra)
         "JELLYBELLYWIKI_TEST_BEAN_ENTID" => $idmap,
         "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-        "JELLYBELLYWIKI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function bean_basic_setup($extra)
     if ($env["JELLYBELLYWIKI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JELLYBELLYWIKI_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -9,9 +9,12 @@ The TypeScript SDK for the JellyBellyWiki API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/jelly-belly-wiki
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { JellyBellyWikiSDK } from 'jelly-belly-wiki'
+import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
 
-const client = new JellyBellyWikiSDK({
-  apikey: process.env.JELLY-BELLY-WIKI_APIKEY,
-})
+const client = new JellyBellyWikiSDK()
 ```
 
 ### 2. List beans
 
 ```ts
-const result = await client.Bean().list()
+const result = await client.bean.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a bean
 
 ```ts
-const result = await client.Bean().load({ id: 'example_id' })
+const result = await client.bean.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = JellyBellyWikiSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.bean.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new JellyBellyWikiSDK({ apikey: '...' })
+const client = new JellyBellyWikiSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.bean
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new JellyBellyWikiSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -145,8 +145,7 @@ const client = new JellyBellyWikiSDK({
 Create a `.env.local` file at the project root:
 
 ```
-JELLY-BELLY-WIKI_TEST_LIVE=TRUE
-JELLY-BELLY-WIKI_APIKEY=<your-key>
+JELLY_BELLY_WIKI_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new JellyBellyWikiSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new JellyBellyWikiSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -348,7 +345,7 @@ API path: `/recipes`
 
 ### Bean
 
-Create an instance: `const bean = client.Bean()`
+Create an instance: `const bean = client.bean`
 
 #### Operations
 
@@ -376,19 +373,19 @@ Create an instance: `const bean = client.Bean()`
 #### Example: Load
 
 ```ts
-const bean = await client.Bean().load({ id: 'bean_id' })
+const bean = await client.bean.load({ id: 'bean_id' })
 ```
 
 #### Example: List
 
 ```ts
-const beans = await client.Bean().list()
+const beans = await client.bean.list()
 ```
 
 
 ### Combination
 
-Create an instance: `const combination = client.Combination()`
+Create an instance: `const combination = client.combination`
 
 #### Operations
 
@@ -408,13 +405,13 @@ Create an instance: `const combination = client.Combination()`
 #### Example: List
 
 ```ts
-const combinations = await client.Combination().list()
+const combinations = await client.combination.list()
 ```
 
 
 ### Fact
 
-Create an instance: `const fact = client.Fact()`
+Create an instance: `const fact = client.fact`
 
 #### Operations
 
@@ -433,13 +430,13 @@ Create an instance: `const fact = client.Fact()`
 #### Example: List
 
 ```ts
-const facts = await client.Fact().list()
+const facts = await client.fact.list()
 ```
 
 
 ### History
 
-Create an instance: `const history = client.History()`
+Create an instance: `const history = client.history`
 
 #### Operations
 
@@ -458,13 +455,13 @@ Create an instance: `const history = client.History()`
 #### Example: List
 
 ```ts
-const historys = await client.History().list()
+const historys = await client.history.list()
 ```
 
 
 ### Recipe
 
-Create an instance: `const recipe = client.Recipe()`
+Create an instance: `const recipe = client.recipe`
 
 #### Operations
 
@@ -490,7 +487,7 @@ Create an instance: `const recipe = client.Recipe()`
 #### Example: List
 
 ```ts
-const recipes = await client.Recipe().list()
+const recipes = await client.recipe.list()
 ```
 
 
@@ -551,7 +548,7 @@ jelly-belly-wiki/
 Import the SDK from the package root:
 
 ```ts
-import { JellyBellyWikiSDK } from 'jelly-belly-wiki'
+import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
 ```
 
 ### Entity state
@@ -561,11 +558,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const bean = client.bean
+await bean.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// bean.data() now returns the loaded bean data
+// bean.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

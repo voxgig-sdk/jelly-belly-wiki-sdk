@@ -50,8 +50,7 @@ class FactEntityTest extends TestCase
         $fact_ref01_ent = $client->Fact(null);
         $fact_ref01_match = [];
 
-        [$fact_ref01_list_result, $err] = $fact_ref01_ent->list($fact_ref01_match, null);
-        $this->assertNull($err);
+        $fact_ref01_list_result = $fact_ref01_ent->list($fact_ref01_match, null);
         $this->assertIsArray($fact_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function fact_basic_setup($extra)
         "JELLYBELLYWIKI_TEST_FACT_ENTID" => $idmap,
         "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-        "JELLYBELLYWIKI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function fact_basic_setup($extra)
     if ($env["JELLYBELLYWIKI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JELLYBELLYWIKI_APIKEY"],
             ],
             $extra ?? [],
         ]);

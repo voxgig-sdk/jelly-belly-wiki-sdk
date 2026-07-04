@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -70,9 +69,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -86,14 +87,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -101,7 +102,7 @@ same parameters as `direct()`.
 ## BeanEntity
 
 ```ruby
-bean = client.Bean
+bean = client.bean
 ```
 
 ### Fields
@@ -122,20 +123,20 @@ bean = client.Bean
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Bean.list(nil)
+results = client.bean.list(nil)
 ```
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Bean.load({ "id" => "bean_id" })
+result = client.bean.load({ "id" => "bean_id" })
 ```
 
 ### Common Methods
@@ -171,7 +172,7 @@ Return the entity name.
 ## CombinationEntity
 
 ```ruby
-combination = client.Combination
+combination = client.combination
 ```
 
 ### Fields
@@ -185,12 +186,12 @@ combination = client.Combination
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Combination.list(nil)
+results = client.combination.list(nil)
 ```
 
 ### Common Methods
@@ -226,7 +227,7 @@ Return the entity name.
 ## FactEntity
 
 ```ruby
-fact = client.Fact
+fact = client.fact
 ```
 
 ### Fields
@@ -239,12 +240,12 @@ fact = client.Fact
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Fact.list(nil)
+results = client.fact.list(nil)
 ```
 
 ### Common Methods
@@ -280,7 +281,7 @@ Return the entity name.
 ## HistoryEntity
 
 ```ruby
-history = client.History
+history = client.history
 ```
 
 ### Fields
@@ -293,12 +294,12 @@ history = client.History
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.History.list(nil)
+results = client.history.list(nil)
 ```
 
 ### Common Methods
@@ -334,7 +335,7 @@ Return the entity name.
 ## RecipeEntity
 
 ```ruby
-recipe = client.Recipe
+recipe = client.recipe
 ```
 
 ### Fields
@@ -354,12 +355,12 @@ recipe = client.Recipe
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Recipe.list(nil)
+results = client.recipe.list(nil)
 ```
 
 ### Common Methods

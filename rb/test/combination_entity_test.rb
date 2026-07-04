@@ -43,8 +43,7 @@ class CombinationEntityTest < Minitest::Test
     combination_ref01_ent = client.Combination(nil)
     combination_ref01_match = {}
 
-    combination_ref01_list_result, err = combination_ref01_ent.list(combination_ref01_match, nil)
-    assert_nil err
+    combination_ref01_list_result = combination_ref01_ent.list(combination_ref01_match, nil)
     assert combination_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def combination_basic_setup(extra)
     "JELLYBELLYWIKI_TEST_COMBINATION_ENTID" => idmap,
     "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
     "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-    "JELLYBELLYWIKI_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def combination_basic_setup(extra)
   if env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["JELLYBELLYWIKI_APIKEY"],
       },
       extra || {},
     ])

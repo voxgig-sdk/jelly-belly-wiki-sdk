@@ -9,12 +9,9 @@ The Lua SDK for the JellyBellyWiki API — an entity-oriented client using Lua c
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-jelly-belly-wiki
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("jelly-belly-wiki_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("JELLY-BELLY-WIKI_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List beans
 
 ```lua
-local result, err = client:Bean():list()
+local result, err = client:bean():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a bean
 
 ```lua
-local result, err = client:Bean():load({ id = "example_id" })
+local result, err = client:bean():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:JellyBellyWiki():load({ id = "test01" })
+local result, err = client:bean():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +129,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-JELLY-BELLY-WIKI_TEST_LIVE=TRUE
-JELLY-BELLY-WIKI_APIKEY=<your-key>
+JELLY_BELLY_WIKI_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -305,7 +298,7 @@ API path: `/recipes`
 
 ### Bean
 
-Create an instance: `const bean = client.Bean()`
+Create an instance: `const bean = client.bean`
 
 #### Operations
 
@@ -333,19 +326,19 @@ Create an instance: `const bean = client.Bean()`
 #### Example: Load
 
 ```ts
-const bean = await client.Bean().load({ id: 'bean_id' })
+const bean = await client.bean.load({ id: 'bean_id' })
 ```
 
 #### Example: List
 
 ```ts
-const beans = await client.Bean().list()
+const beans = await client.bean.list()
 ```
 
 
 ### Combination
 
-Create an instance: `const combination = client.Combination()`
+Create an instance: `const combination = client.combination`
 
 #### Operations
 
@@ -365,13 +358,13 @@ Create an instance: `const combination = client.Combination()`
 #### Example: List
 
 ```ts
-const combinations = await client.Combination().list()
+const combinations = await client.combination.list()
 ```
 
 
 ### Fact
 
-Create an instance: `const fact = client.Fact()`
+Create an instance: `const fact = client.fact`
 
 #### Operations
 
@@ -390,13 +383,13 @@ Create an instance: `const fact = client.Fact()`
 #### Example: List
 
 ```ts
-const facts = await client.Fact().list()
+const facts = await client.fact.list()
 ```
 
 
 ### History
 
-Create an instance: `const history = client.History()`
+Create an instance: `const history = client.history`
 
 #### Operations
 
@@ -415,13 +408,13 @@ Create an instance: `const history = client.History()`
 #### Example: List
 
 ```ts
-const historys = await client.History().list()
+const historys = await client.history.list()
 ```
 
 
 ### Recipe
 
-Create an instance: `const recipe = client.Recipe()`
+Create an instance: `const recipe = client.recipe`
 
 #### Operations
 
@@ -447,7 +440,7 @@ Create an instance: `const recipe = client.Recipe()`
 #### Example: List
 
 ```ts
-const recipes = await client.Recipe().list()
+const recipes = await client.recipe.list()
 ```
 
 
@@ -522,11 +515,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local bean = client:bean()
+bean:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- bean:data_get() now returns the loaded bean data
+-- bean:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

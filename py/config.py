@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://jellybellywikiapi.onrender.com/api",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -175,6 +172,7 @@ def make_config():
                       "orig": "bean_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

@@ -50,8 +50,7 @@ class TestHistoryEntity:
         history_ref01_ent = client.History(None)
         history_ref01_match = {}
 
-        history_ref01_list_result, err = history_ref01_ent.list(history_ref01_match, None)
-        assert err is None
+        history_ref01_list_result = history_ref01_ent.list(history_ref01_match, None)
         assert isinstance(history_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _history_basic_setup(extra):
         "JELLYBELLYWIKI_TEST_HISTORY_ENTID": idmap,
         "JELLYBELLYWIKI_TEST_LIVE": "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN": "FALSE",
-        "JELLYBELLYWIKI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _history_basic_setup(extra):
     if env.get("JELLYBELLYWIKI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JELLYBELLYWIKI_APIKEY"),
             },
             extra or {},
         ])

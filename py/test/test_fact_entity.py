@@ -50,8 +50,7 @@ class TestFactEntity:
         fact_ref01_ent = client.Fact(None)
         fact_ref01_match = {}
 
-        fact_ref01_list_result, err = fact_ref01_ent.list(fact_ref01_match, None)
-        assert err is None
+        fact_ref01_list_result = fact_ref01_ent.list(fact_ref01_match, None)
         assert isinstance(fact_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _fact_basic_setup(extra):
         "JELLYBELLYWIKI_TEST_FACT_ENTID": idmap,
         "JELLYBELLYWIKI_TEST_LIVE": "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN": "FALSE",
-        "JELLYBELLYWIKI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _fact_basic_setup(extra):
     if env.get("JELLYBELLYWIKI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JELLYBELLYWIKI_APIKEY"),
             },
             extra or {},
         ])

@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'JellyBellyWiki_types'
+
 
 class JellyBellyWikiSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class JellyBellyWikiSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class JellyBellyWikiSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue JellyBellyWikiError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = JellyBellyWikiHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class JellyBellyWikiSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class JellyBellyWikiSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.bean.list / client.bean.load({ "id" => ... })
+  def bean
+    require_relative 'entity/bean_entity'
+    @bean ||= BeanEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.bean instead.
   def Bean(data = nil)
     require_relative 'entity/bean_entity'
     BeanEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.combination.list / client.combination.load({ "id" => ... })
+  def combination
+    require_relative 'entity/combination_entity'
+    @combination ||= CombinationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.combination instead.
   def Combination(data = nil)
     require_relative 'entity/combination_entity'
     CombinationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.fact.list / client.fact.load({ "id" => ... })
+  def fact
+    require_relative 'entity/fact_entity'
+    @fact ||= FactEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.fact instead.
   def Fact(data = nil)
     require_relative 'entity/fact_entity'
     FactEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.history.list / client.history.load({ "id" => ... })
+  def history
+    require_relative 'entity/history_entity'
+    @history ||= HistoryEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.history instead.
   def History(data = nil)
     require_relative 'entity/history_entity'
     HistoryEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.recipe.list / client.recipe.load({ "id" => ... })
+  def recipe
+    require_relative 'entity/recipe_entity'
+    @recipe ||= RecipeEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.recipe instead.
   def Recipe(data = nil)
     require_relative 'entity/recipe_entity'
     RecipeEntity.new(self, data)

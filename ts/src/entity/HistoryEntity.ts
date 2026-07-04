@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  History,
+  HistoryListMatch,
+} from '../JellyBellyWikiTypes'
 
 // TODO: needs Entity superclass
-class HistoryEntity extends JellyBellyWikiEntityBase {
+class HistoryEntity extends JellyBellyWikiEntityBase<History> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class HistoryEntity extends JellyBellyWikiEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: HistoryListMatch, ctrl?: Control): Promise<History[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class HistoryEntity extends JellyBellyWikiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<History[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

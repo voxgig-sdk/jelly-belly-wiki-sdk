@@ -50,14 +50,12 @@ class TestBeanEntity:
         bean_ref01_ent = client.Bean(None)
         bean_ref01_match = {}
 
-        bean_ref01_list_result, err = bean_ref01_ent.list(bean_ref01_match, None)
-        assert err is None
+        bean_ref01_list_result = bean_ref01_ent.list(bean_ref01_match, None)
         assert isinstance(bean_ref01_list_result, list)
 
         # LOAD
         bean_ref01_match_dt0 = {}
-        bean_ref01_data_dt0_loaded, err = bean_ref01_ent.load(bean_ref01_match_dt0, None)
-        assert err is None
+        bean_ref01_data_dt0_loaded = bean_ref01_ent.load(bean_ref01_match_dt0, None)
         assert bean_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _bean_basic_setup(extra):
         "JELLYBELLYWIKI_TEST_BEAN_ENTID": idmap,
         "JELLYBELLYWIKI_TEST_LIVE": "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN": "FALSE",
-        "JELLYBELLYWIKI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _bean_basic_setup(extra):
     if env.get("JELLYBELLYWIKI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JELLYBELLYWIKI_APIKEY"),
             },
             extra or {},
         ])

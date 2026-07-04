@@ -50,8 +50,7 @@ class CombinationEntityTest extends TestCase
         $combination_ref01_ent = $client->Combination(null);
         $combination_ref01_match = [];
 
-        [$combination_ref01_list_result, $err] = $combination_ref01_ent->list($combination_ref01_match, null);
-        $this->assertNull($err);
+        $combination_ref01_list_result = $combination_ref01_ent->list($combination_ref01_match, null);
         $this->assertIsArray($combination_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function combination_basic_setup($extra)
         "JELLYBELLYWIKI_TEST_COMBINATION_ENTID" => $idmap,
         "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN" => "FALSE",
-        "JELLYBELLYWIKI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function combination_basic_setup($extra)
     if ($env["JELLYBELLYWIKI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JELLYBELLYWIKI_APIKEY"],
             ],
             $extra ?? [],
         ]);

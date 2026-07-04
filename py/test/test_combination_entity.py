@@ -50,8 +50,7 @@ class TestCombinationEntity:
         combination_ref01_ent = client.Combination(None)
         combination_ref01_match = {}
 
-        combination_ref01_list_result, err = combination_ref01_ent.list(combination_ref01_match, None)
-        assert err is None
+        combination_ref01_list_result = combination_ref01_ent.list(combination_ref01_match, None)
         assert isinstance(combination_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _combination_basic_setup(extra):
         "JELLYBELLYWIKI_TEST_COMBINATION_ENTID": idmap,
         "JELLYBELLYWIKI_TEST_LIVE": "FALSE",
         "JELLYBELLYWIKI_TEST_EXPLAIN": "FALSE",
-        "JELLYBELLYWIKI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _combination_basic_setup(extra):
     if env.get("JELLYBELLYWIKI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JELLYBELLYWIKI_APIKEY"),
             },
             extra or {},
         ])

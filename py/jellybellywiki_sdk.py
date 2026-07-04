@@ -144,16 +144,23 @@ class JellyBellyWikiSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class JellyBellyWikiSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class JellyBellyWikiSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def bean(self):
+        """Idiomatic facade: client.bean.list() / client.bean.load({"id": ...})."""
+        from entity.bean_entity import BeanEntity
+        cached = getattr(self, "_bean", None)
+        if cached is None:
+            cached = BeanEntity(self, None)
+            self._bean = cached
+        return cached
 
     def Bean(self, data=None):
+        # Deprecated: use client.bean instead.
         from entity.bean_entity import BeanEntity
         return BeanEntity(self, data)
 
 
+    @property
+    def combination(self):
+        """Idiomatic facade: client.combination.list() / client.combination.load({"id": ...})."""
+        from entity.combination_entity import CombinationEntity
+        cached = getattr(self, "_combination", None)
+        if cached is None:
+            cached = CombinationEntity(self, None)
+            self._combination = cached
+        return cached
+
     def Combination(self, data=None):
+        # Deprecated: use client.combination instead.
         from entity.combination_entity import CombinationEntity
         return CombinationEntity(self, data)
 
 
+    @property
+    def fact(self):
+        """Idiomatic facade: client.fact.list() / client.fact.load({"id": ...})."""
+        from entity.fact_entity import FactEntity
+        cached = getattr(self, "_fact", None)
+        if cached is None:
+            cached = FactEntity(self, None)
+            self._fact = cached
+        return cached
+
     def Fact(self, data=None):
+        # Deprecated: use client.fact instead.
         from entity.fact_entity import FactEntity
         return FactEntity(self, data)
 
 
+    @property
+    def history(self):
+        """Idiomatic facade: client.history.list() / client.history.load({"id": ...})."""
+        from entity.history_entity import HistoryEntity
+        cached = getattr(self, "_history", None)
+        if cached is None:
+            cached = HistoryEntity(self, None)
+            self._history = cached
+        return cached
+
     def History(self, data=None):
+        # Deprecated: use client.history instead.
         from entity.history_entity import HistoryEntity
         return HistoryEntity(self, data)
 
 
+    @property
+    def recipe(self):
+        """Idiomatic facade: client.recipe.list() / client.recipe.load({"id": ...})."""
+        from entity.recipe_entity import RecipeEntity
+        cached = getattr(self, "_recipe", None)
+        if cached is None:
+            cached = RecipeEntity(self, None)
+            self._recipe = cached
+        return cached
+
     def Recipe(self, data=None):
+        # Deprecated: use client.recipe instead.
         from entity.recipe_entity import RecipeEntity
         return RecipeEntity(self, data)
 

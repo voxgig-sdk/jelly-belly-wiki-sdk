@@ -245,26 +245,41 @@ func (sdk *JellyBellyWikiSDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// Bean returns a Bean entity bound to this client.
+// Idiomatic usage: client.Bean(nil).List(nil, nil) or
+// client.Bean(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JellyBellyWikiSDK) Bean(data map[string]any) JellyBellyWikiEntity {
 	return NewBeanEntityFunc(sdk, data)
 }
 
 
+// Combination returns a Combination entity bound to this client.
+// Idiomatic usage: client.Combination(nil).List(nil, nil) or
+// client.Combination(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JellyBellyWikiSDK) Combination(data map[string]any) JellyBellyWikiEntity {
 	return NewCombinationEntityFunc(sdk, data)
 }
 
 
+// Fact returns a Fact entity bound to this client.
+// Idiomatic usage: client.Fact(nil).List(nil, nil) or
+// client.Fact(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JellyBellyWikiSDK) Fact(data map[string]any) JellyBellyWikiEntity {
 	return NewFactEntityFunc(sdk, data)
 }
 
 
+// History returns a History entity bound to this client.
+// Idiomatic usage: client.History(nil).List(nil, nil) or
+// client.History(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JellyBellyWikiSDK) History(data map[string]any) JellyBellyWikiEntity {
 	return NewHistoryEntityFunc(sdk, data)
 }
 
 
+// Recipe returns a Recipe entity bound to this client.
+// Idiomatic usage: client.Recipe(nil).List(nil, nil) or
+// client.Recipe(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JellyBellyWikiSDK) Recipe(data map[string]any) JellyBellyWikiEntity {
 	return NewRecipeEntityFunc(sdk, data)
 }

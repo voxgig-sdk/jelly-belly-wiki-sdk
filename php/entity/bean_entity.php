@@ -55,6 +55,9 @@ class BeanEntity
         return new BeanEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Bean|array $args Bean data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class BeanEntity
         }
     }
 
+    /**
+     * @return Bean|array The current Bean data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Bean fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class BeanEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Bean fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class BeanEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Bean.
+     *
+     * @param BeanLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed BeanLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Bean|array The loaded Bean as an assoc-array at the
+     *   SDK boundary; throws JellyBellyWikiError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class BeanEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Bean items matching the given filter.
+     *
+     * @param BeanListMatch|array|null $reqmatch Match filter (any subset
+     *   of Bean fields) as an assoc-array; BeanListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Bean[]|array A list of Bean items as assoc-arrays at
+     *   the SDK boundary; throws JellyBellyWikiError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class BeanEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `dict` | SDK configuration options. |
-| `options["apikey"]` | `str` | API key for authentication. |
 | `options["base"]` | `str` | Base URL for API requests. |
 | `options["prefix"]` | `str` | URL prefix appended after base. |
 | `options["suffix"]` | `str` | URL suffix appended after path. |
@@ -70,9 +69,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -85,11 +84,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -97,7 +96,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## BeanEntity
 
 ```python
-bean = client.Bean()
+bean = client.bean
 ```
 
 ### Fields
@@ -118,20 +117,20 @@ bean = client.Bean()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Bean().list({})
+results = client.bean.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Bean().load({"id": "bean_id"})
+result = client.bean.load({"id": "bean_id"})
 ```
 
 ### Common Methods
@@ -166,7 +165,7 @@ Return the entity name.
 ## CombinationEntity
 
 ```python
-combination = client.Combination()
+combination = client.combination
 ```
 
 ### Fields
@@ -180,12 +179,12 @@ combination = client.Combination()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Combination().list({})
+results = client.combination.list({})
 ```
 
 ### Common Methods
@@ -220,7 +219,7 @@ Return the entity name.
 ## FactEntity
 
 ```python
-fact = client.Fact()
+fact = client.fact
 ```
 
 ### Fields
@@ -233,12 +232,12 @@ fact = client.Fact()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Fact().list({})
+results = client.fact.list({})
 ```
 
 ### Common Methods
@@ -273,7 +272,7 @@ Return the entity name.
 ## HistoryEntity
 
 ```python
-history = client.History()
+history = client.history
 ```
 
 ### Fields
@@ -286,12 +285,12 @@ history = client.History()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.History().list({})
+results = client.history.list({})
 ```
 
 ### Common Methods
@@ -326,7 +325,7 @@ Return the entity name.
 ## RecipeEntity
 
 ```python
-recipe = client.Recipe()
+recipe = client.recipe
 ```
 
 ### Fields
@@ -346,12 +345,12 @@ recipe = client.Recipe()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Recipe().list({})
+results = client.recipe.list({})
 ```
 
 ### Common Methods

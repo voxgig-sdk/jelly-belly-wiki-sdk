@@ -45,6 +45,7 @@ class CombinationEntity
     end
   end
 
+  # @return [Combination, Hash] the current Combination data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CombinationEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Combination fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CombinationEntity
   
 
   
+  # List Combination items matching the given filter.
+  #
+  # @param reqmatch [CombinationListMatch, Hash, nil] match filter (any subset of Combination fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Combination>, Array] the matching Combination items; raises JellyBellyWikiError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
