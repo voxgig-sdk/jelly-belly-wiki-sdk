@@ -113,17 +113,17 @@ bean := client.Bean(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | ``$STRING`` | No |  |
-| `bean_id` | ``$STRING`` | No |  |
-| `color_group` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `flavor_name` | ``$STRING`` | No |  |
-| `gluten_free` | ``$BOOLEAN`` | No |  |
-| `group_name` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `kosher` | ``$BOOLEAN`` | No |  |
-| `sugar_free` | ``$BOOLEAN`` | No |  |
+| `background_color` | `string` | No |  |
+| `bean_id` | `string` | No |  |
+| `color_group` | `string` | No |  |
+| `description` | `string` | No |  |
+| `flavor_name` | `string` | No |  |
+| `gluten_free` | `bool` | No |  |
+| `group_name` | `[]any` | No |  |
+| `image_url` | `string` | No |  |
+| `ingredient` | `[]any` | No |  |
+| `kosher` | `bool` | No |  |
+| `sugar_free` | `bool` | No |  |
 
 ### Operations
 
@@ -177,10 +177,10 @@ combination := client.Combination(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | ``$ARRAY`` | No |  |
-| `combination_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
+| `bean` | `[]any` | No |  |
+| `combination_id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `tag` | `[]any` | No |  |
 
 ### Operations
 
@@ -226,9 +226,9 @@ fact := client.Fact(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `fact_id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `fact_id` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -274,9 +274,9 @@ history := client.History(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `history_id` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `description` | `string` | No |  |
+| `history_id` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
@@ -322,16 +322,16 @@ recipe := client.Recipe(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `direction` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `making_amount` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `prep_time` | ``$STRING`` | No |  |
-| `recipe_id` | ``$STRING`` | No |  |
-| `total_time` | ``$STRING`` | No |  |
+| `cook_time` | `string` | No |  |
+| `description` | `string` | No |  |
+| `direction` | `[]any` | No |  |
+| `image_url` | `string` | No |  |
+| `ingredient` | `[]any` | No |  |
+| `making_amount` | `string` | No |  |
+| `name` | `string` | No |  |
+| `prep_time` | `string` | No |  |
+| `recipe_id` | `string` | No |  |
+| `total_time` | `string` | No |  |
 
 ### Operations
 

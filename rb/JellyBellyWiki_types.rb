@@ -66,7 +66,7 @@ BeanLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Bean#list (any subset of Bean fields).
+# Request payload for Bean#list.
 #
 # @!attribute [rw] background_color
 #   @return [String, nil]
@@ -136,7 +136,7 @@ Combination = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Combination#list (any subset of Combination fields).
+# Request payload for Combination#list.
 #
 # @!attribute [rw] bean
 #   @return [Array, nil]
@@ -174,7 +174,7 @@ Fact = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Fact#list (any subset of Fact fields).
+# Request payload for Fact#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -208,7 +208,7 @@ History = Struct.new(
   keyword_init: true
 )
 
-# Match filter for History#list (any subset of History fields).
+# Request payload for History#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -270,7 +270,7 @@ Recipe = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Recipe#list (any subset of Recipe fields).
+# Request payload for Recipe#list.
 #
 # @!attribute [rw] cook_time
 #   @return [String, nil]

@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the JellyBellyWiki API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Bean()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -54,6 +59,35 @@ try {
 ```
 
 
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const beans = await client.Bean().list()
+  console.log(beans)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
+}
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -98,7 +132,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = JellyBellyWikiSDK.test()
 
-const bean = await client.Bean().load({ id: 'test01' })
+const bean = await client.Bean().list()
 // bean is a bare entity populated with mock response data
 console.log(bean)
 ```
@@ -117,12 +151,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Bean()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -216,11 +250,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): JellyBellyWikiSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -230,10 +261,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -365,17 +395,17 @@ Create an instance: `const bean = client.Bean()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | ``$STRING`` |  |
-| `bean_id` | ``$STRING`` |  |
-| `color_group` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `flavor_name` | ``$STRING`` |  |
-| `gluten_free` | ``$BOOLEAN`` |  |
-| `group_name` | ``$ARRAY`` |  |
-| `image_url` | ``$STRING`` |  |
-| `ingredient` | ``$ARRAY`` |  |
-| `kosher` | ``$BOOLEAN`` |  |
-| `sugar_free` | ``$BOOLEAN`` |  |
+| `background_color` | `string` |  |
+| `bean_id` | `string` |  |
+| `color_group` | `string` |  |
+| `description` | `string` |  |
+| `flavor_name` | `string` |  |
+| `gluten_free` | `boolean` |  |
+| `group_name` | `any[]` |  |
+| `image_url` | `string` |  |
+| `ingredient` | `any[]` |  |
+| `kosher` | `boolean` |  |
+| `sugar_free` | `boolean` |  |
 
 #### Example: Load
 
@@ -404,10 +434,10 @@ Create an instance: `const combination = client.Combination()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | ``$ARRAY`` |  |
-| `combination_id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
+| `bean` | `any[]` |  |
+| `combination_id` | `string` |  |
+| `name` | `string` |  |
+| `tag` | `any[]` |  |
 
 #### Example: List
 
@@ -430,9 +460,9 @@ Create an instance: `const fact = client.Fact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `fact_id` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `fact_id` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -455,9 +485,9 @@ Create an instance: `const history = client.History()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `history_id` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `description` | `string` |  |
+| `history_id` | `string` |  |
+| `year` | `number` |  |
 
 #### Example: List
 
@@ -480,16 +510,16 @@ Create an instance: `const recipe = client.Recipe()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `direction` | ``$ARRAY`` |  |
-| `image_url` | ``$STRING`` |  |
-| `ingredient` | ``$ARRAY`` |  |
-| `making_amount` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `prep_time` | ``$STRING`` |  |
-| `recipe_id` | ``$STRING`` |  |
-| `total_time` | ``$STRING`` |  |
+| `cook_time` | `string` |  |
+| `description` | `string` |  |
+| `direction` | `any[]` |  |
+| `image_url` | `string` |  |
+| `ingredient` | `any[]` |  |
+| `making_amount` | `string` |  |
+| `name` | `string` |  |
+| `prep_time` | `string` |  |
+| `recipe_id` | `string` |  |
+| `total_time` | `string` |  |
 
 #### Example: List
 
@@ -498,12 +528,16 @@ const recipes = await client.Recipe().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -520,11 +554,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -560,16 +592,16 @@ import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const bean = client.Bean()
-await bean.load({ id: "example_id" })
+await bean.list()
 
-// bean.data() now returns the loaded bean data
-// bean.match() returns { id: "example_id" }
+// bean.data() now returns the bean data from the last `list`
+// bean.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

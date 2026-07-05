@@ -28,8 +28,7 @@ type BeanLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// BeanListMatch mirrors the bean fields as an all-optional match
-// filter (Go analog of Partial<Bean>).
+// BeanListMatch is the typed request payload for Bean.ListTyped.
 type BeanListMatch struct {
 	BackgroundColor *string `json:"background_color,omitempty"`
 	BeanId *string `json:"bean_id,omitempty"`
@@ -52,8 +51,7 @@ type Combination struct {
 	Tag *[]any `json:"tag,omitempty"`
 }
 
-// CombinationListMatch mirrors the combination fields as an all-optional match
-// filter (Go analog of Partial<Combination>).
+// CombinationListMatch is the typed request payload for Combination.ListTyped.
 type CombinationListMatch struct {
 	Bean *[]any `json:"bean,omitempty"`
 	CombinationId *string `json:"combination_id,omitempty"`
@@ -68,8 +66,7 @@ type Fact struct {
 	Title *string `json:"title,omitempty"`
 }
 
-// FactListMatch mirrors the fact fields as an all-optional match
-// filter (Go analog of Partial<Fact>).
+// FactListMatch is the typed request payload for Fact.ListTyped.
 type FactListMatch struct {
 	Description *string `json:"description,omitempty"`
 	FactId *string `json:"fact_id,omitempty"`
@@ -83,8 +80,7 @@ type History struct {
 	Year *int `json:"year,omitempty"`
 }
 
-// HistoryListMatch mirrors the history fields as an all-optional match
-// filter (Go analog of Partial<History>).
+// HistoryListMatch is the typed request payload for History.ListTyped.
 type HistoryListMatch struct {
 	Description *string `json:"description,omitempty"`
 	HistoryId *string `json:"history_id,omitempty"`
@@ -105,8 +101,7 @@ type Recipe struct {
 	TotalTime *string `json:"total_time,omitempty"`
 }
 
-// RecipeListMatch mirrors the recipe fields as an all-optional match
-// filter (Go analog of Partial<Recipe>).
+// RecipeListMatch is the typed request payload for Recipe.ListTyped.
 type RecipeListMatch struct {
 	CookTime *string `json:"cook_time,omitempty"`
 	Description *string `json:"description,omitempty"`

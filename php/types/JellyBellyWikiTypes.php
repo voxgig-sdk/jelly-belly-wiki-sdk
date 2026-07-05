@@ -34,7 +34,7 @@ class BeanLoadMatch
     public string $id;
 }
 
-/** Match filter for Bean#list (any subset of Bean fields). */
+/** Request payload for Bean#list. */
 class BeanListMatch
 {
     public ?string $background_color = null;
@@ -59,7 +59,7 @@ class Combination
     public ?array $tag = null;
 }
 
-/** Match filter for Combination#list (any subset of Combination fields). */
+/** Request payload for Combination#list. */
 class CombinationListMatch
 {
     public ?array $bean = null;
@@ -76,7 +76,7 @@ class Fact
     public ?string $title = null;
 }
 
-/** Match filter for Fact#list (any subset of Fact fields). */
+/** Request payload for Fact#list. */
 class FactListMatch
 {
     public ?string $description = null;
@@ -92,7 +92,7 @@ class History
     public ?int $year = null;
 }
 
-/** Match filter for History#list (any subset of History fields). */
+/** Request payload for History#list. */
 class HistoryListMatch
 {
     public ?string $description = null;
@@ -115,7 +115,7 @@ class Recipe
     public ?string $total_time = null;
 }
 
-/** Match filter for Recipe#list (any subset of Recipe fields). */
+/** Request payload for Recipe#list. */
 class RecipeListMatch
 {
     public ?string $cook_time = null;

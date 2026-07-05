@@ -4,6 +4,8 @@
 
 The Golang SDK for the JellyBellyWiki API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Bean(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -58,12 +60,41 @@ func main() {
     }
 
     // Load a single bean — the value is the loaded record.
-    bean, err := client.Bean(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bean, err := client.Bean(nil).Load(map[string]any{"id": "example"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(bean)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+beans, err := client.Bean(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = beans
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -113,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bean, err := client.Bean(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+bean, err := client.Bean(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bean) // the loaded mock data
+fmt.Println(bean) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -210,9 +241,6 @@ All entities implement the `JellyBellyWikiEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -225,16 +253,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bean, err := client.Bean(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bean, err := client.Bean(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // bean is the loaded record
+    // bean is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -337,17 +365,17 @@ Create an instance: `bean := client.Bean(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | ``$STRING`` |  |
-| `bean_id` | ``$STRING`` |  |
-| `color_group` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `flavor_name` | ``$STRING`` |  |
-| `gluten_free` | ``$BOOLEAN`` |  |
-| `group_name` | ``$ARRAY`` |  |
-| `image_url` | ``$STRING`` |  |
-| `ingredient` | ``$ARRAY`` |  |
-| `kosher` | ``$BOOLEAN`` |  |
-| `sugar_free` | ``$BOOLEAN`` |  |
+| `background_color` | `string` |  |
+| `bean_id` | `string` |  |
+| `color_group` | `string` |  |
+| `description` | `string` |  |
+| `flavor_name` | `string` |  |
+| `gluten_free` | `bool` |  |
+| `group_name` | `[]any` |  |
+| `image_url` | `string` |  |
+| `ingredient` | `[]any` |  |
+| `kosher` | `bool` |  |
+| `sugar_free` | `bool` |  |
 
 #### Example: Load
 
@@ -384,10 +412,10 @@ Create an instance: `combination := client.Combination(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | ``$ARRAY`` |  |
-| `combination_id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
+| `bean` | `[]any` |  |
+| `combination_id` | `string` |  |
+| `name` | `string` |  |
+| `tag` | `[]any` |  |
 
 #### Example: List
 
@@ -414,9 +442,9 @@ Create an instance: `fact := client.Fact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `fact_id` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `fact_id` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -443,9 +471,9 @@ Create an instance: `history := client.History(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `history_id` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `description` | `string` |  |
+| `history_id` | `string` |  |
+| `year` | `int` |  |
 
 #### Example: List
 
@@ -472,16 +500,16 @@ Create an instance: `recipe := client.Recipe(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `direction` | ``$ARRAY`` |  |
-| `image_url` | ``$STRING`` |  |
-| `ingredient` | ``$ARRAY`` |  |
-| `making_amount` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `prep_time` | ``$STRING`` |  |
-| `recipe_id` | ``$STRING`` |  |
-| `total_time` | ``$STRING`` |  |
+| `cook_time` | `string` |  |
+| `description` | `string` |  |
+| `direction` | `[]any` |  |
+| `image_url` | `string` |  |
+| `ingredient` | `[]any` |  |
+| `making_amount` | `string` |  |
+| `name` | `string` |  |
+| `prep_time` | `string` |  |
+| `recipe_id` | `string` |  |
+| `total_time` | `string` |  |
 
 #### Example: List
 
@@ -494,12 +522,16 @@ fmt.Println(recipes) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -516,9 +548,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -559,14 +591,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 bean := client.Bean(nil)
-bean.Load(map[string]any{"id": "example_id"}, nil)
+bean.List(nil, nil)
 
-// bean.Data() now returns the loaded bean data
+// bean.Data() now returns the bean data from the last list
 // bean.Match() returns the last match criteria
 ```
 

@@ -8,7 +8,7 @@ Complete API reference for the JellyBellyWiki PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/jelly-belly-wiki_sdk.php';
+require_once __DIR__ . '/jellybellywiki_sdk.php';
 
 $client = new JellyBellyWikiSDK($options);
 ```
@@ -61,11 +61,11 @@ Create a new `HistoryEntity` instance. Pass `null` for no initial data.
 
 Create a new `RecipeEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): JellyBellyWikiUtility`
 
 Return a copy of the SDK utility object.
 
@@ -108,26 +108,26 @@ $bean = $client->Bean();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | ``$STRING`` | No |  |
-| `bean_id` | ``$STRING`` | No |  |
-| `color_group` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `flavor_name` | ``$STRING`` | No |  |
-| `gluten_free` | ``$BOOLEAN`` | No |  |
-| `group_name` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `kosher` | ``$BOOLEAN`` | No |  |
-| `sugar_free` | ``$BOOLEAN`` | No |  |
+| `background_color` | `string` | No |  |
+| `bean_id` | `string` | No |  |
+| `color_group` | `string` | No |  |
+| `description` | `string` | No |  |
+| `flavor_name` | `string` | No |  |
+| `gluten_free` | `bool` | No |  |
+| `group_name` | `array` | No |  |
+| `image_url` | `string` | No |  |
+| `ingredient` | `array` | No |  |
+| `kosher` | `bool` | No |  |
+| `sugar_free` | `bool` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Bean()->list([]);
+$results = $client->Bean()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -140,19 +140,19 @@ $result = $client->Bean()->load(["id" => "bean_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -161,7 +161,7 @@ Set the entity match criteria.
 Create a new `BeanEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -178,36 +178,36 @@ $combination = $client->Combination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | ``$ARRAY`` | No |  |
-| `combination_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
+| `bean` | `array` | No |  |
+| `combination_id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `tag` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Combination()->list([]);
+$results = $client->Combination()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -216,7 +216,7 @@ Set the entity match criteria.
 Create a new `CombinationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -233,35 +233,35 @@ $fact = $client->Fact();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `fact_id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `fact_id` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Fact()->list([]);
+$results = $client->Fact()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -270,7 +270,7 @@ Set the entity match criteria.
 Create a new `FactEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -287,35 +287,35 @@ $history = $client->History();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `history_id` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `description` | `string` | No |  |
+| `history_id` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->History()->list([]);
+$results = $client->History()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -324,7 +324,7 @@ Set the entity match criteria.
 Create a new `HistoryEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -341,42 +341,42 @@ $recipe = $client->Recipe();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `direction` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `making_amount` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `prep_time` | ``$STRING`` | No |  |
-| `recipe_id` | ``$STRING`` | No |  |
-| `total_time` | ``$STRING`` | No |  |
+| `cook_time` | `string` | No |  |
+| `description` | `string` | No |  |
+| `direction` | `array` | No |  |
+| `image_url` | `string` | No |  |
+| `ingredient` | `array` | No |  |
+| `making_amount` | `string` | No |  |
+| `name` | `string` | No |  |
+| `prep_time` | `string` | No |  |
+| `recipe_id` | `string` | No |  |
+| `total_time` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Recipe()->list([]);
+$results = $client->Recipe()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -385,7 +385,7 @@ Set the entity match criteria.
 Create a new `RecipeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

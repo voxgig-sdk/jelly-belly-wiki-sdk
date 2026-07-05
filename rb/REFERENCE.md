@@ -8,7 +8,7 @@ Complete API reference for the JellyBellyWiki Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'jelly-belly-wiki_sdk'
+require_relative 'JellyBellyWiki_sdk'
 
 client = JellyBellyWikiSDK.new(options)
 ```
@@ -109,26 +109,26 @@ bean = client.Bean
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | ``$STRING`` | No |  |
-| `bean_id` | ``$STRING`` | No |  |
-| `color_group` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `flavor_name` | ``$STRING`` | No |  |
-| `gluten_free` | ``$BOOLEAN`` | No |  |
-| `group_name` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `kosher` | ``$BOOLEAN`` | No |  |
-| `sugar_free` | ``$BOOLEAN`` | No |  |
+| `background_color` | `String` | No |  |
+| `bean_id` | `String` | No |  |
+| `color_group` | `String` | No |  |
+| `description` | `String` | No |  |
+| `flavor_name` | `String` | No |  |
+| `gluten_free` | `Boolean` | No |  |
+| `group_name` | `Array` | No |  |
+| `image_url` | `String` | No |  |
+| `ingredient` | `Array` | No |  |
+| `kosher` | `Boolean` | No |  |
+| `sugar_free` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Bean.list(nil)
+results = client.Bean.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -179,19 +179,19 @@ combination = client.Combination
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | ``$ARRAY`` | No |  |
-| `combination_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
+| `bean` | `Array` | No |  |
+| `combination_id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `tag` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Combination.list(nil)
+results = client.Combination.list
 ```
 
 ### Common Methods
@@ -234,18 +234,18 @@ fact = client.Fact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `fact_id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `String` | No |  |
+| `fact_id` | `String` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Fact.list(nil)
+results = client.Fact.list
 ```
 
 ### Common Methods
@@ -288,18 +288,18 @@ history = client.History
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `history_id` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `description` | `String` | No |  |
+| `history_id` | `String` | No |  |
+| `year` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.History.list(nil)
+results = client.History.list
 ```
 
 ### Common Methods
@@ -342,25 +342,25 @@ recipe = client.Recipe
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `direction` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `making_amount` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `prep_time` | ``$STRING`` | No |  |
-| `recipe_id` | ``$STRING`` | No |  |
-| `total_time` | ``$STRING`` | No |  |
+| `cook_time` | `String` | No |  |
+| `description` | `String` | No |  |
+| `direction` | `Array` | No |  |
+| `image_url` | `String` | No |  |
+| `ingredient` | `Array` | No |  |
+| `making_amount` | `String` | No |  |
+| `name` | `String` | No |  |
+| `prep_time` | `String` | No |  |
+| `recipe_id` | `String` | No |  |
+| `total_time` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Recipe.list(nil)
+results = client.Recipe.list
 ```
 
 ### Common Methods

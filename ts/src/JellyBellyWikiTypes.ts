@@ -23,7 +23,19 @@ export interface BeanLoadMatch {
   id: string
 }
 
-export type BeanListMatch = Partial<Bean>
+export interface BeanListMatch {
+  background_color?: string
+  bean_id?: string
+  color_group?: string
+  description?: string
+  flavor_name?: string
+  gluten_free?: boolean
+  group_name?: any[]
+  image_url?: string
+  ingredient?: any[]
+  kosher?: boolean
+  sugar_free?: boolean
+}
 
 export interface Combination {
   bean?: any[]
@@ -32,7 +44,12 @@ export interface Combination {
   tag?: any[]
 }
 
-export type CombinationListMatch = Partial<Combination>
+export interface CombinationListMatch {
+  bean?: any[]
+  combination_id?: string
+  name?: string
+  tag?: any[]
+}
 
 export interface Fact {
   description?: string
@@ -40,7 +57,11 @@ export interface Fact {
   title?: string
 }
 
-export type FactListMatch = Partial<Fact>
+export interface FactListMatch {
+  description?: string
+  fact_id?: string
+  title?: string
+}
 
 export interface History {
   description?: string
@@ -48,7 +69,11 @@ export interface History {
   year?: number
 }
 
-export type HistoryListMatch = Partial<History>
+export interface HistoryListMatch {
+  description?: string
+  history_id?: string
+  year?: number
+}
 
 export interface Recipe {
   cook_time?: string
@@ -63,5 +88,16 @@ export interface Recipe {
   total_time?: string
 }
 
-export type RecipeListMatch = Partial<Recipe>
+export interface RecipeListMatch {
+  cook_time?: string
+  description?: string
+  direction?: any[]
+  image_url?: string
+  ingredient?: any[]
+  making_amount?: string
+  name?: string
+  prep_time?: string
+  recipe_id?: string
+  total_time?: string
+}
 

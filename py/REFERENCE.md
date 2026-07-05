@@ -8,7 +8,7 @@ Complete API reference for the JellyBellyWiki Python SDK.
 ### Constructor
 
 ```python
-from jelly-belly-wiki_sdk import JellyBellyWikiSDK
+from jellybellywiki_sdk import JellyBellyWikiSDK
 
 client = JellyBellyWikiSDK(options)
 ```
@@ -103,26 +103,26 @@ bean = client.Bean()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | ``$STRING`` | No |  |
-| `bean_id` | ``$STRING`` | No |  |
-| `color_group` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `flavor_name` | ``$STRING`` | No |  |
-| `gluten_free` | ``$BOOLEAN`` | No |  |
-| `group_name` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `kosher` | ``$BOOLEAN`` | No |  |
-| `sugar_free` | ``$BOOLEAN`` | No |  |
+| `background_color` | `str` | No |  |
+| `bean_id` | `str` | No |  |
+| `color_group` | `str` | No |  |
+| `description` | `str` | No |  |
+| `flavor_name` | `str` | No |  |
+| `gluten_free` | `bool` | No |  |
+| `group_name` | `list` | No |  |
+| `image_url` | `str` | No |  |
+| `ingredient` | `list` | No |  |
+| `kosher` | `bool` | No |  |
+| `sugar_free` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Bean().list({})
+results = client.Bean().list()
 for bean in results:
     print(bean)
 ```
@@ -174,19 +174,19 @@ combination = client.Combination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | ``$ARRAY`` | No |  |
-| `combination_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
+| `bean` | `list` | No |  |
+| `combination_id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `tag` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Combination().list({})
+results = client.Combination().list()
 for combination in results:
     print(combination)
 ```
@@ -230,18 +230,18 @@ fact = client.Fact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `fact_id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `str` | No |  |
+| `fact_id` | `str` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Fact().list({})
+results = client.Fact().list()
 for fact in results:
     print(fact)
 ```
@@ -285,18 +285,18 @@ history = client.History()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `history_id` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `description` | `str` | No |  |
+| `history_id` | `str` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.History().list({})
+results = client.History().list()
 for history in results:
     print(history)
 ```
@@ -340,25 +340,25 @@ recipe = client.Recipe()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `direction` | ``$ARRAY`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `ingredient` | ``$ARRAY`` | No |  |
-| `making_amount` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `prep_time` | ``$STRING`` | No |  |
-| `recipe_id` | ``$STRING`` | No |  |
-| `total_time` | ``$STRING`` | No |  |
+| `cook_time` | `str` | No |  |
+| `description` | `str` | No |  |
+| `direction` | `list` | No |  |
+| `image_url` | `str` | No |  |
+| `ingredient` | `list` | No |  |
+| `making_amount` | `str` | No |  |
+| `name` | `str` | No |  |
+| `prep_time` | `str` | No |  |
+| `recipe_id` | `str` | No |  |
+| `total_time` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Recipe().list({})
+results = client.Recipe().list()
 for recipe in results:
     print(recipe)
 ```

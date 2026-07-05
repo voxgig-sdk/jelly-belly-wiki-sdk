@@ -221,31 +221,31 @@ class JellyBellyWikiSDK:
 
 
     def Bean(self, data=None) -> "BeanEntity":
-        """Entity factory: client.Bean().list({}) / client.Bean().load({"id": ...})."""
+        """Entity factory: client.Bean().list() / client.Bean().load({"id": ...})."""
         from entity.bean_entity import BeanEntity
         return BeanEntity(self, data)
 
 
     def Combination(self, data=None) -> "CombinationEntity":
-        """Entity factory: client.Combination().list({}) / client.Combination().load({"id": ...})."""
+        """Entity factory: client.Combination().list() / client.Combination().load({"id": ...})."""
         from entity.combination_entity import CombinationEntity
         return CombinationEntity(self, data)
 
 
     def Fact(self, data=None) -> "FactEntity":
-        """Entity factory: client.Fact().list({}) / client.Fact().load({"id": ...})."""
+        """Entity factory: client.Fact().list() / client.Fact().load({"id": ...})."""
         from entity.fact_entity import FactEntity
         return FactEntity(self, data)
 
 
     def History(self, data=None) -> "HistoryEntity":
-        """Entity factory: client.History().list({}) / client.History().load({"id": ...})."""
+        """Entity factory: client.History().list() / client.History().load({"id": ...})."""
         from entity.history_entity import HistoryEntity
         return HistoryEntity(self, data)
 
 
     def Recipe(self, data=None) -> "RecipeEntity":
-        """Entity factory: client.Recipe().list({}) / client.Recipe().load({"id": ...})."""
+        """Entity factory: client.Recipe().list() / client.Recipe().load({"id": ...})."""
         from entity.recipe_entity import RecipeEntity
         return RecipeEntity(self, data)
 
