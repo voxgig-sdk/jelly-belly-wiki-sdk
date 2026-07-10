@@ -15,9 +15,9 @@ main: {
           url: "https://jellybellywikiapi.onrender.com/api"
         }
       ]
+      summary: "API for Jelly Belly beans, facts, recipes, combinations, and history sourced from the official Jelly Belly website."
       title: "Jelly Belly Wiki"
       version: "1.0.0"
+      website: "https://jellybellywikiapi.onrender.com"
     }
   }
-}
-

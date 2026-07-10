@@ -107,6 +107,7 @@ same parameters as `Direct()`.
 
 ```go
 bean := client.Bean(nil)
+fmt.Println(bean.GetName()) // "bean"
 ```
 
 ### Fields
@@ -133,6 +134,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Bean(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -141,6 +146,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Bean(nil).Load(map[string]any{"id": "bean_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -171,6 +180,7 @@ Return the entity name.
 
 ```go
 combination := client.Combination(nil)
+fmt.Println(combination.GetName()) // "combination"
 ```
 
 ### Fields
@@ -190,6 +200,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Combination(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -220,6 +234,7 @@ Return the entity name.
 
 ```go
 fact := client.Fact(nil)
+fmt.Println(fact.GetName()) // "fact"
 ```
 
 ### Fields
@@ -238,6 +253,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Fact(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -268,6 +287,7 @@ Return the entity name.
 
 ```go
 history := client.History(nil)
+fmt.Println(history.GetName()) // "history"
 ```
 
 ### Fields
@@ -286,6 +306,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.History(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -316,6 +340,7 @@ Return the entity name.
 
 ```go
 recipe := client.Recipe(nil)
+fmt.Println(recipe.GetName()) // "recipe"
 ```
 
 ### Fields
@@ -341,6 +366,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Recipe(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single bean — the value is the loaded record.
-    bean, err := client.Bean(nil).Load(map[string]any{"id": "example"}, nil)
+    bean, err := client.Bean(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }

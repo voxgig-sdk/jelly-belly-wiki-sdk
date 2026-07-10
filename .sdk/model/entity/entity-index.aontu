@@ -1,0 +1,7 @@
+# Entity Models
+
+@"bean.aontu"
+@"combination.aontu"
+@"fact.aontu"
+@"history.aontu"
+@"recipe.aontu"
