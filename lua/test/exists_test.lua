@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- JellyBellyWiki SDK exists test
 
 local sdk = require("jelly-belly-wiki_sdk")
 

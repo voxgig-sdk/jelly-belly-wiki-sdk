@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- JellyBellyWiki SDK configuration
 
 local function make_config()
   return {
