@@ -3,17 +3,17 @@
     "fact": {
       "FACT00": {
         "description": "s1e",
-        "fact_id": "FACT01",
+        "factId": "s1f",
         "title": "s20"
       },
       "FACT01": {
         "description": "s3c",
-        "fact_id": "FACT01",
+        "factId": "s3d",
         "title": "s3e"
       },
       "FACT02": {
         "description": "s5a",
-        "fact_id": "FACT01",
+        "factId": "s5b",
         "title": "s5c"
       }
     }
@@ -22,7 +22,7 @@
     "fact": {
       "fact_ref01": {
         "description": "s78",
-        "fact_id": "FACT01",
+        "factId": "s79",
         "title": "s7a"
       }
     }

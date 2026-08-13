@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "bean": {
           "active": true,
@@ -27,19 +32,19 @@
           "fields": [
             {
               "active": true,
-              "name": "background_color",
+              "name": "backgroundColor",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "bean_id",
+              "name": "beanId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "color_group",
+              "name": "colorGroup",
               "req": false,
               "type": "`$STRING`"
             },
@@ -51,31 +56,31 @@
             },
             {
               "active": true,
-              "name": "flavor_name",
+              "name": "flavorName",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "gluten_free",
+              "name": "glutenFree",
               "req": false,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "group_name",
+              "name": "groupName",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "image_url",
+              "name": "imageUrl",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "ingredient",
+              "name": "ingredients",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -87,7 +92,7 @@
             },
             {
               "active": true,
-              "name": "sugar_free",
+              "name": "sugarFree",
               "req": false,
               "type": "`$BOOLEAN`"
             }
@@ -122,6 +127,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/beans",
                   "parts": [
@@ -135,7 +141,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -158,6 +164,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/beans/{beanId}",
                   "parts": [
@@ -194,13 +201,13 @@
           "fields": [
             {
               "active": true,
-              "name": "bean",
+              "name": "beans",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "combination_id",
+              "name": "combinationId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -247,6 +254,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/combinations",
                   "parts": [
@@ -260,7 +268,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -284,7 +292,7 @@
             },
             {
               "active": true,
-              "name": "fact_id",
+              "name": "factId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -325,6 +333,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/facts",
                   "parts": [
@@ -338,7 +347,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -362,7 +371,7 @@
             },
             {
               "active": true,
-              "name": "history_id",
+              "name": "historyId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -382,6 +391,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/history",
                   "parts": [
@@ -390,7 +400,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -408,7 +418,7 @@
           "fields": [
             {
               "active": true,
-              "name": "cook_time",
+              "name": "cookTime",
               "req": false,
               "type": "`$STRING`"
             },
@@ -420,25 +430,25 @@
             },
             {
               "active": true,
-              "name": "direction",
+              "name": "directions",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "image_url",
+              "name": "imageUrl",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "ingredient",
+              "name": "ingredients",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "making_amount",
+              "name": "makingAmount",
               "req": false,
               "type": "`$STRING`"
             },
@@ -450,19 +460,19 @@
             },
             {
               "active": true,
-              "name": "prep_time",
+              "name": "prepTime",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "recipe_id",
+              "name": "recipeId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "total_time",
+              "name": "totalTime",
               "req": false,
               "type": "`$STRING`"
             }
@@ -497,6 +507,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/recipes",
                   "parts": [
@@ -510,7 +521,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -787,18 +798,41 @@
         "website": "https://jellybellywikiapi.onrender.com"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -820,22 +854,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -874,21 +926,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -927,12 +997,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -944,10 +1019,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -969,22 +1057,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1006,13 +1112,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1024,10 +1135,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1049,13 +1173,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1072,10 +1201,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1097,13 +1239,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1126,10 +1273,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "jelly-belly-wiki"
+            "goversion": "",
+            "name": "jelly-belly-wiki",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1151,9 +1311,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

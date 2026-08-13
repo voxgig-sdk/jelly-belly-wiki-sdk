@@ -164,17 +164,17 @@ const bean = client.Bean()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | `string` | No |  |
-| `bean_id` | `string` | No |  |
-| `color_group` | `string` | No |  |
+| `backgroundColor` | `string` | No |  |
+| `beanId` | `string` | No |  |
+| `colorGroup` | `string` | No |  |
 | `description` | `string` | No |  |
-| `flavor_name` | `string` | No |  |
-| `gluten_free` | `boolean` | No |  |
-| `group_name` | `any[]` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `any[]` | No |  |
+| `flavorName` | `string` | No |  |
+| `glutenFree` | `boolean` | No |  |
+| `groupName` | `any[]` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `any[]` | No |  |
 | `kosher` | `boolean` | No |  |
-| `sugar_free` | `boolean` | No |  |
+| `sugarFree` | `boolean` | No |  |
 
 ### Operations
 
@@ -232,8 +232,8 @@ const combination = client.Combination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | `any[]` | No |  |
-| `combination_id` | `string` | No |  |
+| `beans` | `any[]` | No |  |
+| `combinationId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `tag` | `any[]` | No |  |
 
@@ -286,7 +286,7 @@ const fact = client.Fact()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `fact_id` | `string` | No |  |
+| `factId` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -338,7 +338,7 @@ const history = client.History()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `history_id` | `string` | No |  |
+| `historyId` | `string` | No |  |
 | `year` | `number` | No |  |
 
 ### Operations
@@ -389,16 +389,16 @@ const recipe = client.Recipe()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | `string` | No |  |
+| `cookTime` | `string` | No |  |
 | `description` | `string` | No |  |
-| `direction` | `any[]` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `any[]` | No |  |
-| `making_amount` | `string` | No |  |
+| `directions` | `any[]` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `any[]` | No |  |
+| `makingAmount` | `string` | No |  |
 | `name` | `string` | No |  |
-| `prep_time` | `string` | No |  |
-| `recipe_id` | `string` | No |  |
-| `total_time` | `string` | No |  |
+| `prepTime` | `string` | No |  |
+| `recipeId` | `string` | No |  |
+| `totalTime` | `string` | No |  |
 
 ### Operations
 

@@ -66,11 +66,11 @@ function history_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "JELLYBELLYWIKI_TEST_HISTORY_ENTID" => [],
-        "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
+        "JELLY_BELLY_WIKI_TEST_HISTORY_ENTID" => [],
+        "JELLY_BELLY_WIKI_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["JELLYBELLYWIKI_TEST_LIVE"] === "TRUE";
+    $live = $env["JELLY_BELLY_WIKI_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

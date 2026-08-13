@@ -37,7 +37,7 @@ class RecipeEntity extends JellyBellyWikiEntityBase<Recipe> {
 
 
 
-  async list(this: any, reqmatch?: RecipeListMatch, ctrl?: Control): Promise<Recipe[]> {
+  async list(this: any, reqmatch?: RecipeListMatch, ctrl?: Control): Promise<RecipeEntity[]> {
 
     const utility = this._utility
 

@@ -61,11 +61,11 @@ function fact_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["JELLYBELLYWIKI_TEST_FACT_ENTID"] = {},
-    ["JELLYBELLYWIKI_TEST_LIVE"] = "FALSE",
+    ["JELLY_BELLY_WIKI_TEST_FACT_ENTID"] = {},
+    ["JELLY_BELLY_WIKI_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
+  local live = env["JELLY_BELLY_WIKI_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

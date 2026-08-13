@@ -8,6 +8,7 @@ guide: {
   entity: bean: {
     path: "/beans": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
     path: "/beans/{beanId}": {
       rename: param: "beanId": *"id"
@@ -18,24 +19,28 @@ guide: {
   entity: combination: {
     path: "/combinations": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: fact: {
     path: "/facts": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: history: {
     path: "/history": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: recipe: {
     path: "/recipes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 

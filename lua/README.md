@@ -43,7 +43,7 @@ local beans, err = client:Bean():list()
 if err then error(err) end
 
 for _, item in ipairs(beans) do
-  print(item["background_color"])
+  print(item["backgroundColor"])
 end
 ```
 
@@ -62,7 +62,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local beans, err = client:Bean():list()
+local historys, err = client:History():list()
 if err then error(err) end
 ```
 
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Bean():list()
+local result, err = client:History():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -245,17 +245,17 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `background_color` |  |
-| `bean_id` |  |
-| `color_group` |  |
+| `backgroundColor` |  |
+| `beanId` |  |
+| `colorGroup` |  |
 | `description` |  |
-| `flavor_name` |  |
-| `gluten_free` |  |
-| `group_name` |  |
-| `image_url` |  |
-| `ingredient` |  |
+| `flavorName` |  |
+| `glutenFree` |  |
+| `groupName` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
 | `kosher` |  |
-| `sugar_free` |  |
+| `sugarFree` |  |
 
 Operations: List, Load.
 
@@ -265,8 +265,8 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `bean` |  |
-| `combination_id` |  |
+| `beans` |  |
+| `combinationId` |  |
 | `name` |  |
 | `tag` |  |
 
@@ -279,7 +279,7 @@ API path: `/combinations`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `fact_id` |  |
+| `factId` |  |
 | `title` |  |
 
 Operations: List.
@@ -291,7 +291,7 @@ API path: `/facts`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `history_id` |  |
+| `historyId` |  |
 | `year` |  |
 
 Operations: List.
@@ -302,16 +302,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cook_time` |  |
+| `cookTime` |  |
 | `description` |  |
-| `direction` |  |
-| `image_url` |  |
-| `ingredient` |  |
-| `making_amount` |  |
+| `directions` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
+| `makingAmount` |  |
 | `name` |  |
-| `prep_time` |  |
-| `recipe_id` |  |
-| `total_time` |  |
+| `prepTime` |  |
+| `recipeId` |  |
+| `totalTime` |  |
 
 Operations: List.
 
@@ -337,17 +337,17 @@ Create an instance: `local bean = client:Bean(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | `string` |  |
-| `bean_id` | `string` |  |
-| `color_group` | `string` |  |
+| `backgroundColor` | `string` |  |
+| `beanId` | `string` |  |
+| `colorGroup` | `string` |  |
 | `description` | `string` |  |
-| `flavor_name` | `string` |  |
-| `gluten_free` | `boolean` |  |
-| `group_name` | `table` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `table` |  |
+| `flavorName` | `string` |  |
+| `glutenFree` | `boolean` |  |
+| `groupName` | `table` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `table` |  |
 | `kosher` | `boolean` |  |
-| `sugar_free` | `boolean` |  |
+| `sugarFree` | `boolean` |  |
 
 #### Example: Load
 
@@ -376,8 +376,8 @@ Create an instance: `local combination = client:Combination(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | `table` |  |
-| `combination_id` | `string` |  |
+| `beans` | `table` |  |
+| `combinationId` | `string` |  |
 | `name` | `string` |  |
 | `tag` | `table` |  |
 
@@ -403,7 +403,7 @@ Create an instance: `local fact = client:Fact(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `fact_id` | `string` |  |
+| `factId` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -428,7 +428,7 @@ Create an instance: `local history = client:History(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `history_id` | `string` |  |
+| `historyId` | `string` |  |
 | `year` | `number` |  |
 
 #### Example: List
@@ -452,16 +452,16 @@ Create an instance: `local recipe = client:Recipe(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | `string` |  |
+| `cookTime` | `string` |  |
 | `description` | `string` |  |
-| `direction` | `table` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `table` |  |
-| `making_amount` | `string` |  |
+| `directions` | `table` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `table` |  |
+| `makingAmount` | `string` |  |
 | `name` | `string` |  |
-| `prep_time` | `string` |  |
-| `recipe_id` | `string` |  |
-| `total_time` | `string` |  |
+| `prepTime` | `string` |  |
+| `recipeId` | `string` |  |
+| `totalTime` | `string` |  |
 
 #### Example: List
 
@@ -546,11 +546,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bean = client:Bean()
-bean:list()
+local history = client:History()
+history:list()
 
--- bean:data_get() now returns the bean data from the last list
--- bean:match_get() returns the last match criteria
+-- history:data_get() now returns the history data from the last list
+-- history:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

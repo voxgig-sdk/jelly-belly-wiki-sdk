@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = JellyBellyWikiSDK.test()
-const beans = await client.Bean().list()
-// beans is an array of bare Bean records populated with mock data
-console.log(beans)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = JellyBellyWikiSDK.test({
+  entity: {
+    history: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const historys = await client.History().list()
+// historys is an array of History entities, populated with mock data
+// — call historys[0].data() for the record itself
+console.log(historys)
 ```
 
 ### Python
 
 ```python
 client = JellyBellyWikiSDK.test()
-beans = client.Bean().list()
-print(beans)
+historys = client.History().list()
+print(historys)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(beans)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = JellyBellyWikiSDK::test([
-    "entity" => ["bean" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["history" => ["test01" => []]],
 ]);
-$beans = $client->Bean()->list();
+$historys = $client->History()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Bean(nil).List(
+result, err := client.History(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Bean(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = JellyBellyWikiSDK.test({
-  "entity" => { "bean" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "history" => { "test01" => {} } },
 })
-beans = client.Bean.list()
+historys = client.History.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Bean():list()
+local results, err = client:History():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
 
 const client = new JellyBellyWikiSDK()
 
-// List all beans (returns Bean[])
+// List all beans (returns BeanEntity[] — .data() for the record)
 const beans = await client.Bean().list()
 for (const bean of beans) {
   console.log(bean)
@@ -195,7 +204,7 @@ $client = new JellyBellyWikiSDK();
 $beans = $client->Bean()->list();
 print_r($beans);
 
-// Load a specific bean (returns the bare record; throws on error)
+// Load a specific bean (returns the ENTITY; call data_get() for the record; throws on error)
 $bean = $client->Bean()->load(["id" => "example_id"]);
 print_r($bean);
 ```
@@ -226,7 +235,7 @@ client = JellyBellyWikiSDK.new
 beans = client.Bean.list
 puts beans
 
-# Load a specific bean (returns the bare record; raises on error)
+# Load a specific bean (returns the ENTITY; call data_get for the record)
 bean = client.Bean.load({ "id" => "example_id" })
 puts bean
 ```
@@ -363,6 +372,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://jelly-belly-wiki.netlify.app/api](https://jelly-belly-wiki.netlify.app/api)
 

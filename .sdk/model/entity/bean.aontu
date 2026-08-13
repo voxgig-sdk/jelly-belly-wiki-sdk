@@ -6,17 +6,17 @@ main: kit: entity: bean: {
 
   fields: [
     {
-      name: "background_color"
+      name: "backgroundColor"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "bean_id"
+      name: "beanId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "color_group"
+      name: "colorGroup"
       req: false
       type: "`$STRING`"
     }
@@ -26,27 +26,27 @@ main: kit: entity: bean: {
       type: "`$STRING`"
     }
     {
-      name: "flavor_name"
+      name: "flavorName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "gluten_free"
+      name: "glutenFree"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "group_name"
+      name: "groupName"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "ingredient"
+      name: "ingredients"
       req: false
       type: "`$ARRAY`"
     }
@@ -56,7 +56,7 @@ main: kit: entity: bean: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "sugar_free"
+      name: "sugarFree"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -101,7 +101,7 @@ main: kit: entity: bean: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

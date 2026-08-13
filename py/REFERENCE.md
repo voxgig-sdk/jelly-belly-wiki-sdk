@@ -103,17 +103,17 @@ bean = client.Bean()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | `str` | No |  |
-| `bean_id` | `str` | No |  |
-| `color_group` | `str` | No |  |
+| `backgroundColor` | `str` | No |  |
+| `beanId` | `str` | No |  |
+| `colorGroup` | `str` | No |  |
 | `description` | `str` | No |  |
-| `flavor_name` | `str` | No |  |
-| `gluten_free` | `bool` | No |  |
-| `group_name` | `list` | No |  |
-| `image_url` | `str` | No |  |
-| `ingredient` | `list` | No |  |
+| `flavorName` | `str` | No |  |
+| `glutenFree` | `bool` | No |  |
+| `groupName` | `list` | No |  |
+| `imageUrl` | `str` | No |  |
+| `ingredients` | `list` | No |  |
 | `kosher` | `bool` | No |  |
-| `sugar_free` | `bool` | No |  |
+| `sugarFree` | `bool` | No |  |
 
 ### Operations
 
@@ -174,8 +174,8 @@ combination = client.Combination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | `list` | No |  |
-| `combination_id` | `str` | No |  |
+| `beans` | `list` | No |  |
+| `combinationId` | `str` | No |  |
 | `name` | `str` | No |  |
 | `tag` | `list` | No |  |
 
@@ -231,7 +231,7 @@ fact = client.Fact()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `str` | No |  |
-| `fact_id` | `str` | No |  |
+| `factId` | `str` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -286,7 +286,7 @@ history = client.History()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `str` | No |  |
-| `history_id` | `str` | No |  |
+| `historyId` | `str` | No |  |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -340,16 +340,16 @@ recipe = client.Recipe()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | `str` | No |  |
+| `cookTime` | `str` | No |  |
 | `description` | `str` | No |  |
-| `direction` | `list` | No |  |
-| `image_url` | `str` | No |  |
-| `ingredient` | `list` | No |  |
-| `making_amount` | `str` | No |  |
+| `directions` | `list` | No |  |
+| `imageUrl` | `str` | No |  |
+| `ingredients` | `list` | No |  |
+| `makingAmount` | `str` | No |  |
 | `name` | `str` | No |  |
-| `prep_time` | `str` | No |  |
-| `recipe_id` | `str` | No |  |
-| `total_time` | `str` | No |  |
+| `prepTime` | `str` | No |  |
+| `recipeId` | `str` | No |  |
+| `totalTime` | `str` | No |  |
 
 ### Operations
 

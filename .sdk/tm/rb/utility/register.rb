@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ JellyBellyWikiUtility.registrar = ->(u) {
   u.prepare_params = JellyBellyWikiUtilities::PrepareParams
   u.prepare_path = JellyBellyWikiUtilities::PreparePath
   u.prepare_query = JellyBellyWikiUtilities::PrepareQuery
+  u.graphql_body = JellyBellyWikiUtilities::GraphqlBody
+  u.graphql_errors = JellyBellyWikiUtilities::GraphqlErrors
   u.result_basic = JellyBellyWikiUtilities::ResultBasic
   u.result_body = JellyBellyWikiUtilities::ResultBody
   u.result_headers = JellyBellyWikiUtilities::ResultHeaders

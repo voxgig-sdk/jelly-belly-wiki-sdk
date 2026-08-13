@@ -37,7 +37,7 @@ class FactEntity extends JellyBellyWikiEntityBase<Fact> {
 
 
 
-  async list(this: any, reqmatch?: FactListMatch, ctrl?: Control): Promise<Fact[]> {
+  async list(this: any, reqmatch?: FactListMatch, ctrl?: Control): Promise<FactEntity[]> {
 
     const utility = this._utility
 

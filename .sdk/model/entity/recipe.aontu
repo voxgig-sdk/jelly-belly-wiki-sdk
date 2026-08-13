@@ -6,7 +6,7 @@ main: kit: entity: recipe: {
 
   fields: [
     {
-      name: "cook_time"
+      name: "cookTime"
       req: false
       type: "`$STRING`"
     }
@@ -16,22 +16,22 @@ main: kit: entity: recipe: {
       type: "`$STRING`"
     }
     {
-      name: "direction"
+      name: "directions"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "ingredient"
+      name: "ingredients"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "making_amount"
+      name: "makingAmount"
       req: false
       type: "`$STRING`"
     }
@@ -41,17 +41,17 @@ main: kit: entity: recipe: {
       type: "`$STRING`"
     }
     {
-      name: "prep_time"
+      name: "prepTime"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "recipe_id"
+      name: "recipeId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "total_time"
+      name: "totalTime"
       req: false
       type: "`$STRING`"
     }
@@ -96,7 +96,7 @@ main: kit: entity: recipe: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

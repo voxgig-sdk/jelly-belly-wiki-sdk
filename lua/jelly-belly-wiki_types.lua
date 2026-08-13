@@ -7,89 +7,89 @@
 -- edit by hand.
 
 ---@class Bean
----@field background_color? string
----@field bean_id? string
----@field color_group? string
+---@field backgroundColor? string
+---@field beanId? string
+---@field colorGroup? string
 ---@field description? string
----@field flavor_name? string
----@field gluten_free? boolean
----@field group_name? table
----@field image_url? string
----@field ingredient? table
+---@field flavorName? string
+---@field glutenFree? boolean
+---@field groupName? table
+---@field imageUrl? string
+---@field ingredients? table
 ---@field kosher? boolean
----@field sugar_free? boolean
+---@field sugarFree? boolean
 
 ---@class BeanLoadMatch
 ---@field id string
 
 ---@class BeanListMatch
----@field background_color? string
----@field bean_id? string
----@field color_group? string
+---@field backgroundColor? string
+---@field beanId? string
+---@field colorGroup? string
 ---@field description? string
----@field flavor_name? string
----@field gluten_free? boolean
----@field group_name? table
----@field image_url? string
----@field ingredient? table
+---@field flavorName? string
+---@field glutenFree? boolean
+---@field groupName? table
+---@field imageUrl? string
+---@field ingredients? table
 ---@field kosher? boolean
----@field sugar_free? boolean
+---@field sugarFree? boolean
 
 ---@class Combination
----@field bean? table
----@field combination_id? string
+---@field beans? table
+---@field combinationId? string
 ---@field name? string
 ---@field tag? table
 
 ---@class CombinationListMatch
----@field bean? table
----@field combination_id? string
+---@field beans? table
+---@field combinationId? string
 ---@field name? string
 ---@field tag? table
 
 ---@class Fact
 ---@field description? string
----@field fact_id? string
+---@field factId? string
 ---@field title? string
 
 ---@class FactListMatch
 ---@field description? string
----@field fact_id? string
+---@field factId? string
 ---@field title? string
 
 ---@class History
 ---@field description? string
----@field history_id? string
+---@field historyId? string
 ---@field year? number
 
 ---@class HistoryListMatch
 ---@field description? string
----@field history_id? string
+---@field historyId? string
 ---@field year? number
 
 ---@class Recipe
----@field cook_time? string
+---@field cookTime? string
 ---@field description? string
----@field direction? table
----@field image_url? string
----@field ingredient? table
----@field making_amount? string
+---@field directions? table
+---@field imageUrl? string
+---@field ingredients? table
+---@field makingAmount? string
 ---@field name? string
----@field prep_time? string
----@field recipe_id? string
----@field total_time? string
+---@field prepTime? string
+---@field recipeId? string
+---@field totalTime? string
 
 ---@class RecipeListMatch
----@field cook_time? string
+---@field cookTime? string
 ---@field description? string
----@field direction? table
----@field image_url? string
----@field ingredient? table
----@field making_amount? string
+---@field directions? table
+---@field imageUrl? string
+---@field ingredients? table
+---@field makingAmount? string
 ---@field name? string
----@field prep_time? string
----@field recipe_id? string
----@field total_time? string
+---@field prepTime? string
+---@field recipeId? string
+---@field totalTime? string
 
 local M = {}
 

@@ -38,7 +38,7 @@ try {
     // list() returns an array of Bean records — iterate directly.
     $beans = $client->Bean()->list();
     foreach ($beans as $item) {
-        echo $item["background_color"] . "\n";
+        echo $item["backgroundColor"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Bean record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Bean record (throws on error).
     $bean = $client->Bean()->load(["id" => "example_id"]);
     print_r($bean);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $beans = $client->Bean()->list();
+    $historys = $client->History()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -132,17 +132,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = JellyBellyWikiSDK::test([
-    "entity" => ["bean" => ["test01" => ["id" => "test01"]]],
-]);
+$client = JellyBellyWikiSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$bean = $client->Bean()->list();
-print_r($bean);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$history = $client->History()->list();
+print_r($history);
 ```
 
 ### Use a custom fetch function
@@ -244,7 +242,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -266,17 +264,17 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `background_color` |  |
-| `bean_id` |  |
-| `color_group` |  |
+| `backgroundColor` |  |
+| `beanId` |  |
+| `colorGroup` |  |
 | `description` |  |
-| `flavor_name` |  |
-| `gluten_free` |  |
-| `group_name` |  |
-| `image_url` |  |
-| `ingredient` |  |
+| `flavorName` |  |
+| `glutenFree` |  |
+| `groupName` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
 | `kosher` |  |
-| `sugar_free` |  |
+| `sugarFree` |  |
 
 Operations: List, Load.
 
@@ -286,8 +284,8 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `bean` |  |
-| `combination_id` |  |
+| `beans` |  |
+| `combinationId` |  |
 | `name` |  |
 | `tag` |  |
 
@@ -300,7 +298,7 @@ API path: `/combinations`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `fact_id` |  |
+| `factId` |  |
 | `title` |  |
 
 Operations: List.
@@ -312,7 +310,7 @@ API path: `/facts`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `history_id` |  |
+| `historyId` |  |
 | `year` |  |
 
 Operations: List.
@@ -323,16 +321,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cook_time` |  |
+| `cookTime` |  |
 | `description` |  |
-| `direction` |  |
-| `image_url` |  |
-| `ingredient` |  |
-| `making_amount` |  |
+| `directions` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
+| `makingAmount` |  |
 | `name` |  |
-| `prep_time` |  |
-| `recipe_id` |  |
-| `total_time` |  |
+| `prepTime` |  |
+| `recipeId` |  |
+| `totalTime` |  |
 
 Operations: List.
 
@@ -358,22 +356,22 @@ Create an instance: `$bean = $client->Bean();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | `string` |  |
-| `bean_id` | `string` |  |
-| `color_group` | `string` |  |
+| `backgroundColor` | `string` |  |
+| `beanId` | `string` |  |
+| `colorGroup` | `string` |  |
 | `description` | `string` |  |
-| `flavor_name` | `string` |  |
-| `gluten_free` | `bool` |  |
-| `group_name` | `array` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `array` |  |
+| `flavorName` | `string` |  |
+| `glutenFree` | `bool` |  |
+| `groupName` | `array` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `array` |  |
 | `kosher` | `bool` |  |
-| `sugar_free` | `bool` |  |
+| `sugarFree` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Bean record (throws on error).
+// load() returns the ENTITY — call data_get() for the Bean record (throws on error).
 $bean = $client->Bean()->load(["id" => "bean_id"]);
 ```
 
@@ -399,8 +397,8 @@ Create an instance: `$combination = $client->Combination();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | `array` |  |
-| `combination_id` | `string` |  |
+| `beans` | `array` |  |
+| `combinationId` | `string` |  |
 | `name` | `string` |  |
 | `tag` | `array` |  |
 
@@ -427,7 +425,7 @@ Create an instance: `$fact = $client->Fact();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `fact_id` | `string` |  |
+| `factId` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -453,7 +451,7 @@ Create an instance: `$history = $client->History();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `history_id` | `string` |  |
+| `historyId` | `string` |  |
 | `year` | `int` |  |
 
 #### Example: List
@@ -478,16 +476,16 @@ Create an instance: `$recipe = $client->Recipe();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | `string` |  |
+| `cookTime` | `string` |  |
 | `description` | `string` |  |
-| `direction` | `array` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `array` |  |
-| `making_amount` | `string` |  |
+| `directions` | `array` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `array` |  |
+| `makingAmount` | `string` |  |
 | `name` | `string` |  |
-| `prep_time` | `string` |  |
-| `recipe_id` | `string` |  |
-| `total_time` | `string` |  |
+| `prepTime` | `string` |  |
+| `recipeId` | `string` |  |
+| `totalTime` | `string` |  |
 
 #### Example: List
 
@@ -573,11 +571,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bean = $client->Bean();
-$bean->list();
+$history = $client->History();
+$history->list();
 
-// $bean->data_get() now returns the bean data from the last list
-// $bean->match_get() returns the last match criteria
+// $history->data_get() now returns the history data from the last list
+// $history->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -43,8 +43,8 @@ class JellyBellyWikiTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('JELLYBELLYWIKI_TEST_LIVE');
-        $override = self::getenv('JELLYBELLYWIKI_TEST_OVERRIDE');
+        $live = self::getenv('JELLY_BELLY_WIKI_TEST_LIVE');
+        $override = self::getenv('JELLY_BELLY_WIKI_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class JellyBellyWikiTestRunner
             }
         }
 
-        $explain = self::getenv('JELLYBELLYWIKI_TEST_EXPLAIN');
+        $explain = self::getenv('JELLY_BELLY_WIKI_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['JELLYBELLYWIKI_TEST_EXPLAIN'] = $explain;
+            $m['JELLY_BELLY_WIKI_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

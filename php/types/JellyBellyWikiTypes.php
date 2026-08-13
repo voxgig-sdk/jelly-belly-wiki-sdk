@@ -15,17 +15,17 @@ declare(strict_types=1);
 /** Bean entity data model. */
 class Bean
 {
-    public ?string $background_color = null;
-    public ?string $bean_id = null;
-    public ?string $color_group = null;
+    public ?string $backgroundColor = null;
+    public ?string $beanId = null;
+    public ?string $colorGroup = null;
     public ?string $description = null;
-    public ?string $flavor_name = null;
-    public ?bool $gluten_free = null;
-    public ?array $group_name = null;
-    public ?string $image_url = null;
-    public ?array $ingredient = null;
+    public ?string $flavorName = null;
+    public ?bool $glutenFree = null;
+    public ?array $groupName = null;
+    public ?string $imageUrl = null;
+    public ?array $ingredients = null;
     public ?bool $kosher = null;
-    public ?bool $sugar_free = null;
+    public ?bool $sugarFree = null;
 }
 
 /** Request payload for Bean#load. */
@@ -37,24 +37,24 @@ class BeanLoadMatch
 /** Request payload for Bean#list. */
 class BeanListMatch
 {
-    public ?string $background_color = null;
-    public ?string $bean_id = null;
-    public ?string $color_group = null;
+    public ?string $backgroundColor = null;
+    public ?string $beanId = null;
+    public ?string $colorGroup = null;
     public ?string $description = null;
-    public ?string $flavor_name = null;
-    public ?bool $gluten_free = null;
-    public ?array $group_name = null;
-    public ?string $image_url = null;
-    public ?array $ingredient = null;
+    public ?string $flavorName = null;
+    public ?bool $glutenFree = null;
+    public ?array $groupName = null;
+    public ?string $imageUrl = null;
+    public ?array $ingredients = null;
     public ?bool $kosher = null;
-    public ?bool $sugar_free = null;
+    public ?bool $sugarFree = null;
 }
 
 /** Combination entity data model. */
 class Combination
 {
-    public ?array $bean = null;
-    public ?string $combination_id = null;
+    public ?array $beans = null;
+    public ?string $combinationId = null;
     public ?string $name = null;
     public ?array $tag = null;
 }
@@ -62,8 +62,8 @@ class Combination
 /** Request payload for Combination#list. */
 class CombinationListMatch
 {
-    public ?array $bean = null;
-    public ?string $combination_id = null;
+    public ?array $beans = null;
+    public ?string $combinationId = null;
     public ?string $name = null;
     public ?array $tag = null;
 }
@@ -72,7 +72,7 @@ class CombinationListMatch
 class Fact
 {
     public ?string $description = null;
-    public ?string $fact_id = null;
+    public ?string $factId = null;
     public ?string $title = null;
 }
 
@@ -80,7 +80,7 @@ class Fact
 class FactListMatch
 {
     public ?string $description = null;
-    public ?string $fact_id = null;
+    public ?string $factId = null;
     public ?string $title = null;
 }
 
@@ -88,7 +88,7 @@ class FactListMatch
 class History
 {
     public ?string $description = null;
-    public ?string $history_id = null;
+    public ?string $historyId = null;
     public ?int $year = null;
 }
 
@@ -96,37 +96,37 @@ class History
 class HistoryListMatch
 {
     public ?string $description = null;
-    public ?string $history_id = null;
+    public ?string $historyId = null;
     public ?int $year = null;
 }
 
 /** Recipe entity data model. */
 class Recipe
 {
-    public ?string $cook_time = null;
+    public ?string $cookTime = null;
     public ?string $description = null;
-    public ?array $direction = null;
-    public ?string $image_url = null;
-    public ?array $ingredient = null;
-    public ?string $making_amount = null;
+    public ?array $directions = null;
+    public ?string $imageUrl = null;
+    public ?array $ingredients = null;
+    public ?string $makingAmount = null;
     public ?string $name = null;
-    public ?string $prep_time = null;
-    public ?string $recipe_id = null;
-    public ?string $total_time = null;
+    public ?string $prepTime = null;
+    public ?string $recipeId = null;
+    public ?string $totalTime = null;
 }
 
 /** Request payload for Recipe#list. */
 class RecipeListMatch
 {
-    public ?string $cook_time = null;
+    public ?string $cookTime = null;
     public ?string $description = null;
-    public ?array $direction = null;
-    public ?string $image_url = null;
-    public ?array $ingredient = null;
-    public ?string $making_amount = null;
+    public ?array $directions = null;
+    public ?string $imageUrl = null;
+    public ?array $ingredients = null;
+    public ?string $makingAmount = null;
     public ?string $name = null;
-    public ?string $prep_time = null;
-    public ?string $recipe_id = null;
-    public ?string $total_time = null;
+    public ?string $prepTime = null;
+    public ?string $recipeId = null;
+    public ?string $totalTime = null;
 }
 

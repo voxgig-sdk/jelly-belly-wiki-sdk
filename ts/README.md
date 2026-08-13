@@ -35,7 +35,9 @@ const client = new JellyBellyWikiSDK()
 
 ### 2. List bean records
 
-`list()` resolves to an array of Bean objects — iterate it directly:
+`list()` resolves to an array of Bean ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const beans = await client.Bean().list()
@@ -65,8 +67,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const beans = await client.Bean().list()
-  console.log(beans)
+  const historys = await client.History().list()
+  console.log(historys)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -132,9 +134,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = JellyBellyWikiSDK.test()
 
-const bean = await client.Bean().list()
-// bean is a bare entity populated with mock response data
-console.log(bean)
+const history = await client.History().list()
+// history is the entity, populated with mock response data
+// — call history.data() for the record itself
+console.log(history)
 ```
 
 You can also use the instance method:
@@ -149,7 +152,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Bean()
+const entity = client.History()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -303,17 +306,17 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `background_color` |  |
-| `bean_id` |  |
-| `color_group` |  |
+| `backgroundColor` |  |
+| `beanId` |  |
+| `colorGroup` |  |
 | `description` |  |
-| `flavor_name` |  |
-| `gluten_free` |  |
-| `group_name` |  |
-| `image_url` |  |
-| `ingredient` |  |
+| `flavorName` |  |
+| `glutenFree` |  |
+| `groupName` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
 | `kosher` |  |
-| `sugar_free` |  |
+| `sugarFree` |  |
 
 Operations: list, load.
 
@@ -323,8 +326,8 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `bean` |  |
-| `combination_id` |  |
+| `beans` |  |
+| `combinationId` |  |
 | `name` |  |
 | `tag` |  |
 
@@ -337,7 +340,7 @@ API path: `/combinations`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `fact_id` |  |
+| `factId` |  |
 | `title` |  |
 
 Operations: list.
@@ -349,7 +352,7 @@ API path: `/facts`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `history_id` |  |
+| `historyId` |  |
 | `year` |  |
 
 Operations: list.
@@ -360,16 +363,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cook_time` |  |
+| `cookTime` |  |
 | `description` |  |
-| `direction` |  |
-| `image_url` |  |
-| `ingredient` |  |
-| `making_amount` |  |
+| `directions` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
+| `makingAmount` |  |
 | `name` |  |
-| `prep_time` |  |
-| `recipe_id` |  |
-| `total_time` |  |
+| `prepTime` |  |
+| `recipeId` |  |
+| `totalTime` |  |
 
 Operations: list.
 
@@ -395,17 +398,17 @@ Create an instance: `const bean = client.Bean()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | `string` |  |
-| `bean_id` | `string` |  |
-| `color_group` | `string` |  |
+| `backgroundColor` | `string` |  |
+| `beanId` | `string` |  |
+| `colorGroup` | `string` |  |
 | `description` | `string` |  |
-| `flavor_name` | `string` |  |
-| `gluten_free` | `boolean` |  |
-| `group_name` | `any[]` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `any[]` |  |
+| `flavorName` | `string` |  |
+| `glutenFree` | `boolean` |  |
+| `groupName` | `any[]` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `any[]` |  |
 | `kosher` | `boolean` |  |
-| `sugar_free` | `boolean` |  |
+| `sugarFree` | `boolean` |  |
 
 #### Example: Load
 
@@ -434,8 +437,8 @@ Create an instance: `const combination = client.Combination()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | `any[]` |  |
-| `combination_id` | `string` |  |
+| `beans` | `any[]` |  |
+| `combinationId` | `string` |  |
 | `name` | `string` |  |
 | `tag` | `any[]` |  |
 
@@ -461,7 +464,7 @@ Create an instance: `const fact = client.Fact()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `fact_id` | `string` |  |
+| `factId` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -486,7 +489,7 @@ Create an instance: `const history = client.History()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `history_id` | `string` |  |
+| `historyId` | `string` |  |
 | `year` | `number` |  |
 
 #### Example: List
@@ -510,16 +513,16 @@ Create an instance: `const recipe = client.Recipe()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | `string` |  |
+| `cookTime` | `string` |  |
 | `description` | `string` |  |
-| `direction` | `any[]` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `any[]` |  |
-| `making_amount` | `string` |  |
+| `directions` | `any[]` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `any[]` |  |
+| `makingAmount` | `string` |  |
 | `name` | `string` |  |
-| `prep_time` | `string` |  |
-| `recipe_id` | `string` |  |
-| `total_time` | `string` |  |
+| `prepTime` | `string` |  |
+| `recipeId` | `string` |  |
+| `totalTime` | `string` |  |
 
 #### Example: List
 
@@ -597,11 +600,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const bean = client.Bean()
-await bean.list()
+const history = client.History()
+await history.list()
 
-// bean.data() now returns the bean data from the last `list`
-// bean.match() returns the last match criteria
+// history.data() now returns the history data from the last `list`
+// history.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

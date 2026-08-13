@@ -37,7 +37,7 @@ class HistoryEntity extends JellyBellyWikiEntityBase<History> {
 
 
 
-  async list(this: any, reqmatch?: HistoryListMatch, ctrl?: Control): Promise<History[]> {
+  async list(this: any, reqmatch?: HistoryListMatch, ctrl?: Control): Promise<HistoryEntity[]> {
 
     const utility = this._utility
 

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from jellybellywiki_sdk.utility.voxgig_struct import voxgig_struct as vs
 from jellybellywiki_sdk import JellyBellyWikiSDK
-from core import helpers
+from jellybellywiki_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _bean_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "JELLYBELLYWIKI_TEST_BEAN_ENTID": {},
-        "JELLYBELLYWIKI_TEST_LIVE": "FALSE",
+        "JELLY_BELLY_WIKI_TEST_BEAN_ENTID": {},
+        "JELLY_BELLY_WIKI_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("JELLYBELLYWIKI_TEST_LIVE") == "TRUE"
+    live = env.get("JELLY_BELLY_WIKI_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

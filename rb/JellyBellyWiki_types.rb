@@ -10,50 +10,50 @@
 
 # Bean entity data model.
 #
-# @!attribute [rw] background_color
+# @!attribute [rw] backgroundColor
 #   @return [String, nil]
 #
-# @!attribute [rw] bean_id
+# @!attribute [rw] beanId
 #   @return [String, nil]
 #
-# @!attribute [rw] color_group
+# @!attribute [rw] colorGroup
 #   @return [String, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] flavor_name
+# @!attribute [rw] flavorName
 #   @return [String, nil]
 #
-# @!attribute [rw] gluten_free
+# @!attribute [rw] glutenFree
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] group_name
+# @!attribute [rw] groupName
 #   @return [Array, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] ingredient
+# @!attribute [rw] ingredients
 #   @return [Array, nil]
 #
 # @!attribute [rw] kosher
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] sugar_free
+# @!attribute [rw] sugarFree
 #   @return [Boolean, nil]
 Bean = Struct.new(
-  :background_color,
-  :bean_id,
-  :color_group,
+  :backgroundColor,
+  :beanId,
+  :colorGroup,
   :description,
-  :flavor_name,
-  :gluten_free,
-  :group_name,
-  :image_url,
-  :ingredient,
+  :flavorName,
+  :glutenFree,
+  :groupName,
+  :imageUrl,
+  :ingredients,
   :kosher,
-  :sugar_free,
+  :sugarFree,
   keyword_init: true
 )
 
@@ -68,59 +68,59 @@ BeanLoadMatch = Struct.new(
 
 # Request payload for Bean#list.
 #
-# @!attribute [rw] background_color
+# @!attribute [rw] backgroundColor
 #   @return [String, nil]
 #
-# @!attribute [rw] bean_id
+# @!attribute [rw] beanId
 #   @return [String, nil]
 #
-# @!attribute [rw] color_group
+# @!attribute [rw] colorGroup
 #   @return [String, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] flavor_name
+# @!attribute [rw] flavorName
 #   @return [String, nil]
 #
-# @!attribute [rw] gluten_free
+# @!attribute [rw] glutenFree
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] group_name
+# @!attribute [rw] groupName
 #   @return [Array, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] ingredient
+# @!attribute [rw] ingredients
 #   @return [Array, nil]
 #
 # @!attribute [rw] kosher
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] sugar_free
+# @!attribute [rw] sugarFree
 #   @return [Boolean, nil]
 BeanListMatch = Struct.new(
-  :background_color,
-  :bean_id,
-  :color_group,
+  :backgroundColor,
+  :beanId,
+  :colorGroup,
   :description,
-  :flavor_name,
-  :gluten_free,
-  :group_name,
-  :image_url,
-  :ingredient,
+  :flavorName,
+  :glutenFree,
+  :groupName,
+  :imageUrl,
+  :ingredients,
   :kosher,
-  :sugar_free,
+  :sugarFree,
   keyword_init: true
 )
 
 # Combination entity data model.
 #
-# @!attribute [rw] bean
+# @!attribute [rw] beans
 #   @return [Array, nil]
 #
-# @!attribute [rw] combination_id
+# @!attribute [rw] combinationId
 #   @return [String, nil]
 #
 # @!attribute [rw] name
@@ -129,8 +129,8 @@ BeanListMatch = Struct.new(
 # @!attribute [rw] tag
 #   @return [Array, nil]
 Combination = Struct.new(
-  :bean,
-  :combination_id,
+  :beans,
+  :combinationId,
   :name,
   :tag,
   keyword_init: true
@@ -138,10 +138,10 @@ Combination = Struct.new(
 
 # Request payload for Combination#list.
 #
-# @!attribute [rw] bean
+# @!attribute [rw] beans
 #   @return [Array, nil]
 #
-# @!attribute [rw] combination_id
+# @!attribute [rw] combinationId
 #   @return [String, nil]
 #
 # @!attribute [rw] name
@@ -150,8 +150,8 @@ Combination = Struct.new(
 # @!attribute [rw] tag
 #   @return [Array, nil]
 CombinationListMatch = Struct.new(
-  :bean,
-  :combination_id,
+  :beans,
+  :combinationId,
   :name,
   :tag,
   keyword_init: true
@@ -162,14 +162,14 @@ CombinationListMatch = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] fact_id
+# @!attribute [rw] factId
 #   @return [String, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Fact = Struct.new(
   :description,
-  :fact_id,
+  :factId,
   :title,
   keyword_init: true
 )
@@ -179,14 +179,14 @@ Fact = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] fact_id
+# @!attribute [rw] factId
 #   @return [String, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 FactListMatch = Struct.new(
   :description,
-  :fact_id,
+  :factId,
   :title,
   keyword_init: true
 )
@@ -196,14 +196,14 @@ FactListMatch = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] history_id
+# @!attribute [rw] historyId
 #   @return [String, nil]
 #
 # @!attribute [rw] year
 #   @return [Integer, nil]
 History = Struct.new(
   :description,
-  :history_id,
+  :historyId,
   :year,
   keyword_init: true
 )
@@ -213,105 +213,105 @@ History = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] history_id
+# @!attribute [rw] historyId
 #   @return [String, nil]
 #
 # @!attribute [rw] year
 #   @return [Integer, nil]
 HistoryListMatch = Struct.new(
   :description,
-  :history_id,
+  :historyId,
   :year,
   keyword_init: true
 )
 
 # Recipe entity data model.
 #
-# @!attribute [rw] cook_time
+# @!attribute [rw] cookTime
 #   @return [String, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] direction
+# @!attribute [rw] directions
 #   @return [Array, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] ingredient
+# @!attribute [rw] ingredients
 #   @return [Array, nil]
 #
-# @!attribute [rw] making_amount
+# @!attribute [rw] makingAmount
 #   @return [String, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] prep_time
+# @!attribute [rw] prepTime
 #   @return [String, nil]
 #
-# @!attribute [rw] recipe_id
+# @!attribute [rw] recipeId
 #   @return [String, nil]
 #
-# @!attribute [rw] total_time
+# @!attribute [rw] totalTime
 #   @return [String, nil]
 Recipe = Struct.new(
-  :cook_time,
+  :cookTime,
   :description,
-  :direction,
-  :image_url,
-  :ingredient,
-  :making_amount,
+  :directions,
+  :imageUrl,
+  :ingredients,
+  :makingAmount,
   :name,
-  :prep_time,
-  :recipe_id,
-  :total_time,
+  :prepTime,
+  :recipeId,
+  :totalTime,
   keyword_init: true
 )
 
 # Request payload for Recipe#list.
 #
-# @!attribute [rw] cook_time
+# @!attribute [rw] cookTime
 #   @return [String, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] direction
+# @!attribute [rw] directions
 #   @return [Array, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] ingredient
+# @!attribute [rw] ingredients
 #   @return [Array, nil]
 #
-# @!attribute [rw] making_amount
+# @!attribute [rw] makingAmount
 #   @return [String, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] prep_time
+# @!attribute [rw] prepTime
 #   @return [String, nil]
 #
-# @!attribute [rw] recipe_id
+# @!attribute [rw] recipeId
 #   @return [String, nil]
 #
-# @!attribute [rw] total_time
+# @!attribute [rw] totalTime
 #   @return [String, nil]
 RecipeListMatch = Struct.new(
-  :cook_time,
+  :cookTime,
   :description,
-  :direction,
-  :image_url,
-  :ingredient,
-  :making_amount,
+  :directions,
+  :imageUrl,
+  :ingredients,
+  :makingAmount,
   :name,
-  :prep_time,
-  :recipe_id,
-  :total_time,
+  :prepTime,
+  :recipeId,
+  :totalTime,
   keyword_init: true
 )
 

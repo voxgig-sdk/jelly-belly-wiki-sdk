@@ -30,21 +30,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "background_color",
+						"name": "backgroundColor",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "bean_id",
+						"name": "beanId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "color_group",
+						"name": "colorGroup",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
@@ -58,35 +58,35 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "flavor_name",
+						"name": "flavorName",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "gluten_free",
+						"name": "glutenFree",
 						"req": false,
 						"type": "`$BOOLEAN`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "group_name",
+						"name": "groupName",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "image_url",
+						"name": "imageUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "ingredient",
+						"name": "ingredients",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 8,
@@ -100,7 +100,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "sugar_free",
+						"name": "sugarFree",
 						"req": false,
 						"type": "`$BOOLEAN`",
 						"index$": 10,
@@ -136,6 +136,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/beans",
 								"parts": []any{
@@ -149,12 +150,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -175,6 +175,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/beans/{beanId}",
 								"parts": []any{
@@ -198,7 +199,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -209,14 +209,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "bean",
+						"name": "beans",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "combination_id",
+						"name": "combinationId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
@@ -266,6 +266,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/combinations",
 								"parts": []any{
@@ -279,12 +280,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -302,7 +302,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "fact_id",
+						"name": "factId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
@@ -345,6 +345,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/facts",
 								"parts": []any{
@@ -358,12 +359,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -381,7 +381,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "history_id",
+						"name": "historyId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
@@ -403,6 +403,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/history",
 								"parts": []any{
@@ -411,12 +412,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -427,7 +427,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "cook_time",
+						"name": "cookTime",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -441,28 +441,28 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "direction",
+						"name": "directions",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "image_url",
+						"name": "imageUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "ingredient",
+						"name": "ingredients",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "making_amount",
+						"name": "makingAmount",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 5,
@@ -476,21 +476,21 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "prep_time",
+						"name": "prepTime",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "recipe_id",
+						"name": "recipeId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 8,
 					},
 					map[string]any{
 						"active": true,
-						"name": "total_time",
+						"name": "totalTime",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 9,
@@ -526,6 +526,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/recipes",
 								"parts": []any{
@@ -539,12 +540,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

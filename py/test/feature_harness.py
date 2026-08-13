@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import JellyBellyWikiControl
-from core.error import JellyBellyWikiError
-from core.result import JellyBellyWikiResult
-from core.spec import JellyBellyWikiSpec
+from jellybellywiki_sdk.config import make_config
+from jellybellywiki_sdk.features import _make_feature
+from jellybellywiki_sdk.core.control import JellyBellyWikiControl
+from jellybellywiki_sdk.core.error import JellyBellyWikiError
+from jellybellywiki_sdk.core.result import JellyBellyWikiResult
+from jellybellywiki_sdk.core.spec import JellyBellyWikiSpec
 
 
 # True when this SDK was generated with the named feature.

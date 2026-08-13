@@ -26,8 +26,8 @@ import {
 describe('HistoryEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when JELLYBELLYWIKI_TEST_LIVE=TRUE.
-  afterEach(liveDelay('JELLYBELLYWIKI_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when JELLY_BELLY_WIKI_TEST_LIVE=TRUE.
+  afterEach(liveDelay('JELLY_BELLY_WIKI_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = JellyBellyWikiSDK.test()
@@ -63,7 +63,7 @@ describe('HistoryEntity', async () => {
     const history_ref01_ent = client.History()
     const history_ref01_match: any = {}
 
-    const history_ref01_list = await history_ref01_ent.list(history_ref01_match)
+    const history_ref01_list = (await history_ref01_ent.list(history_ref01_match)).map((e: any) => e.data())
 
 
   })

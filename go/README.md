@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-beans, err := client.Bean(nil).List(nil, nil)
+historys, err := client.History(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = beans
+_ = historys
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bean, err := client.Bean(nil).List(
+history, err := client.History(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bean) // the returned mock data
+fmt.Println(history) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -273,17 +273,17 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"background_color"` |  |
-| `"bean_id"` |  |
-| `"color_group"` |  |
+| `"backgroundColor"` |  |
+| `"beanId"` |  |
+| `"colorGroup"` |  |
 | `"description"` |  |
-| `"flavor_name"` |  |
-| `"gluten_free"` |  |
-| `"group_name"` |  |
-| `"image_url"` |  |
-| `"ingredient"` |  |
+| `"flavorName"` |  |
+| `"glutenFree"` |  |
+| `"groupName"` |  |
+| `"imageUrl"` |  |
+| `"ingredients"` |  |
 | `"kosher"` |  |
-| `"sugar_free"` |  |
+| `"sugarFree"` |  |
 
 Operations: List, Load.
 
@@ -293,8 +293,8 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `"bean"` |  |
-| `"combination_id"` |  |
+| `"beans"` |  |
+| `"combinationId"` |  |
 | `"name"` |  |
 | `"tag"` |  |
 
@@ -307,7 +307,7 @@ API path: `/combinations`
 | Field | Description |
 | --- | --- |
 | `"description"` |  |
-| `"fact_id"` |  |
+| `"factId"` |  |
 | `"title"` |  |
 
 Operations: List.
@@ -319,7 +319,7 @@ API path: `/facts`
 | Field | Description |
 | --- | --- |
 | `"description"` |  |
-| `"history_id"` |  |
+| `"historyId"` |  |
 | `"year"` |  |
 
 Operations: List.
@@ -330,16 +330,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `"cook_time"` |  |
+| `"cookTime"` |  |
 | `"description"` |  |
-| `"direction"` |  |
-| `"image_url"` |  |
-| `"ingredient"` |  |
-| `"making_amount"` |  |
+| `"directions"` |  |
+| `"imageUrl"` |  |
+| `"ingredients"` |  |
+| `"makingAmount"` |  |
 | `"name"` |  |
-| `"prep_time"` |  |
-| `"recipe_id"` |  |
-| `"total_time"` |  |
+| `"prepTime"` |  |
+| `"recipeId"` |  |
+| `"totalTime"` |  |
 
 Operations: List.
 
@@ -365,17 +365,17 @@ Create an instance: `bean := client.Bean(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | `string` |  |
-| `bean_id` | `string` |  |
-| `color_group` | `string` |  |
+| `backgroundColor` | `string` |  |
+| `beanId` | `string` |  |
+| `colorGroup` | `string` |  |
 | `description` | `string` |  |
-| `flavor_name` | `string` |  |
-| `gluten_free` | `bool` |  |
-| `group_name` | `[]any` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `[]any` |  |
+| `flavorName` | `string` |  |
+| `glutenFree` | `bool` |  |
+| `groupName` | `[]any` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `[]any` |  |
 | `kosher` | `bool` |  |
-| `sugar_free` | `bool` |  |
+| `sugarFree` | `bool` |  |
 
 #### Example: Load
 
@@ -412,8 +412,8 @@ Create an instance: `combination := client.Combination(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | `[]any` |  |
-| `combination_id` | `string` |  |
+| `beans` | `[]any` |  |
+| `combinationId` | `string` |  |
 | `name` | `string` |  |
 | `tag` | `[]any` |  |
 
@@ -443,7 +443,7 @@ Create an instance: `fact := client.Fact(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `fact_id` | `string` |  |
+| `factId` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -472,7 +472,7 @@ Create an instance: `history := client.History(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
-| `history_id` | `string` |  |
+| `historyId` | `string` |  |
 | `year` | `int` |  |
 
 #### Example: List
@@ -500,16 +500,16 @@ Create an instance: `recipe := client.Recipe(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | `string` |  |
+| `cookTime` | `string` |  |
 | `description` | `string` |  |
-| `direction` | `[]any` |  |
-| `image_url` | `string` |  |
-| `ingredient` | `[]any` |  |
-| `making_amount` | `string` |  |
+| `directions` | `[]any` |  |
+| `imageUrl` | `string` |  |
+| `ingredients` | `[]any` |  |
+| `makingAmount` | `string` |  |
 | `name` | `string` |  |
-| `prep_time` | `string` |  |
-| `recipe_id` | `string` |  |
-| `total_time` | `string` |  |
+| `prepTime` | `string` |  |
+| `recipeId` | `string` |  |
+| `totalTime` | `string` |  |
 
 #### Example: List
 
@@ -595,11 +595,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-bean := client.Bean(nil)
-bean.List(nil, nil)
+history := client.History(nil)
+history.List(nil, nil)
 
-// bean.Data() now returns the bean data from the last list
-// bean.Match() returns the last match criteria
+// history.Data() now returns the history data from the last list
+// history.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

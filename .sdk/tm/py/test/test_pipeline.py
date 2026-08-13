@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import JellyBellyWikiSDK
-from core.error import JellyBellyWikiError
-from core.result import JellyBellyWikiResult
-from core.response import JellyBellyWikiResponse
-from core.spec import JellyBellyWikiSpec
-from feature.base_feature import JellyBellyWikiBaseFeature
+from projectname_sdk.core.error import JellyBellyWikiError
+from projectname_sdk.core.result import JellyBellyWikiResult
+from projectname_sdk.core.response import JellyBellyWikiResponse
+from projectname_sdk.core.spec import JellyBellyWikiSpec
+from projectname_sdk.feature.base_feature import JellyBellyWikiBaseFeature
 
 
 def _client():

@@ -11,7 +11,7 @@ main: kit: entity: history: {
       type: "`$STRING`"
     }
     {
-      name: "history_id"
+      name: "historyId"
       req: false
       type: "`$STRING`"
     }
@@ -35,7 +35,7 @@ main: kit: entity: history: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

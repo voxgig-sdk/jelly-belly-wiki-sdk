@@ -23,8 +23,8 @@ module JellyBellyWikiTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("JELLYBELLYWIKI_TEST_LIVE")
-    override = getenv("JELLYBELLYWIKI_TEST_OVERRIDE")
+    live = getenv("JELLY_BELLY_WIKI_TEST_LIVE")
+    override = getenv("JELLY_BELLY_WIKI_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module JellyBellyWikiTestRunner
       end
     end
 
-    explain = getenv("JELLYBELLYWIKI_TEST_EXPLAIN")
-    m["JELLYBELLYWIKI_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("JELLY_BELLY_WIKI_TEST_EXPLAIN")
+    m["JELLY_BELLY_WIKI_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

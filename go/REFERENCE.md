@@ -114,17 +114,17 @@ fmt.Println(bean.GetName()) // "bean"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | `string` | No |  |
-| `bean_id` | `string` | No |  |
-| `color_group` | `string` | No |  |
+| `backgroundColor` | `string` | No |  |
+| `beanId` | `string` | No |  |
+| `colorGroup` | `string` | No |  |
 | `description` | `string` | No |  |
-| `flavor_name` | `string` | No |  |
-| `gluten_free` | `bool` | No |  |
-| `group_name` | `[]any` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `[]any` | No |  |
+| `flavorName` | `string` | No |  |
+| `glutenFree` | `bool` | No |  |
+| `groupName` | `[]any` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `[]any` | No |  |
 | `kosher` | `bool` | No |  |
-| `sugar_free` | `bool` | No |  |
+| `sugarFree` | `bool` | No |  |
 
 ### Operations
 
@@ -187,8 +187,8 @@ fmt.Println(combination.GetName()) // "combination"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | `[]any` | No |  |
-| `combination_id` | `string` | No |  |
+| `beans` | `[]any` | No |  |
+| `combinationId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `tag` | `[]any` | No |  |
 
@@ -242,7 +242,7 @@ fmt.Println(fact.GetName()) // "fact"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `fact_id` | `string` | No |  |
+| `factId` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -295,7 +295,7 @@ fmt.Println(history.GetName()) // "history"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `history_id` | `string` | No |  |
+| `historyId` | `string` | No |  |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -347,16 +347,16 @@ fmt.Println(recipe.GetName()) // "recipe"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | `string` | No |  |
+| `cookTime` | `string` | No |  |
 | `description` | `string` | No |  |
-| `direction` | `[]any` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `[]any` | No |  |
-| `making_amount` | `string` | No |  |
+| `directions` | `[]any` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `[]any` | No |  |
+| `makingAmount` | `string` | No |  |
 | `name` | `string` | No |  |
-| `prep_time` | `string` | No |  |
-| `recipe_id` | `string` | No |  |
-| `total_time` | `string` | No |  |
+| `prepTime` | `string` | No |  |
+| `recipeId` | `string` | No |  |
+| `totalTime` | `string` | No |  |
 
 ### Operations
 

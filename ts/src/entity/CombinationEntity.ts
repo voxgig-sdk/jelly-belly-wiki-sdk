@@ -37,7 +37,7 @@ class CombinationEntity extends JellyBellyWikiEntityBase<Combination> {
 
 
 
-  async list(this: any, reqmatch?: CombinationListMatch, ctrl?: Control): Promise<Combination[]> {
+  async list(this: any, reqmatch?: CombinationListMatch, ctrl?: Control): Promise<CombinationEntity[]> {
 
     const utility = this._utility
 

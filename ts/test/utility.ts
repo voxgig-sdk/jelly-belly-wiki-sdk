@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.JELLYBELLYWIKI_TEST_LIVE ||
-    'TRUE' === process.env.JELLYBELLYWIKI_TEST_OVERRIDE
+    'TRUE' === process.env.JELLY_BELLY_WIKI_TEST_LIVE ||
+    'TRUE' === process.env.JELLY_BELLY_WIKI_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.JELLYBELLYWIKI_TEST_EXPLAIN = process.env.JELLYBELLYWIKI_TEST_EXPLAIN || m.JELLYBELLYWIKI_TEST_EXPLAIN
+  m.JELLY_BELLY_WIKI_TEST_EXPLAIN = process.env.JELLY_BELLY_WIKI_TEST_EXPLAIN || m.JELLY_BELLY_WIKI_TEST_EXPLAIN
 
   return m
 }

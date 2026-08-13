@@ -11,7 +11,7 @@ main: kit: entity: fact: {
       type: "`$STRING`"
     }
     {
-      name: "fact_id"
+      name: "factId"
       req: false
       type: "`$STRING`"
     }
@@ -61,7 +61,7 @@ main: kit: entity: fact: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

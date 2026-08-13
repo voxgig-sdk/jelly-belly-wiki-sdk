@@ -3,17 +3,17 @@
     "history": {
       "HISTORY00": {
         "description": "s1e",
-        "history_id": "HISTORY01",
+        "historyId": "s1f",
         "year": "s20"
       },
       "HISTORY01": {
         "description": "s3c",
-        "history_id": "HISTORY01",
+        "historyId": "s3d",
         "year": "s3e"
       },
       "HISTORY02": {
         "description": "s5a",
-        "history_id": "HISTORY01",
+        "historyId": "s5b",
         "year": "s5c"
       }
     }
@@ -22,7 +22,7 @@
     "history": {
       "history_ref01": {
         "description": "s78",
-        "history_id": "HISTORY01",
+        "historyId": "s79",
         "year": "s7a"
       }
     }

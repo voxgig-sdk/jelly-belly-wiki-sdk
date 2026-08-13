@@ -37,7 +37,7 @@ begin
   # list returns an Array of Bean records — iterate directly.
   beans = client.Bean.list
   beans.each do |item|
-    puts "#{item["background_color"]}"
+    puts "#{item["backgroundColor"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Bean record (raises on error).
+  # load returns the ENTITY — call data_get for the Bean record (raises on error).
   bean = client.Bean.load({ "id" => "example_id" })
   puts bean
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  beans = client.Bean.list()
+  historys = client.History.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -126,17 +126,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = JellyBellyWikiSDK.test({
-  "entity" => { "bean" => { "test01" => { "id" => "test01" } } },
-})
+client = JellyBellyWikiSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-bean = client.Bean.list()
-puts bean
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+history = client.History.list()
+puts history
 ```
 
 ### Use a custom fetch function
@@ -256,17 +254,17 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `background_color` |  |
-| `bean_id` |  |
-| `color_group` |  |
+| `backgroundColor` |  |
+| `beanId` |  |
+| `colorGroup` |  |
 | `description` |  |
-| `flavor_name` |  |
-| `gluten_free` |  |
-| `group_name` |  |
-| `image_url` |  |
-| `ingredient` |  |
+| `flavorName` |  |
+| `glutenFree` |  |
+| `groupName` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
 | `kosher` |  |
-| `sugar_free` |  |
+| `sugarFree` |  |
 
 Operations: List, Load.
 
@@ -276,8 +274,8 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `bean` |  |
-| `combination_id` |  |
+| `beans` |  |
+| `combinationId` |  |
 | `name` |  |
 | `tag` |  |
 
@@ -290,7 +288,7 @@ API path: `/combinations`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `fact_id` |  |
+| `factId` |  |
 | `title` |  |
 
 Operations: List.
@@ -302,7 +300,7 @@ API path: `/facts`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `history_id` |  |
+| `historyId` |  |
 | `year` |  |
 
 Operations: List.
@@ -313,16 +311,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cook_time` |  |
+| `cookTime` |  |
 | `description` |  |
-| `direction` |  |
-| `image_url` |  |
-| `ingredient` |  |
-| `making_amount` |  |
+| `directions` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
+| `makingAmount` |  |
 | `name` |  |
-| `prep_time` |  |
-| `recipe_id` |  |
-| `total_time` |  |
+| `prepTime` |  |
+| `recipeId` |  |
+| `totalTime` |  |
 
 Operations: List.
 
@@ -348,22 +346,22 @@ Create an instance: `bean = client.Bean`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | `String` |  |
-| `bean_id` | `String` |  |
-| `color_group` | `String` |  |
+| `backgroundColor` | `String` |  |
+| `beanId` | `String` |  |
+| `colorGroup` | `String` |  |
 | `description` | `String` |  |
-| `flavor_name` | `String` |  |
-| `gluten_free` | `Boolean` |  |
-| `group_name` | `Array` |  |
-| `image_url` | `String` |  |
-| `ingredient` | `Array` |  |
+| `flavorName` | `String` |  |
+| `glutenFree` | `Boolean` |  |
+| `groupName` | `Array` |  |
+| `imageUrl` | `String` |  |
+| `ingredients` | `Array` |  |
 | `kosher` | `Boolean` |  |
-| `sugar_free` | `Boolean` |  |
+| `sugarFree` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Bean record (raises on error).
+# load returns the ENTITY — call data_get for the Bean record (raises on error).
 bean = client.Bean.load({ "id" => "bean_id" })
 ```
 
@@ -389,8 +387,8 @@ Create an instance: `combination = client.Combination`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | `Array` |  |
-| `combination_id` | `String` |  |
+| `beans` | `Array` |  |
+| `combinationId` | `String` |  |
 | `name` | `String` |  |
 | `tag` | `Array` |  |
 
@@ -417,7 +415,7 @@ Create an instance: `fact = client.Fact`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `String` |  |
-| `fact_id` | `String` |  |
+| `factId` | `String` |  |
 | `title` | `String` |  |
 
 #### Example: List
@@ -443,7 +441,7 @@ Create an instance: `history = client.History`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `String` |  |
-| `history_id` | `String` |  |
+| `historyId` | `String` |  |
 | `year` | `Integer` |  |
 
 #### Example: List
@@ -468,16 +466,16 @@ Create an instance: `recipe = client.Recipe`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | `String` |  |
+| `cookTime` | `String` |  |
 | `description` | `String` |  |
-| `direction` | `Array` |  |
-| `image_url` | `String` |  |
-| `ingredient` | `Array` |  |
-| `making_amount` | `String` |  |
+| `directions` | `Array` |  |
+| `imageUrl` | `String` |  |
+| `ingredients` | `Array` |  |
+| `makingAmount` | `String` |  |
 | `name` | `String` |  |
-| `prep_time` | `String` |  |
-| `recipe_id` | `String` |  |
-| `total_time` | `String` |  |
+| `prepTime` | `String` |  |
+| `recipeId` | `String` |  |
+| `totalTime` | `String` |  |
 
 #### Example: List
 
@@ -563,11 +561,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bean = client.Bean
-bean.list()
+history = client.History
+history.list()
 
-# bean.data_get now returns the bean data from the last list
-# bean.match_get returns the last match criteria
+# history.data_get now returns the history data from the last list
+# history.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

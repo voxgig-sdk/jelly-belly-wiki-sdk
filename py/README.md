@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a bean
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    beans = client.Bean().list()
-    print(beans)
+    historys = client.History().list()
+    print(historys)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -136,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = JellyBellyWikiSDK.test()
 
-# Entity ops return the bare record and raise on error.
-bean = client.Bean().list()
-# bean contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+history = client.History().list()
+# history contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -237,7 +238,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -259,17 +260,17 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `background_color` |  |
-| `bean_id` |  |
-| `color_group` |  |
+| `backgroundColor` |  |
+| `beanId` |  |
+| `colorGroup` |  |
 | `description` |  |
-| `flavor_name` |  |
-| `gluten_free` |  |
-| `group_name` |  |
-| `image_url` |  |
-| `ingredient` |  |
+| `flavorName` |  |
+| `glutenFree` |  |
+| `groupName` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
 | `kosher` |  |
-| `sugar_free` |  |
+| `sugarFree` |  |
 
 Operations: List, Load.
 
@@ -279,8 +280,8 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `bean` |  |
-| `combination_id` |  |
+| `beans` |  |
+| `combinationId` |  |
 | `name` |  |
 | `tag` |  |
 
@@ -293,7 +294,7 @@ API path: `/combinations`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `fact_id` |  |
+| `factId` |  |
 | `title` |  |
 
 Operations: List.
@@ -305,7 +306,7 @@ API path: `/facts`
 | Field | Description |
 | --- | --- |
 | `description` |  |
-| `history_id` |  |
+| `historyId` |  |
 | `year` |  |
 
 Operations: List.
@@ -316,16 +317,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cook_time` |  |
+| `cookTime` |  |
 | `description` |  |
-| `direction` |  |
-| `image_url` |  |
-| `ingredient` |  |
-| `making_amount` |  |
+| `directions` |  |
+| `imageUrl` |  |
+| `ingredients` |  |
+| `makingAmount` |  |
 | `name` |  |
-| `prep_time` |  |
-| `recipe_id` |  |
-| `total_time` |  |
+| `prepTime` |  |
+| `recipeId` |  |
+| `totalTime` |  |
 
 Operations: List.
 
@@ -351,17 +352,17 @@ Create an instance: `bean = client.Bean()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background_color` | `str` |  |
-| `bean_id` | `str` |  |
-| `color_group` | `str` |  |
+| `backgroundColor` | `str` |  |
+| `beanId` | `str` |  |
+| `colorGroup` | `str` |  |
 | `description` | `str` |  |
-| `flavor_name` | `str` |  |
-| `gluten_free` | `bool` |  |
-| `group_name` | `list` |  |
-| `image_url` | `str` |  |
-| `ingredient` | `list` |  |
+| `flavorName` | `str` |  |
+| `glutenFree` | `bool` |  |
+| `groupName` | `list` |  |
+| `imageUrl` | `str` |  |
+| `ingredients` | `list` |  |
 | `kosher` | `bool` |  |
-| `sugar_free` | `bool` |  |
+| `sugarFree` | `bool` |  |
 
 #### Example: Load
 
@@ -390,8 +391,8 @@ Create an instance: `combination = client.Combination()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bean` | `list` |  |
-| `combination_id` | `str` |  |
+| `beans` | `list` |  |
+| `combinationId` | `str` |  |
 | `name` | `str` |  |
 | `tag` | `list` |  |
 
@@ -417,7 +418,7 @@ Create an instance: `fact = client.Fact()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `str` |  |
-| `fact_id` | `str` |  |
+| `factId` | `str` |  |
 | `title` | `str` |  |
 
 #### Example: List
@@ -442,7 +443,7 @@ Create an instance: `history = client.History()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `str` |  |
-| `history_id` | `str` |  |
+| `historyId` | `str` |  |
 | `year` | `int` |  |
 
 #### Example: List
@@ -466,16 +467,16 @@ Create an instance: `recipe = client.Recipe()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cook_time` | `str` |  |
+| `cookTime` | `str` |  |
 | `description` | `str` |  |
-| `direction` | `list` |  |
-| `image_url` | `str` |  |
-| `ingredient` | `list` |  |
-| `making_amount` | `str` |  |
+| `directions` | `list` |  |
+| `imageUrl` | `str` |  |
+| `ingredients` | `list` |  |
+| `makingAmount` | `str` |  |
 | `name` | `str` |  |
-| `prep_time` | `str` |  |
-| `recipe_id` | `str` |  |
-| `total_time` | `str` |  |
+| `prepTime` | `str` |  |
+| `recipeId` | `str` |  |
+| `totalTime` | `str` |  |
 
 #### Example: List
 
@@ -559,11 +560,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bean = client.Bean()
-bean.list()
+history = client.History()
+history.list()
 
-# bean.data_get() now returns the bean data from the last list
-# bean.match_get() returns the last match criteria
+# history.data_get() now returns the history data from the last list
+# history.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

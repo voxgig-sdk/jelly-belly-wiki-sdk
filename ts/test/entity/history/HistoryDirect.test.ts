@@ -19,11 +19,15 @@ import {
 describe('HistoryDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when JELLYBELLYWIKI_TEST_LIVE=TRUE.
-  afterEach(liveDelay('JELLYBELLYWIKI_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when JELLY_BELLY_WIKI_TEST_LIVE=TRUE.
+  afterEach(liveDelay('JELLY_BELLY_WIKI_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new JellyBellyWikiSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,17 +81,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'JELLYBELLYWIKI_TEST_HISTORY_ENTID': {},
-    'JELLYBELLYWIKI_TEST_LIVE': 'FALSE',
+    'JELLY_BELLY_WIKI_TEST_HISTORY_ENTID': {},
+    'JELLY_BELLY_WIKI_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.JELLYBELLYWIKI_TEST_LIVE
+  const live = 'TRUE' === env.JELLY_BELLY_WIKI_TEST_LIVE
 
   if (live) {
     const client = new JellyBellyWikiSDK({
     })
 
-    let idmap: any = env['JELLYBELLYWIKI_TEST_HISTORY_ENTID']
+    let idmap: any = env['JELLY_BELLY_WIKI_TEST_HISTORY_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

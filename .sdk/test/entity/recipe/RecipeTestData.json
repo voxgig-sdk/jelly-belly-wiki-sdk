@@ -2,56 +2,56 @@
   "existing": {
     "recipe": {
       "RECIPE00": {
-        "cook_time": "s64",
+        "cookTime": "s64",
         "description": "s65",
-        "direction": [],
-        "image_url": "s67",
-        "ingredient": [],
-        "making_amount": "s69",
+        "directions": [],
+        "imageUrl": "s67",
+        "ingredients": [],
+        "makingAmount": "s69",
         "name": "s6a",
-        "prep_time": "s6b",
-        "recipe_id": "RECIPE01",
-        "total_time": "s6d"
+        "prepTime": "s6b",
+        "recipeId": "s6c",
+        "totalTime": "s6d"
       },
       "RECIPE01": {
-        "cook_time": "sc8",
+        "cookTime": "sc8",
         "description": "sc9",
-        "direction": [],
-        "image_url": "scb",
-        "ingredient": [],
-        "making_amount": "scd",
+        "directions": [],
+        "imageUrl": "scb",
+        "ingredients": [],
+        "makingAmount": "scd",
         "name": "sce",
-        "prep_time": "scf",
-        "recipe_id": "RECIPE01",
-        "total_time": "sd1"
+        "prepTime": "scf",
+        "recipeId": "sd0",
+        "totalTime": "sd1"
       },
       "RECIPE02": {
-        "cook_time": "s12c",
+        "cookTime": "s12c",
         "description": "s12d",
-        "direction": [],
-        "image_url": "s12f",
-        "ingredient": [],
-        "making_amount": "s131",
+        "directions": [],
+        "imageUrl": "s12f",
+        "ingredients": [],
+        "makingAmount": "s131",
         "name": "s132",
-        "prep_time": "s133",
-        "recipe_id": "RECIPE01",
-        "total_time": "s135"
+        "prepTime": "s133",
+        "recipeId": "s134",
+        "totalTime": "s135"
       }
     }
   },
   "new": {
     "recipe": {
       "recipe_ref01": {
-        "cook_time": "s190",
+        "cookTime": "s190",
         "description": "s191",
-        "direction": [],
-        "image_url": "s193",
-        "ingredient": [],
-        "making_amount": "s195",
+        "directions": [],
+        "imageUrl": "s193",
+        "ingredients": [],
+        "makingAmount": "s195",
         "name": "s196",
-        "prep_time": "s197",
-        "recipe_id": "RECIPE01",
-        "total_time": "s199"
+        "prepTime": "s197",
+        "recipeId": "s198",
+        "totalTime": "s199"
       }
     }
   }

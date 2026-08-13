@@ -106,17 +106,17 @@ local bean = client:Bean(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | `string` | No |  |
-| `bean_id` | `string` | No |  |
-| `color_group` | `string` | No |  |
+| `backgroundColor` | `string` | No |  |
+| `beanId` | `string` | No |  |
+| `colorGroup` | `string` | No |  |
 | `description` | `string` | No |  |
-| `flavor_name` | `string` | No |  |
-| `gluten_free` | `boolean` | No |  |
-| `group_name` | `table` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `table` | No |  |
+| `flavorName` | `string` | No |  |
+| `glutenFree` | `boolean` | No |  |
+| `groupName` | `table` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `table` | No |  |
 | `kosher` | `boolean` | No |  |
-| `sugar_free` | `boolean` | No |  |
+| `sugarFree` | `boolean` | No |  |
 
 ### Operations
 
@@ -176,8 +176,8 @@ local combination = client:Combination(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | `table` | No |  |
-| `combination_id` | `string` | No |  |
+| `beans` | `table` | No |  |
+| `combinationId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `tag` | `table` | No |  |
 
@@ -232,7 +232,7 @@ local fact = client:Fact(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `fact_id` | `string` | No |  |
+| `factId` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -286,7 +286,7 @@ local history = client:History(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `history_id` | `string` | No |  |
+| `historyId` | `string` | No |  |
 | `year` | `number` | No |  |
 
 ### Operations
@@ -339,16 +339,16 @@ local recipe = client:Recipe(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | `string` | No |  |
+| `cookTime` | `string` | No |  |
 | `description` | `string` | No |  |
-| `direction` | `table` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `table` | No |  |
-| `making_amount` | `string` | No |  |
+| `directions` | `table` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `table` | No |  |
+| `makingAmount` | `string` | No |  |
 | `name` | `string` | No |  |
-| `prep_time` | `string` | No |  |
-| `recipe_id` | `string` | No |  |
-| `total_time` | `string` | No |  |
+| `prepTime` | `string` | No |  |
+| `recipeId` | `string` | No |  |
+| `totalTime` | `string` | No |  |
 
 ### Operations
 

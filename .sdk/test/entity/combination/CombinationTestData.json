@@ -2,20 +2,20 @@
   "existing": {
     "combination": {
       "COMBINATION00": {
-        "bean": [],
-        "combination_id": "COMBINATION01",
+        "beans": [],
+        "combinationId": "s29",
         "name": "s2a",
         "tag": []
       },
       "COMBINATION01": {
-        "bean": [],
-        "combination_id": "COMBINATION01",
+        "beans": [],
+        "combinationId": "s51",
         "name": "s52",
         "tag": []
       },
       "COMBINATION02": {
-        "bean": [],
-        "combination_id": "COMBINATION01",
+        "beans": [],
+        "combinationId": "s79",
         "name": "s7a",
         "tag": []
       }
@@ -24,8 +24,8 @@
   "new": {
     "combination": {
       "combination_ref01": {
-        "bean": [],
-        "combination_id": "COMBINATION01",
+        "beans": [],
+        "combinationId": "sa1",
         "name": "sa2",
         "tag": []
       }

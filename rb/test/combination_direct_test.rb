@@ -60,11 +60,11 @@ def combination_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "JELLYBELLYWIKI_TEST_COMBINATION_ENTID" => {},
-    "JELLYBELLYWIKI_TEST_LIVE" => "FALSE",
+    "JELLY_BELLY_WIKI_TEST_COMBINATION_ENTID" => {},
+    "JELLY_BELLY_WIKI_TEST_LIVE" => "FALSE",
   })
 
-  live = env["JELLYBELLYWIKI_TEST_LIVE"] == "TRUE"
+  live = env["JELLY_BELLY_WIKI_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

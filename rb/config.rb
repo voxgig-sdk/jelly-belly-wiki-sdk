@@ -31,21 +31,21 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "background_color",
+              "name" => "backgroundColor",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "bean_id",
+              "name" => "beanId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "color_group",
+              "name" => "colorGroup",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
@@ -59,35 +59,35 @@ module JellyBellyWikiConfig
             },
             {
               "active" => true,
-              "name" => "flavor_name",
+              "name" => "flavorName",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 4,
             },
             {
               "active" => true,
-              "name" => "gluten_free",
+              "name" => "glutenFree",
               "req" => false,
               "type" => "`$BOOLEAN`",
               "index$" => 5,
             },
             {
               "active" => true,
-              "name" => "group_name",
+              "name" => "groupName",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 6,
             },
             {
               "active" => true,
-              "name" => "image_url",
+              "name" => "imageUrl",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 7,
             },
             {
               "active" => true,
-              "name" => "ingredient",
+              "name" => "ingredients",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 8,
@@ -101,7 +101,7 @@ module JellyBellyWikiConfig
             },
             {
               "active" => true,
-              "name" => "sugar_free",
+              "name" => "sugarFree",
               "req" => false,
               "type" => "`$BOOLEAN`",
               "index$" => 10,
@@ -137,6 +137,7 @@ module JellyBellyWikiConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/beans",
                   "parts" => [
@@ -150,7 +151,7 @@ module JellyBellyWikiConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.items`",
                   },
                   "index$" => 0,
                 },
@@ -176,6 +177,7 @@ module JellyBellyWikiConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/beans/{beanId}",
                   "parts" => [
@@ -210,14 +212,14 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "bean",
+              "name" => "beans",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "combination_id",
+              "name" => "combinationId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -267,6 +269,7 @@ module JellyBellyWikiConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/combinations",
                   "parts" => [
@@ -280,7 +283,7 @@ module JellyBellyWikiConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.items`",
                   },
                   "index$" => 0,
                 },
@@ -303,7 +306,7 @@ module JellyBellyWikiConfig
             },
             {
               "active" => true,
-              "name" => "fact_id",
+              "name" => "factId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -346,6 +349,7 @@ module JellyBellyWikiConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/facts",
                   "parts" => [
@@ -359,7 +363,7 @@ module JellyBellyWikiConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.items`",
                   },
                   "index$" => 0,
                 },
@@ -382,7 +386,7 @@ module JellyBellyWikiConfig
             },
             {
               "active" => true,
-              "name" => "history_id",
+              "name" => "historyId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -404,6 +408,7 @@ module JellyBellyWikiConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/history",
                   "parts" => [
@@ -412,7 +417,7 @@ module JellyBellyWikiConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.items`",
                   },
                   "index$" => 0,
                 },
@@ -428,7 +433,7 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "cook_time",
+              "name" => "cookTime",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -442,28 +447,28 @@ module JellyBellyWikiConfig
             },
             {
               "active" => true,
-              "name" => "direction",
+              "name" => "directions",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
               "active" => true,
-              "name" => "image_url",
+              "name" => "imageUrl",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "ingredient",
+              "name" => "ingredients",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 4,
             },
             {
               "active" => true,
-              "name" => "making_amount",
+              "name" => "makingAmount",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 5,
@@ -477,21 +482,21 @@ module JellyBellyWikiConfig
             },
             {
               "active" => true,
-              "name" => "prep_time",
+              "name" => "prepTime",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 7,
             },
             {
               "active" => true,
-              "name" => "recipe_id",
+              "name" => "recipeId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 8,
             },
             {
               "active" => true,
-              "name" => "total_time",
+              "name" => "totalTime",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 9,
@@ -527,6 +532,7 @@ module JellyBellyWikiConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/recipes",
                   "parts" => [
@@ -540,7 +546,7 @@ module JellyBellyWikiConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.items`",
                   },
                   "index$" => 0,
                 },

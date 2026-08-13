@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# JellyBellyWiki SDK exists test
 
 import pytest
 from jellybellywiki_sdk import JellyBellyWikiSDK

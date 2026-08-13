@@ -109,17 +109,17 @@ bean = client.Bean
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | `String` | No |  |
-| `bean_id` | `String` | No |  |
-| `color_group` | `String` | No |  |
+| `backgroundColor` | `String` | No |  |
+| `beanId` | `String` | No |  |
+| `colorGroup` | `String` | No |  |
 | `description` | `String` | No |  |
-| `flavor_name` | `String` | No |  |
-| `gluten_free` | `Boolean` | No |  |
-| `group_name` | `Array` | No |  |
-| `image_url` | `String` | No |  |
-| `ingredient` | `Array` | No |  |
+| `flavorName` | `String` | No |  |
+| `glutenFree` | `Boolean` | No |  |
+| `groupName` | `Array` | No |  |
+| `imageUrl` | `String` | No |  |
+| `ingredients` | `Array` | No |  |
 | `kosher` | `Boolean` | No |  |
-| `sugar_free` | `Boolean` | No |  |
+| `sugarFree` | `Boolean` | No |  |
 
 ### Operations
 
@@ -179,8 +179,8 @@ combination = client.Combination
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | `Array` | No |  |
-| `combination_id` | `String` | No |  |
+| `beans` | `Array` | No |  |
+| `combinationId` | `String` | No |  |
 | `name` | `String` | No |  |
 | `tag` | `Array` | No |  |
 
@@ -235,7 +235,7 @@ fact = client.Fact
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `String` | No |  |
-| `fact_id` | `String` | No |  |
+| `factId` | `String` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -289,7 +289,7 @@ history = client.History
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `String` | No |  |
-| `history_id` | `String` | No |  |
+| `historyId` | `String` | No |  |
 | `year` | `Integer` | No |  |
 
 ### Operations
@@ -342,16 +342,16 @@ recipe = client.Recipe
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | `String` | No |  |
+| `cookTime` | `String` | No |  |
 | `description` | `String` | No |  |
-| `direction` | `Array` | No |  |
-| `image_url` | `String` | No |  |
-| `ingredient` | `Array` | No |  |
-| `making_amount` | `String` | No |  |
+| `directions` | `Array` | No |  |
+| `imageUrl` | `String` | No |  |
+| `ingredients` | `Array` | No |  |
+| `makingAmount` | `String` | No |  |
 | `name` | `String` | No |  |
-| `prep_time` | `String` | No |  |
-| `recipe_id` | `String` | No |  |
-| `total_time` | `String` | No |  |
+| `prepTime` | `String` | No |  |
+| `recipeId` | `String` | No |  |
+| `totalTime` | `String` | No |  |
 
 ### Operations
 

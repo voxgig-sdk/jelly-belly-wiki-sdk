@@ -108,17 +108,17 @@ $bean = $client->Bean();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background_color` | `string` | No |  |
-| `bean_id` | `string` | No |  |
-| `color_group` | `string` | No |  |
+| `backgroundColor` | `string` | No |  |
+| `beanId` | `string` | No |  |
+| `colorGroup` | `string` | No |  |
 | `description` | `string` | No |  |
-| `flavor_name` | `string` | No |  |
-| `gluten_free` | `bool` | No |  |
-| `group_name` | `array` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `array` | No |  |
+| `flavorName` | `string` | No |  |
+| `glutenFree` | `bool` | No |  |
+| `groupName` | `array` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `array` | No |  |
 | `kosher` | `bool` | No |  |
-| `sugar_free` | `bool` | No |  |
+| `sugarFree` | `bool` | No |  |
 
 ### Operations
 
@@ -178,8 +178,8 @@ $combination = $client->Combination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bean` | `array` | No |  |
-| `combination_id` | `string` | No |  |
+| `beans` | `array` | No |  |
+| `combinationId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `tag` | `array` | No |  |
 
@@ -234,7 +234,7 @@ $fact = $client->Fact();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `fact_id` | `string` | No |  |
+| `factId` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -288,7 +288,7 @@ $history = $client->History();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
-| `history_id` | `string` | No |  |
+| `historyId` | `string` | No |  |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -341,16 +341,16 @@ $recipe = $client->Recipe();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cook_time` | `string` | No |  |
+| `cookTime` | `string` | No |  |
 | `description` | `string` | No |  |
-| `direction` | `array` | No |  |
-| `image_url` | `string` | No |  |
-| `ingredient` | `array` | No |  |
-| `making_amount` | `string` | No |  |
+| `directions` | `array` | No |  |
+| `imageUrl` | `string` | No |  |
+| `ingredients` | `array` | No |  |
+| `makingAmount` | `string` | No |  |
 | `name` | `string` | No |  |
-| `prep_time` | `string` | No |  |
-| `recipe_id` | `string` | No |  |
-| `total_time` | `string` | No |  |
+| `prepTime` | `string` | No |  |
+| `recipeId` | `string` | No |  |
+| `totalTime` | `string` | No |  |
 
 ### Operations
 
