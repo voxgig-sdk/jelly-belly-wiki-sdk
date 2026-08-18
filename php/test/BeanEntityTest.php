@@ -40,7 +40,7 @@ class BeanEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = JellyBellyWikiConfig::make_config();
+        $cfg = JellyBellyWikiConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = JellyBellyWikiSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

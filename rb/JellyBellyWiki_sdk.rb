@@ -28,7 +28,7 @@ class JellyBellyWikiSDK
     utility = JellyBellyWikiUtility.new
     @_utility = utility
 
-    config = JellyBellyWikiConfig.make_config
+    config = JellyBellyWikiConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

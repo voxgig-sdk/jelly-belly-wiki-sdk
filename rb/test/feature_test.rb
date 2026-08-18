@@ -15,7 +15,7 @@ require_relative "../JellyBellyWiki_sdk"
 module JellyBellyWikiFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = JellyBellyWikiConfig.make_config["feature"]
+    f = JellyBellyWikiConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

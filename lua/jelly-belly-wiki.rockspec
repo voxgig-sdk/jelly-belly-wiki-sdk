@@ -23,6 +23,7 @@ build = {
   modules = {
     ["jelly-belly-wiki_sdk"] = "jelly-belly-wiki_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

@@ -40,7 +40,7 @@ class JellyBellyWikiSDK
         $utility = new JellyBellyWikiUtility();
         $this->_utility = $utility;
 
-        $config = JellyBellyWikiConfig::make_config();
+        $config = JellyBellyWikiConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
