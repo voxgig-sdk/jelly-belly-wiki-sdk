@@ -1,0 +1,50 @@
+# Entity: history
+
+main: kit: entity: history: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      short: "Description of the historical event"
+      type: "`$STRING`"
+    }
+    {
+      name: "historyId"
+      req: false
+      short: "Unique identifier for the history entry"
+      type: "`$STRING`"
+    }
+    {
+      name: "year"
+      req: false
+      short: "Year of the historical event"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "history"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/history"
+          parts: [
+            "history"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

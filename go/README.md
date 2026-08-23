@@ -6,7 +6,7 @@ The Golang SDK for the JellyBellyWiki API — an entity-oriented client using st
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Bean(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -273,17 +273,17 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"backgroundColor"` |  |
-| `"beanId"` |  |
-| `"colorGroup"` |  |
-| `"description"` |  |
-| `"flavorName"` |  |
-| `"glutenFree"` |  |
-| `"groupName"` |  |
-| `"imageUrl"` |  |
-| `"ingredients"` |  |
-| `"kosher"` |  |
-| `"sugarFree"` |  |
+| `"backgroundColor"` | Hex color code for the bean's background color |
+| `"beanId"` | Unique identifier for the bean |
+| `"colorGroup"` | Color category of the bean |
+| `"description"` | Detailed description of the bean flavor |
+| `"flavorName"` | Name of the flavor |
+| `"glutenFree"` | Indicates if the bean is gluten-free |
+| `"groupName"` | Group or category names the bean belongs to |
+| `"imageUrl"` | URL to the bean image |
+| `"ingredients"` | List of ingredients |
+| `"kosher"` | Indicates if the bean is kosher certified |
+| `"sugarFree"` | Indicates if the bean is sugar-free |
 
 Operations: List, Load.
 
@@ -293,10 +293,10 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `"beans"` |  |
-| `"combinationId"` |  |
-| `"name"` |  |
-| `"tag"` |  |
+| `"beans"` | List of bean flavors in the combination |
+| `"combinationId"` | Unique identifier for the combination |
+| `"name"` | Name of the flavor combination |
+| `"tag"` | Tags associated with the combination |
 
 Operations: List.
 
@@ -306,9 +306,9 @@ API path: `/combinations`
 
 | Field | Description |
 | --- | --- |
-| `"description"` |  |
-| `"factId"` |  |
-| `"title"` |  |
+| `"description"` | Full text of the fact |
+| `"factId"` | Unique identifier for the fact |
+| `"title"` | Title of the fact |
 
 Operations: List.
 
@@ -318,9 +318,9 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `"description"` |  |
-| `"historyId"` |  |
-| `"year"` |  |
+| `"description"` | Description of the historical event |
+| `"historyId"` | Unique identifier for the history entry |
+| `"year"` | Year of the historical event |
 
 Operations: List.
 
@@ -330,16 +330,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `"cookTime"` |  |
-| `"description"` |  |
-| `"directions"` |  |
-| `"imageUrl"` |  |
-| `"ingredients"` |  |
-| `"makingAmount"` |  |
-| `"name"` |  |
-| `"prepTime"` |  |
-| `"recipeId"` |  |
-| `"totalTime"` |  |
+| `"cookTime"` | Cooking time |
+| `"description"` | Description of the recipe |
+| `"directions"` | Step-by-step directions |
+| `"imageUrl"` | URL to the recipe image |
+| `"ingredients"` | List of ingredients |
+| `"makingAmount"` | Amount the recipe makes |
+| `"name"` | Name of the recipe |
+| `"prepTime"` | Preparation time |
+| `"recipeId"` | Unique identifier for the recipe |
+| `"totalTime"` | Total time required |
 
 Operations: List.
 
@@ -365,17 +365,17 @@ Create an instance: `bean := client.Bean(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `backgroundColor` | `string` |  |
-| `beanId` | `string` |  |
-| `colorGroup` | `string` |  |
-| `description` | `string` |  |
-| `flavorName` | `string` |  |
-| `glutenFree` | `bool` |  |
-| `groupName` | `[]any` |  |
-| `imageUrl` | `string` |  |
-| `ingredients` | `[]any` |  |
-| `kosher` | `bool` |  |
-| `sugarFree` | `bool` |  |
+| `backgroundColor` | `string` | Hex color code for the bean's background color |
+| `beanId` | `string` | Unique identifier for the bean |
+| `colorGroup` | `string` | Color category of the bean |
+| `description` | `string` | Detailed description of the bean flavor |
+| `flavorName` | `string` | Name of the flavor |
+| `glutenFree` | `bool` | Indicates if the bean is gluten-free |
+| `groupName` | `[]any` | Group or category names the bean belongs to |
+| `imageUrl` | `string` | URL to the bean image |
+| `ingredients` | `[]any` | List of ingredients |
+| `kosher` | `bool` | Indicates if the bean is kosher certified |
+| `sugarFree` | `bool` | Indicates if the bean is sugar-free |
 
 #### Example: Load
 
@@ -412,10 +412,10 @@ Create an instance: `combination := client.Combination(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `beans` | `[]any` |  |
-| `combinationId` | `string` |  |
-| `name` | `string` |  |
-| `tag` | `[]any` |  |
+| `beans` | `[]any` | List of bean flavors in the combination |
+| `combinationId` | `string` | Unique identifier for the combination |
+| `name` | `string` | Name of the flavor combination |
+| `tag` | `[]any` | Tags associated with the combination |
 
 #### Example: List
 
@@ -442,9 +442,9 @@ Create an instance: `fact := client.Fact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `factId` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Full text of the fact |
+| `factId` | `string` | Unique identifier for the fact |
+| `title` | `string` | Title of the fact |
 
 #### Example: List
 
@@ -471,9 +471,9 @@ Create an instance: `history := client.History(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `historyId` | `string` |  |
-| `year` | `int` |  |
+| `description` | `string` | Description of the historical event |
+| `historyId` | `string` | Unique identifier for the history entry |
+| `year` | `int` | Year of the historical event |
 
 #### Example: List
 
@@ -500,16 +500,16 @@ Create an instance: `recipe := client.Recipe(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cookTime` | `string` |  |
-| `description` | `string` |  |
-| `directions` | `[]any` |  |
-| `imageUrl` | `string` |  |
-| `ingredients` | `[]any` |  |
-| `makingAmount` | `string` |  |
-| `name` | `string` |  |
-| `prepTime` | `string` |  |
-| `recipeId` | `string` |  |
-| `totalTime` | `string` |  |
+| `cookTime` | `string` | Cooking time |
+| `description` | `string` | Description of the recipe |
+| `directions` | `[]any` | Step-by-step directions |
+| `imageUrl` | `string` | URL to the recipe image |
+| `ingredients` | `[]any` | List of ingredients |
+| `makingAmount` | `string` | Amount the recipe makes |
+| `name` | `string` | Name of the recipe |
+| `prepTime` | `string` | Preparation time |
+| `recipeId` | `string` | Unique identifier for the recipe |
+| `totalTime` | `string` | Total time required |
 
 #### Example: List
 

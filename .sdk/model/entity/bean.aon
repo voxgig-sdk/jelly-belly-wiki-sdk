@@ -1,0 +1,162 @@
+# Entity: bean
+
+main: kit: entity: bean: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "backgroundColor"
+      req: false
+      short: "Hex color code for the bean's background color"
+      type: "`$STRING`"
+    }
+    {
+      name: "beanId"
+      req: false
+      short: "Unique identifier for the bean"
+      type: "`$STRING`"
+    }
+    {
+      name: "colorGroup"
+      req: false
+      short: "Color category of the bean"
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Detailed description of the bean flavor"
+      type: "`$STRING`"
+    }
+    {
+      name: "flavorName"
+      req: false
+      short: "Name of the flavor"
+      type: "`$STRING`"
+    }
+    {
+      name: "glutenFree"
+      req: false
+      short: "Indicates if the bean is gluten-free"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "groupName"
+      req: false
+      short: "Group or category names the bean belongs to"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "imageUrl"
+      req: false
+      short: "URL to the bean image"
+      type: "`$STRING`"
+    }
+    {
+      name: "ingredients"
+      req: false
+      short: "List of ingredients"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "kosher"
+      req: false
+      short: "Indicates if the bean is kosher certified"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "sugarFree"
+      req: false
+      short: "Indicates if the bean is sugar-free"
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "bean"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 10
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/beans"
+          parts: [
+            "beans"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "bean_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/beans/{beanId}"
+          parts: [
+            "beans"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              beanId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

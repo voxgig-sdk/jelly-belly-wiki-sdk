@@ -109,17 +109,17 @@ bean = client.Bean
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `backgroundColor` | `String` | No |  |
-| `beanId` | `String` | No |  |
-| `colorGroup` | `String` | No |  |
-| `description` | `String` | No |  |
-| `flavorName` | `String` | No |  |
-| `glutenFree` | `Boolean` | No |  |
-| `groupName` | `Array` | No |  |
-| `imageUrl` | `String` | No |  |
-| `ingredients` | `Array` | No |  |
-| `kosher` | `Boolean` | No |  |
-| `sugarFree` | `Boolean` | No |  |
+| `backgroundColor` | `String` | No | Hex color code for the bean's background color |
+| `beanId` | `String` | No | Unique identifier for the bean |
+| `colorGroup` | `String` | No | Color category of the bean |
+| `description` | `String` | No | Detailed description of the bean flavor |
+| `flavorName` | `String` | No | Name of the flavor |
+| `glutenFree` | `Boolean` | No | Indicates if the bean is gluten-free |
+| `groupName` | `Array` | No | Group or category names the bean belongs to |
+| `imageUrl` | `String` | No | URL to the bean image |
+| `ingredients` | `Array` | No | List of ingredients |
+| `kosher` | `Boolean` | No | Indicates if the bean is kosher certified |
+| `sugarFree` | `Boolean` | No | Indicates if the bean is sugar-free |
 
 ### Operations
 
@@ -179,10 +179,10 @@ combination = client.Combination
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `beans` | `Array` | No |  |
-| `combinationId` | `String` | No |  |
-| `name` | `String` | No |  |
-| `tag` | `Array` | No |  |
+| `beans` | `Array` | No | List of bean flavors in the combination |
+| `combinationId` | `String` | No | Unique identifier for the combination |
+| `name` | `String` | No | Name of the flavor combination |
+| `tag` | `Array` | No | Tags associated with the combination |
 
 ### Operations
 
@@ -234,9 +234,9 @@ fact = client.Fact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `factId` | `String` | No |  |
-| `title` | `String` | No |  |
+| `description` | `String` | No | Full text of the fact |
+| `factId` | `String` | No | Unique identifier for the fact |
+| `title` | `String` | No | Title of the fact |
 
 ### Operations
 
@@ -288,9 +288,9 @@ history = client.History
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `historyId` | `String` | No |  |
-| `year` | `Integer` | No |  |
+| `description` | `String` | No | Description of the historical event |
+| `historyId` | `String` | No | Unique identifier for the history entry |
+| `year` | `Integer` | No | Year of the historical event |
 
 ### Operations
 
@@ -342,16 +342,16 @@ recipe = client.Recipe
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cookTime` | `String` | No |  |
-| `description` | `String` | No |  |
-| `directions` | `Array` | No |  |
-| `imageUrl` | `String` | No |  |
-| `ingredients` | `Array` | No |  |
-| `makingAmount` | `String` | No |  |
-| `name` | `String` | No |  |
-| `prepTime` | `String` | No |  |
-| `recipeId` | `String` | No |  |
-| `totalTime` | `String` | No |  |
+| `cookTime` | `String` | No | Cooking time |
+| `description` | `String` | No | Description of the recipe |
+| `directions` | `Array` | No | Step-by-step directions |
+| `imageUrl` | `String` | No | URL to the recipe image |
+| `ingredients` | `Array` | No | List of ingredients |
+| `makingAmount` | `String` | No | Amount the recipe makes |
+| `name` | `String` | No | Name of the recipe |
+| `prepTime` | `String` | No | Preparation time |
+| `recipeId` | `String` | No | Unique identifier for the recipe |
+| `totalTime` | `String` | No | Total time required |
 
 ### Operations
 

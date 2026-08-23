@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "JellyBellyWiki",
+      slug = "jelly-belly-wiki",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -33,46 +36,57 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "backgroundColor",
+            ["short"] = "Hex color code for the bean's background color",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "beanId",
+            ["short"] = "Unique identifier for the bean",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "colorGroup",
+            ["short"] = "Color category of the bean",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "description",
+            ["short"] = "Detailed description of the bean flavor",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "flavorName",
+            ["short"] = "Name of the flavor",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "glutenFree",
+            ["short"] = "Indicates if the bean is gluten-free",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "groupName",
+            ["short"] = "Group or category names the bean belongs to",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "imageUrl",
+            ["short"] = "URL to the bean image",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ingredients",
+            ["short"] = "List of ingredients",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "kosher",
+            ["short"] = "Indicates if the bean is kosher certified",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "sugarFree",
+            ["short"] = "Indicates if the bean is sugar-free",
             ["type"] = "`$BOOLEAN`",
           },
         },
@@ -169,18 +183,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "beans",
+            ["short"] = "List of bean flavors in the combination",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "combinationId",
+            ["short"] = "Unique identifier for the combination",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["short"] = "Name of the flavor combination",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "tag",
+            ["short"] = "Tags associated with the combination",
             ["type"] = "`$ARRAY`",
           },
         },
@@ -237,14 +255,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "description",
+            ["short"] = "Full text of the fact",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "factId",
+            ["short"] = "Unique identifier for the fact",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "title",
+            ["short"] = "Title of the fact",
             ["type"] = "`$STRING`",
           },
         },
@@ -301,14 +322,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "description",
+            ["short"] = "Description of the historical event",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "historyId",
+            ["short"] = "Unique identifier for the history entry",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "year",
+            ["short"] = "Year of the historical event",
             ["type"] = "`$INTEGER`",
           },
         },
@@ -343,42 +367,52 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "cookTime",
+            ["short"] = "Cooking time",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "description",
+            ["short"] = "Description of the recipe",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "directions",
+            ["short"] = "Step-by-step directions",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "imageUrl",
+            ["short"] = "URL to the recipe image",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ingredients",
+            ["short"] = "List of ingredients",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "makingAmount",
+            ["short"] = "Amount the recipe makes",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["short"] = "Name of the recipe",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "prepTime",
+            ["short"] = "Preparation time",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "recipeId",
+            ["short"] = "Unique identifier for the recipe",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "totalTime",
+            ["short"] = "Total time required",
             ["type"] = "`$STRING`",
           },
         },

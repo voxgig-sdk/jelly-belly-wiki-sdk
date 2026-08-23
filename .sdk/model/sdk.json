@@ -36,66 +36,77 @@
               "active": true,
               "name": "backgroundColor",
               "req": false,
+              "short": "Hex color code for the bean's background color",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "beanId",
               "req": false,
+              "short": "Unique identifier for the bean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "colorGroup",
               "req": false,
+              "short": "Color category of the bean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Detailed description of the bean flavor",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "flavorName",
               "req": false,
+              "short": "Name of the flavor",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "glutenFree",
               "req": false,
+              "short": "Indicates if the bean is gluten-free",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "groupName",
               "req": false,
+              "short": "Group or category names the bean belongs to",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "imageUrl",
               "req": false,
+              "short": "URL to the bean image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ingredients",
               "req": false,
+              "short": "List of ingredients",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "kosher",
               "req": false,
+              "short": "Indicates if the bean is kosher certified",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "sugarFree",
               "req": false,
+              "short": "Indicates if the bean is sugar-free",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -205,24 +216,28 @@
               "active": true,
               "name": "beans",
               "req": false,
+              "short": "List of bean flavors in the combination",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "combinationId",
               "req": false,
+              "short": "Unique identifier for the combination",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the flavor combination",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "tag",
               "req": false,
+              "short": "Tags associated with the combination",
               "type": "`$ARRAY`"
             }
           ],
@@ -290,18 +305,21 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Full text of the fact",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "factId",
               "req": false,
+              "short": "Unique identifier for the fact",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Title of the fact",
               "type": "`$STRING`"
             }
           ],
@@ -369,18 +387,21 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Description of the historical event",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "historyId",
               "req": false,
+              "short": "Unique identifier for the history entry",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "year",
               "req": false,
+              "short": "Year of the historical event",
               "type": "`$INTEGER`"
             }
           ],
@@ -422,60 +443,70 @@
               "active": true,
               "name": "cookTime",
               "req": false,
+              "short": "Cooking time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Description of the recipe",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "directions",
               "req": false,
+              "short": "Step-by-step directions",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "imageUrl",
               "req": false,
+              "short": "URL to the recipe image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ingredients",
               "req": false,
+              "short": "List of ingredients",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "makingAmount",
               "req": false,
+              "short": "Amount the recipe makes",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the recipe",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "prepTime",
               "req": false,
+              "short": "Preparation time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "recipeId",
               "req": false,
+              "short": "Unique identifier for the recipe",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "totalTime",
               "req": false,
+              "short": "Total time required",
               "type": "`$STRING`"
             }
           ],

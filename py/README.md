@@ -260,17 +260,17 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `backgroundColor` |  |
-| `beanId` |  |
-| `colorGroup` |  |
-| `description` |  |
-| `flavorName` |  |
-| `glutenFree` |  |
-| `groupName` |  |
-| `imageUrl` |  |
-| `ingredients` |  |
-| `kosher` |  |
-| `sugarFree` |  |
+| `backgroundColor` | Hex color code for the bean's background color |
+| `beanId` | Unique identifier for the bean |
+| `colorGroup` | Color category of the bean |
+| `description` | Detailed description of the bean flavor |
+| `flavorName` | Name of the flavor |
+| `glutenFree` | Indicates if the bean is gluten-free |
+| `groupName` | Group or category names the bean belongs to |
+| `imageUrl` | URL to the bean image |
+| `ingredients` | List of ingredients |
+| `kosher` | Indicates if the bean is kosher certified |
+| `sugarFree` | Indicates if the bean is sugar-free |
 
 Operations: List, Load.
 
@@ -280,10 +280,10 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `beans` |  |
-| `combinationId` |  |
-| `name` |  |
-| `tag` |  |
+| `beans` | List of bean flavors in the combination |
+| `combinationId` | Unique identifier for the combination |
+| `name` | Name of the flavor combination |
+| `tag` | Tags associated with the combination |
 
 Operations: List.
 
@@ -293,9 +293,9 @@ API path: `/combinations`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `factId` |  |
-| `title` |  |
+| `description` | Full text of the fact |
+| `factId` | Unique identifier for the fact |
+| `title` | Title of the fact |
 
 Operations: List.
 
@@ -305,9 +305,9 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `historyId` |  |
-| `year` |  |
+| `description` | Description of the historical event |
+| `historyId` | Unique identifier for the history entry |
+| `year` | Year of the historical event |
 
 Operations: List.
 
@@ -317,16 +317,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cookTime` |  |
-| `description` |  |
-| `directions` |  |
-| `imageUrl` |  |
-| `ingredients` |  |
-| `makingAmount` |  |
-| `name` |  |
-| `prepTime` |  |
-| `recipeId` |  |
-| `totalTime` |  |
+| `cookTime` | Cooking time |
+| `description` | Description of the recipe |
+| `directions` | Step-by-step directions |
+| `imageUrl` | URL to the recipe image |
+| `ingredients` | List of ingredients |
+| `makingAmount` | Amount the recipe makes |
+| `name` | Name of the recipe |
+| `prepTime` | Preparation time |
+| `recipeId` | Unique identifier for the recipe |
+| `totalTime` | Total time required |
 
 Operations: List.
 
@@ -352,17 +352,17 @@ Create an instance: `bean = client.Bean()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `backgroundColor` | `str` |  |
-| `beanId` | `str` |  |
-| `colorGroup` | `str` |  |
-| `description` | `str` |  |
-| `flavorName` | `str` |  |
-| `glutenFree` | `bool` |  |
-| `groupName` | `list` |  |
-| `imageUrl` | `str` |  |
-| `ingredients` | `list` |  |
-| `kosher` | `bool` |  |
-| `sugarFree` | `bool` |  |
+| `backgroundColor` | `str` | Hex color code for the bean's background color |
+| `beanId` | `str` | Unique identifier for the bean |
+| `colorGroup` | `str` | Color category of the bean |
+| `description` | `str` | Detailed description of the bean flavor |
+| `flavorName` | `str` | Name of the flavor |
+| `glutenFree` | `bool` | Indicates if the bean is gluten-free |
+| `groupName` | `list` | Group or category names the bean belongs to |
+| `imageUrl` | `str` | URL to the bean image |
+| `ingredients` | `list` | List of ingredients |
+| `kosher` | `bool` | Indicates if the bean is kosher certified |
+| `sugarFree` | `bool` | Indicates if the bean is sugar-free |
 
 #### Example: Load
 
@@ -391,10 +391,10 @@ Create an instance: `combination = client.Combination()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `beans` | `list` |  |
-| `combinationId` | `str` |  |
-| `name` | `str` |  |
-| `tag` | `list` |  |
+| `beans` | `list` | List of bean flavors in the combination |
+| `combinationId` | `str` | Unique identifier for the combination |
+| `name` | `str` | Name of the flavor combination |
+| `tag` | `list` | Tags associated with the combination |
 
 #### Example: List
 
@@ -417,9 +417,9 @@ Create an instance: `fact = client.Fact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `factId` | `str` |  |
-| `title` | `str` |  |
+| `description` | `str` | Full text of the fact |
+| `factId` | `str` | Unique identifier for the fact |
+| `title` | `str` | Title of the fact |
 
 #### Example: List
 
@@ -442,9 +442,9 @@ Create an instance: `history = client.History()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `historyId` | `str` |  |
-| `year` | `int` |  |
+| `description` | `str` | Description of the historical event |
+| `historyId` | `str` | Unique identifier for the history entry |
+| `year` | `int` | Year of the historical event |
 
 #### Example: List
 
@@ -467,16 +467,16 @@ Create an instance: `recipe = client.Recipe()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cookTime` | `str` |  |
-| `description` | `str` |  |
-| `directions` | `list` |  |
-| `imageUrl` | `str` |  |
-| `ingredients` | `list` |  |
-| `makingAmount` | `str` |  |
-| `name` | `str` |  |
-| `prepTime` | `str` |  |
-| `recipeId` | `str` |  |
-| `totalTime` | `str` |  |
+| `cookTime` | `str` | Cooking time |
+| `description` | `str` | Description of the recipe |
+| `directions` | `list` | Step-by-step directions |
+| `imageUrl` | `str` | URL to the recipe image |
+| `ingredients` | `list` | List of ingredients |
+| `makingAmount` | `str` | Amount the recipe makes |
+| `name` | `str` | Name of the recipe |
+| `prepTime` | `str` | Preparation time |
+| `recipeId` | `str` | Unique identifier for the recipe |
+| `totalTime` | `str` | Total time required |
 
 #### Example: List
 

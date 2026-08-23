@@ -245,17 +245,17 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `backgroundColor` |  |
-| `beanId` |  |
-| `colorGroup` |  |
-| `description` |  |
-| `flavorName` |  |
-| `glutenFree` |  |
-| `groupName` |  |
-| `imageUrl` |  |
-| `ingredients` |  |
-| `kosher` |  |
-| `sugarFree` |  |
+| `backgroundColor` | Hex color code for the bean's background color |
+| `beanId` | Unique identifier for the bean |
+| `colorGroup` | Color category of the bean |
+| `description` | Detailed description of the bean flavor |
+| `flavorName` | Name of the flavor |
+| `glutenFree` | Indicates if the bean is gluten-free |
+| `groupName` | Group or category names the bean belongs to |
+| `imageUrl` | URL to the bean image |
+| `ingredients` | List of ingredients |
+| `kosher` | Indicates if the bean is kosher certified |
+| `sugarFree` | Indicates if the bean is sugar-free |
 
 Operations: List, Load.
 
@@ -265,10 +265,10 @@ API path: `/beans`
 
 | Field | Description |
 | --- | --- |
-| `beans` |  |
-| `combinationId` |  |
-| `name` |  |
-| `tag` |  |
+| `beans` | List of bean flavors in the combination |
+| `combinationId` | Unique identifier for the combination |
+| `name` | Name of the flavor combination |
+| `tag` | Tags associated with the combination |
 
 Operations: List.
 
@@ -278,9 +278,9 @@ API path: `/combinations`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `factId` |  |
-| `title` |  |
+| `description` | Full text of the fact |
+| `factId` | Unique identifier for the fact |
+| `title` | Title of the fact |
 
 Operations: List.
 
@@ -290,9 +290,9 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `historyId` |  |
-| `year` |  |
+| `description` | Description of the historical event |
+| `historyId` | Unique identifier for the history entry |
+| `year` | Year of the historical event |
 
 Operations: List.
 
@@ -302,16 +302,16 @@ API path: `/history`
 
 | Field | Description |
 | --- | --- |
-| `cookTime` |  |
-| `description` |  |
-| `directions` |  |
-| `imageUrl` |  |
-| `ingredients` |  |
-| `makingAmount` |  |
-| `name` |  |
-| `prepTime` |  |
-| `recipeId` |  |
-| `totalTime` |  |
+| `cookTime` | Cooking time |
+| `description` | Description of the recipe |
+| `directions` | Step-by-step directions |
+| `imageUrl` | URL to the recipe image |
+| `ingredients` | List of ingredients |
+| `makingAmount` | Amount the recipe makes |
+| `name` | Name of the recipe |
+| `prepTime` | Preparation time |
+| `recipeId` | Unique identifier for the recipe |
+| `totalTime` | Total time required |
 
 Operations: List.
 
@@ -337,17 +337,17 @@ Create an instance: `local bean = client:Bean(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `backgroundColor` | `string` |  |
-| `beanId` | `string` |  |
-| `colorGroup` | `string` |  |
-| `description` | `string` |  |
-| `flavorName` | `string` |  |
-| `glutenFree` | `boolean` |  |
-| `groupName` | `table` |  |
-| `imageUrl` | `string` |  |
-| `ingredients` | `table` |  |
-| `kosher` | `boolean` |  |
-| `sugarFree` | `boolean` |  |
+| `backgroundColor` | `string` | Hex color code for the bean's background color |
+| `beanId` | `string` | Unique identifier for the bean |
+| `colorGroup` | `string` | Color category of the bean |
+| `description` | `string` | Detailed description of the bean flavor |
+| `flavorName` | `string` | Name of the flavor |
+| `glutenFree` | `boolean` | Indicates if the bean is gluten-free |
+| `groupName` | `table` | Group or category names the bean belongs to |
+| `imageUrl` | `string` | URL to the bean image |
+| `ingredients` | `table` | List of ingredients |
+| `kosher` | `boolean` | Indicates if the bean is kosher certified |
+| `sugarFree` | `boolean` | Indicates if the bean is sugar-free |
 
 #### Example: Load
 
@@ -376,10 +376,10 @@ Create an instance: `local combination = client:Combination(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `beans` | `table` |  |
-| `combinationId` | `string` |  |
-| `name` | `string` |  |
-| `tag` | `table` |  |
+| `beans` | `table` | List of bean flavors in the combination |
+| `combinationId` | `string` | Unique identifier for the combination |
+| `name` | `string` | Name of the flavor combination |
+| `tag` | `table` | Tags associated with the combination |
 
 #### Example: List
 
@@ -402,9 +402,9 @@ Create an instance: `local fact = client:Fact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `factId` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Full text of the fact |
+| `factId` | `string` | Unique identifier for the fact |
+| `title` | `string` | Title of the fact |
 
 #### Example: List
 
@@ -427,9 +427,9 @@ Create an instance: `local history = client:History(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `historyId` | `string` |  |
-| `year` | `number` |  |
+| `description` | `string` | Description of the historical event |
+| `historyId` | `string` | Unique identifier for the history entry |
+| `year` | `number` | Year of the historical event |
 
 #### Example: List
 
@@ -452,16 +452,16 @@ Create an instance: `local recipe = client:Recipe(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cookTime` | `string` |  |
-| `description` | `string` |  |
-| `directions` | `table` |  |
-| `imageUrl` | `string` |  |
-| `ingredients` | `table` |  |
-| `makingAmount` | `string` |  |
-| `name` | `string` |  |
-| `prepTime` | `string` |  |
-| `recipeId` | `string` |  |
-| `totalTime` | `string` |  |
+| `cookTime` | `string` | Cooking time |
+| `description` | `string` | Description of the recipe |
+| `directions` | `table` | Step-by-step directions |
+| `imageUrl` | `string` | URL to the recipe image |
+| `ingredients` | `table` | List of ingredients |
+| `makingAmount` | `string` | Amount the recipe makes |
+| `name` | `string` | Name of the recipe |
+| `prepTime` | `string` | Preparation time |
+| `recipeId` | `string` | Unique identifier for the recipe |
+| `totalTime` | `string` | Total time required |
 
 #### Example: List
 

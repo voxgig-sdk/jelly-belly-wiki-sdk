@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "JellyBellyWiki",
+			"slug": "jelly-belly-wiki",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,46 +40,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "backgroundColor",
+						"short": "Hex color code for the bean's background color",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "beanId",
+						"short": "Unique identifier for the bean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "colorGroup",
+						"short": "Color category of the bean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "Detailed description of the bean flavor",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "flavorName",
+						"short": "Name of the flavor",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "glutenFree",
+						"short": "Indicates if the bean is gluten-free",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "groupName",
+						"short": "Group or category names the bean belongs to",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "imageUrl",
+						"short": "URL to the bean image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ingredients",
+						"short": "List of ingredients",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "kosher",
+						"short": "Indicates if the bean is kosher certified",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "sugarFree",
+						"short": "Indicates if the bean is sugar-free",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -173,18 +187,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "beans",
+						"short": "List of bean flavors in the combination",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "combinationId",
+						"short": "Unique identifier for the combination",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the flavor combination",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "tag",
+						"short": "Tags associated with the combination",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -241,14 +259,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Full text of the fact",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "factId",
+						"short": "Unique identifier for the fact",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Title of the fact",
 						"type": "`$STRING`",
 					},
 				},
@@ -305,14 +326,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Description of the historical event",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "historyId",
+						"short": "Unique identifier for the history entry",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "year",
+						"short": "Year of the historical event",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -347,42 +371,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cookTime",
+						"short": "Cooking time",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "Description of the recipe",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "directions",
+						"short": "Step-by-step directions",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "imageUrl",
+						"short": "URL to the recipe image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ingredients",
+						"short": "List of ingredients",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "makingAmount",
+						"short": "Amount the recipe makes",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the recipe",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "prepTime",
+						"short": "Preparation time",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "recipeId",
+						"short": "Unique identifier for the recipe",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "totalTime",
+						"short": "Total time required",
 						"type": "`$STRING`",
 					},
 				},
