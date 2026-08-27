@@ -267,6 +267,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `flavorName` | Name of the flavor |
 | `glutenFree` | Indicates if the bean is gluten-free |
 | `groupName` | Group or category names the bean belongs to |
+| `id` |  |
 | `imageUrl` | URL to the bean image |
 | `ingredients` | List of ingredients |
 | `kosher` | Indicates if the bean is kosher certified |
@@ -359,6 +360,7 @@ Create an instance: `bean = client.Bean()`
 | `flavorName` | `str` | Name of the flavor |
 | `glutenFree` | `bool` | Indicates if the bean is gluten-free |
 | `groupName` | `list` | Group or category names the bean belongs to |
+| `id` | `str` |  |
 | `imageUrl` | `str` | URL to the bean image |
 | `ingredients` | `list` | List of ingredients |
 | `kosher` | `bool` | Indicates if the bean is kosher certified |

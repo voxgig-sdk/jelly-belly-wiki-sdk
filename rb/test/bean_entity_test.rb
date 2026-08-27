@@ -83,9 +83,13 @@ class BeanEntityTest < Minitest::Test
     assert bean_ref01_list_result.is_a?(Array)
 
     # LOAD
-    bean_ref01_match_dt0 = {}
+    bean_ref01_match_dt0 = {
+      "id" => bean_ref01_data["id"],
+    }
     bean_ref01_data_dt0_loaded = bean_ref01_ent.load(bean_ref01_match_dt0, nil)
-    assert !bean_ref01_data_dt0_loaded.nil?
+    bean_ref01_data_dt0_load_result = Helpers.to_map(bean_ref01_data_dt0_loaded.respond_to?(:data_get) ? bean_ref01_data_dt0_loaded.data_get : bean_ref01_data_dt0_loaded)
+    assert !bean_ref01_data_dt0_load_result.nil?
+    assert_equal bean_ref01_data_dt0_load_result["id"], bean_ref01_data["id"]
 
   end
 end

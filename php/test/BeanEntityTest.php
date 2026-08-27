@@ -93,9 +93,13 @@ class BeanEntityTest extends TestCase
         $this->assertIsArray($bean_ref01_list_result);
 
         // LOAD
-        $bean_ref01_match_dt0 = [];
+        $bean_ref01_match_dt0 = [
+            "id" => $bean_ref01_data["id"],
+        ];
         $bean_ref01_data_dt0_loaded = $bean_ref01_ent->load($bean_ref01_match_dt0, null);
-        $this->assertNotNull($bean_ref01_data_dt0_loaded);
+        $bean_ref01_data_dt0_load_result = Helpers::to_map(is_object($bean_ref01_data_dt0_loaded) && method_exists($bean_ref01_data_dt0_loaded, 'data_get') ? $bean_ref01_data_dt0_loaded->data_get() : $bean_ref01_data_dt0_loaded);
+        $this->assertNotNull($bean_ref01_data_dt0_load_result);
+        $this->assertEquals($bean_ref01_data_dt0_load_result["id"], $bean_ref01_data["id"]);
 
     }
 }

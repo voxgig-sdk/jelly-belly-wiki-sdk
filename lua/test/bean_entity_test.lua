@@ -92,10 +92,14 @@ describe("BeanEntity", function()
     assert.is_table(bean_ref01_list_result)
 
     -- LOAD
-    local bean_ref01_match_dt0 = {}
+    local bean_ref01_match_dt0 = {
+      id = bean_ref01_data["id"],
+    }
     local bean_ref01_data_dt0_loaded, err = bean_ref01_ent:load(bean_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(bean_ref01_data_dt0_loaded)
+    local bean_ref01_data_dt0_load_result = helpers.to_map(type(bean_ref01_data_dt0_loaded) == 'table' and bean_ref01_data_dt0_loaded.data_get and bean_ref01_data_dt0_loaded:data_get() or bean_ref01_data_dt0_loaded)
+    assert.is_not_nil(bean_ref01_data_dt0_load_result)
+    assert.are.equal(bean_ref01_data_dt0_load_result["id"], bean_ref01_data["id"])
 
   end)
 end)

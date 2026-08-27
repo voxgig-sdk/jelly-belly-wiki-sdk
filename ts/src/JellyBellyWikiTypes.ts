@@ -13,6 +13,7 @@ export interface Bean {
   flavorName?: string
   glutenFree?: boolean
   groupName?: any[]
+  id?: string
   imageUrl?: string
   ingredients?: any[]
   kosher?: boolean
@@ -31,6 +32,7 @@ export interface BeanListMatch {
   flavorName?: string
   glutenFree?: boolean
   groupName?: any[]
+  id?: string
   imageUrl?: string
   ingredients?: any[]
   kosher?: boolean

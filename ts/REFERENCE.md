@@ -171,6 +171,7 @@ const bean = client.Bean()
 | `flavorName` | `string` | No | Name of the flavor |
 | `glutenFree` | `boolean` | No | Indicates if the bean is gluten-free |
 | `groupName` | `any[]` | No | Group or category names the bean belongs to |
+| `id` | `string` | No |  |
 | `imageUrl` | `string` | No | URL to the bean image |
 | `ingredients` | `any[]` | No | List of ingredients |
 | `kosher` | `boolean` | No | Indicates if the bean is kosher certified |

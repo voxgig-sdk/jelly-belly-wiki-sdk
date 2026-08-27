@@ -28,6 +28,7 @@ module JellyBellyWikiConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -80,6 +81,10 @@ module JellyBellyWikiConfig
               "name" => "groupName",
               "short" => "Group or category names the bean belongs to",
               "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "imageUrl",

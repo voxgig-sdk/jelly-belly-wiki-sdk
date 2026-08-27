@@ -110,6 +110,7 @@ bean = client.Bean()
 | `flavorName` | `str` | No | Name of the flavor |
 | `glutenFree` | `bool` | No | Indicates if the bean is gluten-free |
 | `groupName` | `list` | No | Group or category names the bean belongs to |
+| `id` | `str` | No |  |
 | `imageUrl` | `str` | No | URL to the bean image |
 | `ingredients` | `list` | No | List of ingredients |
 | `kosher` | `bool` | No | Indicates if the bean is kosher certified |

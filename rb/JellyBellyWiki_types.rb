@@ -31,6 +31,9 @@
 # @!attribute [rw] groupName
 #   @return [Array, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
@@ -50,6 +53,7 @@ Bean = Struct.new(
   :flavorName,
   :glutenFree,
   :groupName,
+  :id,
   :imageUrl,
   :ingredients,
   :kosher,
@@ -89,6 +93,9 @@ BeanLoadMatch = Struct.new(
 # @!attribute [rw] groupName
 #   @return [Array, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
@@ -108,6 +115,7 @@ BeanListMatch = Struct.new(
   :flavorName,
   :glutenFree,
   :groupName,
+  :id,
   :imageUrl,
   :ingredients,
   :kosher,

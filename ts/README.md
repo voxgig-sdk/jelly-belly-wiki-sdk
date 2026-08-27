@@ -313,6 +313,7 @@ The `prepare()` method returns:
 | `flavorName` | Name of the flavor |
 | `glutenFree` | Indicates if the bean is gluten-free |
 | `groupName` | Group or category names the bean belongs to |
+| `id` |  |
 | `imageUrl` | URL to the bean image |
 | `ingredients` | List of ingredients |
 | `kosher` | Indicates if the bean is kosher certified |
@@ -405,6 +406,7 @@ Create an instance: `const bean = client.Bean()`
 | `flavorName` | `string` | Name of the flavor |
 | `glutenFree` | `boolean` | Indicates if the bean is gluten-free |
 | `groupName` | `any[]` | Group or category names the bean belongs to |
+| `id` | `string` |  |
 | `imageUrl` | `string` | URL to the bean image |
 | `ingredients` | `any[]` | List of ingredients |
 | `kosher` | `boolean` | Indicates if the bean is kosher certified |

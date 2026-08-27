@@ -88,9 +88,13 @@ class TestBeanEntity:
         assert isinstance(bean_ref01_list_result, list)
 
         # LOAD
-        bean_ref01_match_dt0 = {}
+        bean_ref01_match_dt0 = {
+            "id": bean_ref01_data["id"],
+        }
         bean_ref01_data_dt0_loaded = bean_ref01_ent.load(bean_ref01_match_dt0, None)
-        assert bean_ref01_data_dt0_loaded is not None
+        bean_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(bean_ref01_data_dt0_loaded))
+        assert bean_ref01_data_dt0_load_result is not None
+        assert bean_ref01_data_dt0_load_result["id"] == bean_ref01_data["id"]
 
 
 

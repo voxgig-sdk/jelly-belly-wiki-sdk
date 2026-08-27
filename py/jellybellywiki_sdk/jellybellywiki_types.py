@@ -24,6 +24,7 @@ class Bean(TypedDict, total=False):
     flavorName: str
     glutenFree: bool
     groupName: list
+    id: str
     imageUrl: str
     ingredients: list
     kosher: bool
@@ -42,6 +43,7 @@ class BeanListMatch(TypedDict, total=False):
     flavorName: str
     glutenFree: bool
     groupName: list
+    id: str
     imageUrl: str
     ingredients: list
     kosher: bool

@@ -37,7 +37,7 @@ begin
   # list returns an Array of Bean records — iterate directly.
   beans = client.Bean.list
   beans.each do |item|
-    puts "#{item["backgroundColor"]}"
+    puts "#{item["id"]} #{item["backgroundColor"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -261,6 +261,7 @@ returns a result `Hash` with these keys:
 | `flavorName` | Name of the flavor |
 | `glutenFree` | Indicates if the bean is gluten-free |
 | `groupName` | Group or category names the bean belongs to |
+| `id` |  |
 | `imageUrl` | URL to the bean image |
 | `ingredients` | List of ingredients |
 | `kosher` | Indicates if the bean is kosher certified |
@@ -353,6 +354,7 @@ Create an instance: `bean = client.Bean`
 | `flavorName` | `String` | Name of the flavor |
 | `glutenFree` | `Boolean` | Indicates if the bean is gluten-free |
 | `groupName` | `Array` | Group or category names the bean belongs to |
+| `id` | `String` |  |
 | `imageUrl` | `String` | URL to the bean image |
 | `ingredients` | `Array` | List of ingredients |
 | `kosher` | `Boolean` | Indicates if the bean is kosher certified |

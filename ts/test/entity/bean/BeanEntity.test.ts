@@ -66,6 +66,12 @@ describe('BeanEntity', async () => {
     const bean_ref01_list = (await bean_ref01_ent.list(bean_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const bean_ref01_match_dt0: any = {}
+    bean_ref01_match_dt0.id = bean_ref01_data.id
+    const bean_ref01_data_dt0 = (await bean_ref01_ent.load(bean_ref01_match_dt0)).data()
+    assert(bean_ref01_data_dt0.id === bean_ref01_data.id)
+
 
   })
 })

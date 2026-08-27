@@ -48,6 +48,11 @@ main: kit: entity: bean: {
       type: "`$ARRAY`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "imageUrl"
       req: false
       short: "URL to the bean image"
@@ -72,6 +77,11 @@ main: kit: entity: bean: {
       type: "`$BOOLEAN`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "bean"
   op: {

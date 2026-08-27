@@ -42,6 +42,7 @@ class JellyBellyWikiConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -94,6 +95,10 @@ class JellyBellyWikiConfig
               'name' => 'groupName',
               'short' => 'Group or category names the bean belongs to',
               'type' => '`$ARRAY`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'imageUrl',

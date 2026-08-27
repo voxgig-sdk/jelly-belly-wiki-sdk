@@ -115,6 +115,7 @@ $bean = $client->Bean();
 | `flavorName` | `string` | No | Name of the flavor |
 | `glutenFree` | `bool` | No | Indicates if the bean is gluten-free |
 | `groupName` | `array` | No | Group or category names the bean belongs to |
+| `id` | `string` | No |  |
 | `imageUrl` | `string` | No | URL to the bean image |
 | `ingredients` | `array` | No | List of ingredients |
 | `kosher` | `bool` | No | Indicates if the bean is kosher certified |

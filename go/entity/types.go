@@ -21,6 +21,7 @@ type Bean struct {
 	FlavorName *string `json:"flavorName,omitempty"`
 	GlutenFree *bool `json:"glutenFree,omitempty"`
 	GroupName *[]any `json:"groupName,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ImageUrl *string `json:"imageUrl,omitempty"`
 	Ingredients *[]any `json:"ingredients,omitempty"`
 	Kosher *bool `json:"kosher,omitempty"`
@@ -41,6 +42,7 @@ type BeanListMatch struct {
 	FlavorName *string `json:"flavorName,omitempty"`
 	GlutenFree *bool `json:"glutenFree,omitempty"`
 	GroupName *[]any `json:"groupName,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ImageUrl *string `json:"imageUrl,omitempty"`
 	Ingredients *[]any `json:"ingredients,omitempty"`
 	Kosher *bool `json:"kosher,omitempty"`

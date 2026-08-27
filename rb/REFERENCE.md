@@ -116,6 +116,7 @@ bean = client.Bean
 | `flavorName` | `String` | No | Name of the flavor |
 | `glutenFree` | `Boolean` | No | Indicates if the bean is gluten-free |
 | `groupName` | `Array` | No | Group or category names the bean belongs to |
+| `id` | `String` | No |  |
 | `imageUrl` | `String` | No | URL to the bean image |
 | `ingredients` | `Array` | No | List of ingredients |
 | `kosher` | `Boolean` | No | Indicates if the bean is kosher certified |

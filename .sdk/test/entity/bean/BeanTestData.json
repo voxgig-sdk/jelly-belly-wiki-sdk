@@ -2,63 +2,63 @@
   "existing": {
     "bean": {
       "BEAN00": {
-        "backgroundColor": "s6e",
-        "beanId": "s6f",
-        "colorGroup": "s70",
-        "description": "s71",
-        "flavorName": "s72",
+        "backgroundColor": "s78",
+        "beanId": "s79",
+        "colorGroup": "s7a",
+        "description": "s7b",
+        "flavorName": "s7c",
         "glutenFree": false,
         "groupName": [],
-        "imageUrl": "s75",
+        "id": "BEAN00",
+        "imageUrl": "s80",
         "ingredients": [],
-        "kosher": false,
-        "sugarFree": true,
-        "id": "BEAN00"
+        "kosher": true,
+        "sugarFree": false
       },
       "BEAN01": {
-        "backgroundColor": "sdc",
-        "beanId": "sdd",
-        "colorGroup": "sde",
-        "description": "sdf",
-        "flavorName": "se0",
+        "backgroundColor": "sf0",
+        "beanId": "sf1",
+        "colorGroup": "sf2",
+        "description": "sf3",
+        "flavorName": "sf4",
         "glutenFree": false,
         "groupName": [],
-        "imageUrl": "se3",
+        "id": "BEAN01",
+        "imageUrl": "sf8",
         "ingredients": [],
-        "kosher": false,
-        "sugarFree": true,
-        "id": "BEAN01"
+        "kosher": true,
+        "sugarFree": false
       },
       "BEAN02": {
-        "backgroundColor": "s14a",
-        "beanId": "s14b",
-        "colorGroup": "s14c",
-        "description": "s14d",
-        "flavorName": "s14e",
+        "backgroundColor": "s168",
+        "beanId": "s169",
+        "colorGroup": "s16a",
+        "description": "s16b",
+        "flavorName": "s16c",
         "glutenFree": false,
         "groupName": [],
-        "imageUrl": "s151",
+        "id": "BEAN02",
+        "imageUrl": "s170",
         "ingredients": [],
-        "kosher": false,
-        "sugarFree": true,
-        "id": "BEAN02"
+        "kosher": true,
+        "sugarFree": false
       }
     }
   },
   "new": {
     "bean": {
       "bean_ref01": {
-        "backgroundColor": "s1b8",
-        "beanId": "s1b9",
-        "colorGroup": "s1ba",
-        "description": "s1bb",
-        "flavorName": "s1bc",
+        "backgroundColor": "s1e0",
+        "beanId": "s1e1",
+        "colorGroup": "s1e2",
+        "description": "s1e3",
+        "flavorName": "s1e4",
         "glutenFree": false,
         "groupName": [],
-        "imageUrl": "s1bf",
+        "imageUrl": "s1e8",
         "ingredients": [],
-        "kosher": false,
-        "sugarFree": true
+        "kosher": true,
+        "sugarFree": false
       }
     }
   }

@@ -121,13 +121,19 @@ func TestBeanEntity(t *testing.T) {
 		}
 
 		// LOAD
-		beanRef01MatchDt0 := map[string]any{}
+		beanRef01MatchDt0 := map[string]any{
+			"id": beanRef01Data["id"],
+		}
 		beanRef01DataDt0Loaded, err := beanRef01Ent.Load(beanRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if beanRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		beanRef01DataDt0LoadResult := core.ToMapAny(entityData(beanRef01DataDt0Loaded))
+		if beanRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if beanRef01DataDt0LoadResult["id"] != beanRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

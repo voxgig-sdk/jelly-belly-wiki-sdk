@@ -38,7 +38,7 @@ try {
     // list() returns an array of Bean records — iterate directly.
     $beans = $client->Bean()->list();
     foreach ($beans as $item) {
-        echo $item["backgroundColor"] . "\n";
+        echo $item["id"] . " " . $item["backgroundColor"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -271,6 +271,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `flavorName` | Name of the flavor |
 | `glutenFree` | Indicates if the bean is gluten-free |
 | `groupName` | Group or category names the bean belongs to |
+| `id` |  |
 | `imageUrl` | URL to the bean image |
 | `ingredients` | List of ingredients |
 | `kosher` | Indicates if the bean is kosher certified |
@@ -363,6 +364,7 @@ Create an instance: `$bean = $client->Bean();`
 | `flavorName` | `string` | Name of the flavor |
 | `glutenFree` | `bool` | Indicates if the bean is gluten-free |
 | `groupName` | `array` | Group or category names the bean belongs to |
+| `id` | `string` |  |
 | `imageUrl` | `string` | URL to the bean image |
 | `ingredients` | `array` | List of ingredients |
 | `kosher` | `bool` | Indicates if the bean is kosher certified |

@@ -43,7 +43,7 @@ local beans, err = client:Bean():list()
 if err then error(err) end
 
 for _, item in ipairs(beans) do
-  print(item["backgroundColor"])
+  print(item["id"], item["backgroundColor"])
 end
 ```
 
@@ -252,6 +252,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `flavorName` | Name of the flavor |
 | `glutenFree` | Indicates if the bean is gluten-free |
 | `groupName` | Group or category names the bean belongs to |
+| `id` |  |
 | `imageUrl` | URL to the bean image |
 | `ingredients` | List of ingredients |
 | `kosher` | Indicates if the bean is kosher certified |
@@ -344,6 +345,7 @@ Create an instance: `local bean = client:Bean(nil)`
 | `flavorName` | `string` | Name of the flavor |
 | `glutenFree` | `boolean` | Indicates if the bean is gluten-free |
 | `groupName` | `table` | Group or category names the bean belongs to |
+| `id` | `string` |  |
 | `imageUrl` | `string` | URL to the bean image |
 | `ingredients` | `table` | List of ingredients |
 | `kosher` | `boolean` | Indicates if the bean is kosher certified |

@@ -22,6 +22,7 @@ class Bean
     public ?string $flavorName = null;
     public ?bool $glutenFree = null;
     public ?array $groupName = null;
+    public ?string $id = null;
     public ?string $imageUrl = null;
     public ?array $ingredients = null;
     public ?bool $kosher = null;
@@ -44,6 +45,7 @@ class BeanListMatch
     public ?string $flavorName = null;
     public ?bool $glutenFree = null;
     public ?array $groupName = null;
+    public ?string $id = null;
     public ?string $imageUrl = null;
     public ?array $ingredients = null;
     public ?bool $kosher = null;

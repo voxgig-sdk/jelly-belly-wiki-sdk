@@ -14,6 +14,7 @@
 ---@field flavorName? string
 ---@field glutenFree? boolean
 ---@field groupName? table
+---@field id? string
 ---@field imageUrl? string
 ---@field ingredients? table
 ---@field kosher? boolean
@@ -30,6 +31,7 @@
 ---@field flavorName? string
 ---@field glutenFree? boolean
 ---@field groupName? table
+---@field id? string
 ---@field imageUrl? string
 ---@field ingredients? table
 ---@field kosher? boolean
