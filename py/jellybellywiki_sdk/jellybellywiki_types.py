@@ -36,18 +36,8 @@ class BeanLoadMatch(TypedDict):
 
 
 class BeanListMatch(TypedDict, total=False):
-    backgroundColor: str
-    beanId: str
-    colorGroup: str
-    description: str
-    flavorName: str
-    glutenFree: bool
-    groupName: list
-    id: str
-    imageUrl: str
-    ingredients: list
-    kosher: bool
-    sugarFree: bool
+    limit: int
+    page: int
 
 
 class Combination(TypedDict, total=False):
@@ -58,10 +48,8 @@ class Combination(TypedDict, total=False):
 
 
 class CombinationListMatch(TypedDict, total=False):
-    beans: list
-    combinationId: str
-    name: str
-    tag: list
+    limit: int
+    page: int
 
 
 class Fact(TypedDict, total=False):
@@ -71,9 +59,8 @@ class Fact(TypedDict, total=False):
 
 
 class FactListMatch(TypedDict, total=False):
-    description: str
-    factId: str
-    title: str
+    limit: int
+    page: int
 
 
 class History(TypedDict, total=False):
@@ -102,13 +89,5 @@ class Recipe(TypedDict, total=False):
 
 
 class RecipeListMatch(TypedDict, total=False):
-    cookTime: str
-    description: str
-    directions: list
-    imageUrl: str
-    ingredients: list
-    makingAmount: str
-    name: str
-    prepTime: str
-    recipeId: str
-    totalTime: str
+    limit: int
+    page: int

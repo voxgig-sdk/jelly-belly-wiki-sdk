@@ -25,18 +25,8 @@ export interface BeanLoadMatch {
 }
 
 export interface BeanListMatch {
-  backgroundColor?: string
-  beanId?: string
-  colorGroup?: string
-  description?: string
-  flavorName?: string
-  glutenFree?: boolean
-  groupName?: any[]
-  id?: string
-  imageUrl?: string
-  ingredients?: any[]
-  kosher?: boolean
-  sugarFree?: boolean
+  limit?: number
+  page?: number
 }
 
 export interface Combination {
@@ -47,10 +37,8 @@ export interface Combination {
 }
 
 export interface CombinationListMatch {
-  beans?: any[]
-  combinationId?: string
-  name?: string
-  tag?: any[]
+  limit?: number
+  page?: number
 }
 
 export interface Fact {
@@ -60,9 +48,8 @@ export interface Fact {
 }
 
 export interface FactListMatch {
-  description?: string
-  factId?: string
-  title?: string
+  limit?: number
+  page?: number
 }
 
 export interface History {
@@ -91,15 +78,7 @@ export interface Recipe {
 }
 
 export interface RecipeListMatch {
-  cookTime?: string
-  description?: string
-  directions?: any[]
-  imageUrl?: string
-  ingredients?: any[]
-  makingAmount?: string
-  name?: string
-  prepTime?: string
-  recipeId?: string
-  totalTime?: string
+  limit?: number
+  page?: number
 }
 

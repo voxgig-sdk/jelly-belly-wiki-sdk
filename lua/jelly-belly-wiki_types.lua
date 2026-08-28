@@ -24,18 +24,8 @@
 ---@field id string
 
 ---@class BeanListMatch
----@field backgroundColor? string
----@field beanId? string
----@field colorGroup? string
----@field description? string
----@field flavorName? string
----@field glutenFree? boolean
----@field groupName? table
----@field id? string
----@field imageUrl? string
----@field ingredients? table
----@field kosher? boolean
----@field sugarFree? boolean
+---@field limit? number
+---@field page? number
 
 ---@class Combination
 ---@field beans? table
@@ -44,10 +34,8 @@
 ---@field tag? table
 
 ---@class CombinationListMatch
----@field beans? table
----@field combinationId? string
----@field name? string
----@field tag? table
+---@field limit? number
+---@field page? number
 
 ---@class Fact
 ---@field description? string
@@ -55,9 +43,8 @@
 ---@field title? string
 
 ---@class FactListMatch
----@field description? string
----@field factId? string
----@field title? string
+---@field limit? number
+---@field page? number
 
 ---@class History
 ---@field description? string
@@ -82,16 +69,8 @@
 ---@field totalTime? string
 
 ---@class RecipeListMatch
----@field cookTime? string
----@field description? string
----@field directions? table
----@field imageUrl? string
----@field ingredients? table
----@field makingAmount? string
----@field name? string
----@field prepTime? string
----@field recipeId? string
----@field totalTime? string
+---@field limit? number
+---@field page? number
 
 local M = {}
 

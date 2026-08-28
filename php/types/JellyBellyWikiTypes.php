@@ -38,18 +38,8 @@ class BeanLoadMatch
 /** Request payload for Bean#list. */
 class BeanListMatch
 {
-    public ?string $backgroundColor = null;
-    public ?string $beanId = null;
-    public ?string $colorGroup = null;
-    public ?string $description = null;
-    public ?string $flavorName = null;
-    public ?bool $glutenFree = null;
-    public ?array $groupName = null;
-    public ?string $id = null;
-    public ?string $imageUrl = null;
-    public ?array $ingredients = null;
-    public ?bool $kosher = null;
-    public ?bool $sugarFree = null;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 
 /** Combination entity data model. */
@@ -64,10 +54,8 @@ class Combination
 /** Request payload for Combination#list. */
 class CombinationListMatch
 {
-    public ?array $beans = null;
-    public ?string $combinationId = null;
-    public ?string $name = null;
-    public ?array $tag = null;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 
 /** Fact entity data model. */
@@ -81,9 +69,8 @@ class Fact
 /** Request payload for Fact#list. */
 class FactListMatch
 {
-    public ?string $description = null;
-    public ?string $factId = null;
-    public ?string $title = null;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 
 /** History entity data model. */
@@ -120,15 +107,7 @@ class Recipe
 /** Request payload for Recipe#list. */
 class RecipeListMatch
 {
-    public ?string $cookTime = null;
-    public ?string $description = null;
-    public ?array $directions = null;
-    public ?string $imageUrl = null;
-    public ?array $ingredients = null;
-    public ?string $makingAmount = null;
-    public ?string $name = null;
-    public ?string $prepTime = null;
-    public ?string $recipeId = null;
-    public ?string $totalTime = null;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 

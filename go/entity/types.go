@@ -35,18 +35,8 @@ type BeanLoadMatch struct {
 
 // BeanListMatch is the typed request payload for Bean.ListTyped.
 type BeanListMatch struct {
-	BackgroundColor *string `json:"backgroundColor,omitempty"`
-	BeanId *string `json:"beanId,omitempty"`
-	ColorGroup *string `json:"colorGroup,omitempty"`
-	Description *string `json:"description,omitempty"`
-	FlavorName *string `json:"flavorName,omitempty"`
-	GlutenFree *bool `json:"glutenFree,omitempty"`
-	GroupName *[]any `json:"groupName,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Ingredients *[]any `json:"ingredients,omitempty"`
-	Kosher *bool `json:"kosher,omitempty"`
-	SugarFree *bool `json:"sugarFree,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Combination is the typed data model for the combination entity.
@@ -59,10 +49,8 @@ type Combination struct {
 
 // CombinationListMatch is the typed request payload for Combination.ListTyped.
 type CombinationListMatch struct {
-	Beans *[]any `json:"beans,omitempty"`
-	CombinationId *string `json:"combinationId,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Tag *[]any `json:"tag,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Fact is the typed data model for the fact entity.
@@ -74,9 +62,8 @@ type Fact struct {
 
 // FactListMatch is the typed request payload for Fact.ListTyped.
 type FactListMatch struct {
-	Description *string `json:"description,omitempty"`
-	FactId *string `json:"factId,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // History is the typed data model for the history entity.
@@ -109,16 +96,8 @@ type Recipe struct {
 
 // RecipeListMatch is the typed request payload for Recipe.ListTyped.
 type RecipeListMatch struct {
-	CookTime *string `json:"cookTime,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Directions *[]any `json:"directions,omitempty"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Ingredients *[]any `json:"ingredients,omitempty"`
-	MakingAmount *string `json:"makingAmount,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PrepTime *string `json:"prepTime,omitempty"`
-	RecipeId *string `json:"recipeId,omitempty"`
-	TotalTime *string `json:"totalTime,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

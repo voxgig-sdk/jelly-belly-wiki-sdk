@@ -72,54 +72,14 @@ BeanLoadMatch = Struct.new(
 
 # Request payload for Bean#list.
 #
-# @!attribute [rw] backgroundColor
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] beanId
-#   @return [String, nil]
-#
-# @!attribute [rw] colorGroup
-#   @return [String, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] flavorName
-#   @return [String, nil]
-#
-# @!attribute [rw] glutenFree
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] groupName
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] imageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] ingredients
-#   @return [Array, nil]
-#
-# @!attribute [rw] kosher
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] sugarFree
-#   @return [Boolean, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 BeanListMatch = Struct.new(
-  :backgroundColor,
-  :beanId,
-  :colorGroup,
-  :description,
-  :flavorName,
-  :glutenFree,
-  :groupName,
-  :id,
-  :imageUrl,
-  :ingredients,
-  :kosher,
-  :sugarFree,
+  :limit,
+  :page,
   keyword_init: true
 )
 
@@ -146,22 +106,14 @@ Combination = Struct.new(
 
 # Request payload for Combination#list.
 #
-# @!attribute [rw] beans
-#   @return [Array, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] combinationId
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
-#   @return [Array, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 CombinationListMatch = Struct.new(
-  :beans,
-  :combinationId,
-  :name,
-  :tag,
+  :limit,
+  :page,
   keyword_init: true
 )
 
@@ -184,18 +136,14 @@ Fact = Struct.new(
 
 # Request payload for Fact#list.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] factId
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 FactListMatch = Struct.new(
-  :description,
-  :factId,
-  :title,
+  :limit,
+  :page,
   keyword_init: true
 )
 
@@ -280,46 +228,14 @@ Recipe = Struct.new(
 
 # Request payload for Recipe#list.
 #
-# @!attribute [rw] cookTime
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] directions
-#   @return [Array, nil]
-#
-# @!attribute [rw] imageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] ingredients
-#   @return [Array, nil]
-#
-# @!attribute [rw] makingAmount
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] prepTime
-#   @return [String, nil]
-#
-# @!attribute [rw] recipeId
-#   @return [String, nil]
-#
-# @!attribute [rw] totalTime
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 RecipeListMatch = Struct.new(
-  :cookTime,
-  :description,
-  :directions,
-  :imageUrl,
-  :ingredients,
-  :makingAmount,
-  :name,
-  :prepTime,
-  :recipeId,
-  :totalTime,
+  :limit,
+  :page,
   keyword_init: true
 )
 
