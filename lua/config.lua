@@ -75,6 +75,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "imageUrl",
             ["short"] = "URL to the bean image",
             ["type"] = "`$STRING`",
@@ -94,6 +95,10 @@ local function make_config()
             ["short"] = "Indicates if the bean is sugar-free",
             ["type"] = "`$BOOLEAN`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "bean",
         ["op"] = {
@@ -123,8 +128,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/beans",
-                ["parts"] = {
-                  "beans",
+                ["segments"] = {
+                  {
+                    ["lit"] = "beans",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -135,6 +142,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "beans",
                 },
               },
             },
@@ -158,13 +168,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/beans/{beanId}",
-                ["parts"] = {
-                  "beans",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["beanId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "beans",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -175,6 +189,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "beans",
+                  "{id}",
                 },
               },
             },
@@ -235,8 +253,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/combinations",
-                ["parts"] = {
-                  "combinations",
+                ["segments"] = {
+                  {
+                    ["lit"] = "combinations",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -247,6 +267,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "combinations",
                 },
               },
             },
@@ -302,8 +325,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/facts",
-                ["parts"] = {
-                  "facts",
+                ["segments"] = {
+                  {
+                    ["lit"] = "facts",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -314,6 +339,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "facts",
                 },
               },
             },
@@ -352,13 +380,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/history",
-                ["parts"] = {
-                  "history",
+                ["segments"] = {
+                  {
+                    ["lit"] = "history",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "history",
                 },
               },
             },
@@ -386,6 +419,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "imageUrl",
             ["short"] = "URL to the recipe image",
             ["type"] = "`$STRING`",
@@ -449,8 +483,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/recipes",
-                ["parts"] = {
-                  "recipes",
+                ["segments"] = {
+                  {
+                    ["lit"] = "recipes",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -461,6 +497,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "recipes",
                 },
               },
             },

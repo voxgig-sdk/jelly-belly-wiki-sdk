@@ -53,6 +53,7 @@ main: kit: entity: bean: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "imageUrl"
       req: false
       short: "URL to the bean image"
@@ -111,8 +112,10 @@ main: kit: entity: bean: {
           }
           method: "GET"
           orig: "/beans"
-          parts: [
-            "beans"
+          segments: [
+            {
+              lit: "beans"
+            }
           ]
           select: {
             exist: [
@@ -144,15 +147,19 @@ main: kit: entity: bean: {
           }
           method: "GET"
           orig: "/beans/{beanId}"
-          parts: [
-            "beans"
-            "{id}"
-          ]
           rename: {
             param: {
               beanId: "id"
             }
           }
+          segments: [
+            {
+              lit: "beans"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -1,6 +1,14 @@
 # JellyBellyWiki SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -96,6 +104,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "imageUrl",
             "short": "URL to the bean image",
             "type": "`$STRING`",
@@ -116,6 +125,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "bean",
         "op": {
           "list": {
@@ -144,8 +157,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/beans",
-                "parts": [
-                  "beans",
+                "segments": [
+                  {
+                    "lit": "beans",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -157,6 +172,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.items`",
                 },
+                "parts": [
+                  "beans",
+                ],
               },
             ],
           },
@@ -179,15 +197,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/beans/{beanId}",
-                "parts": [
-                  "beans",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "beanId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "beans",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -197,6 +219,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "beans",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -256,8 +282,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/combinations",
-                "parts": [
-                  "combinations",
+                "segments": [
+                  {
+                    "lit": "combinations",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -269,6 +297,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.items`",
                 },
+                "parts": [
+                  "combinations",
+                ],
               },
             ],
           },
@@ -323,8 +354,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/facts",
-                "parts": [
-                  "facts",
+                "segments": [
+                  {
+                    "lit": "facts",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -336,6 +369,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.items`",
                 },
+                "parts": [
+                  "facts",
+                ],
               },
             ],
           },
@@ -373,14 +409,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/history",
-                "parts": [
-                  "history",
+                "segments": [
+                  {
+                    "lit": "history",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.items`",
                 },
+                "parts": [
+                  "history",
+                ],
               },
             ],
           },
@@ -407,6 +448,7 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "uri",
             "name": "imageUrl",
             "short": "URL to the recipe image",
             "type": "`$STRING`",
@@ -470,8 +512,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/recipes",
-                "parts": [
-                  "recipes",
+                "segments": [
+                  {
+                    "lit": "recipes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -483,6 +527,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.items`",
                 },
+                "parts": [
+                  "recipes",
+                ],
               },
             ],
           },

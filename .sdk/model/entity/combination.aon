@@ -59,8 +59,10 @@ main: kit: entity: combination: {
           }
           method: "GET"
           orig: "/combinations"
-          parts: [
-            "combinations"
+          segments: [
+            {
+              lit: "combinations"
+            }
           ]
           select: {
             exist: [

@@ -53,8 +53,10 @@ main: kit: entity: fact: {
           }
           method: "GET"
           orig: "/facts"
-          parts: [
-            "facts"
+          segments: [
+            {
+              lit: "facts"
+            }
           ]
           select: {
             exist: [

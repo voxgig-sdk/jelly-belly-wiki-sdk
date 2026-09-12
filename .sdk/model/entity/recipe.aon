@@ -24,6 +24,7 @@ main: kit: entity: recipe: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "imageUrl"
       req: false
       short: "URL to the recipe image"
@@ -95,8 +96,10 @@ main: kit: entity: recipe: {
           }
           method: "GET"
           orig: "/recipes"
-          parts: [
-            "recipes"
+          segments: [
+            {
+              lit: "recipes"
+            }
           ]
           select: {
             exist: [

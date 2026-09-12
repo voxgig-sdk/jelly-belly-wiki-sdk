@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -118,6 +129,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "imageUrl",
           "short": "URL to the bean image",
           "type": "`$STRING`"
@@ -138,6 +150,10 @@ class Config {
           "type": "`$BOOLEAN`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "bean",
       "op": {
         "list": {
@@ -166,8 +182,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/beans",
-              "parts": [
-                "beans"
+              "segments": [
+                {
+                  "lit": "beans"
+                }
               ],
               "select": {
                 "exist": [
@@ -178,7 +196,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              }
+              },
+              "parts": [
+                "beans"
+              ]
             }
           ]
         },
@@ -201,15 +222,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/beans/{beanId}",
-              "parts": [
-                "beans",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "beanId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "beans"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -218,7 +243,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "beans",
+                "{id}"
+              ]
             }
           ]
         }
@@ -278,8 +307,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/combinations",
-              "parts": [
-                "combinations"
+              "segments": [
+                {
+                  "lit": "combinations"
+                }
               ],
               "select": {
                 "exist": [
@@ -290,7 +321,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              }
+              },
+              "parts": [
+                "combinations"
+              ]
             }
           ]
         }
@@ -345,8 +379,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/facts",
-              "parts": [
-                "facts"
+              "segments": [
+                {
+                  "lit": "facts"
+                }
               ],
               "select": {
                 "exist": [
@@ -357,7 +393,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              }
+              },
+              "parts": [
+                "facts"
+              ]
             }
           ]
         }
@@ -395,14 +434,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/history",
-              "parts": [
-                "history"
+              "segments": [
+                {
+                  "lit": "history"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              }
+              },
+              "parts": [
+                "history"
+              ]
             }
           ]
         }
@@ -429,6 +473,7 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "uri",
           "name": "imageUrl",
           "short": "URL to the recipe image",
           "type": "`$STRING`"
@@ -492,8 +537,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/recipes",
-              "parts": [
-                "recipes"
+              "segments": [
+                {
+                  "lit": "recipes"
+                }
               ],
               "select": {
                 "exist": [
@@ -504,7 +551,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              }
+              },
+              "parts": [
+                "recipes"
+              ]
             }
           ]
         }
@@ -520,6 +570,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

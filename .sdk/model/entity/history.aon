@@ -33,8 +33,10 @@ main: kit: entity: history: {
         {
           method: "GET"
           orig: "/history"
-          parts: [
-            "history"
+          segments: [
+            {
+              lit: "history"
+            }
           ]
           transform: {
             req: "`reqdata`"
