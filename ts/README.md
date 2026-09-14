@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
+import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki-sdk'
 
 const client = new JellyBellyWikiSDK()
 ```
@@ -615,7 +615,7 @@ jelly-belly-wiki/
 Import the SDK from the package root:
 
 ```ts
-import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
+import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki-sdk'
 ```
 
 ### Entity state

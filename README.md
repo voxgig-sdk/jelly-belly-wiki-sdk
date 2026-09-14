@@ -105,7 +105,7 @@ local results, err = client:History():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
+| TypeScript | `@voxgig-sdk/jelly-belly-wiki-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
 | Python | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
 | PHP | `voxgig-sdk/jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/jelly-belly-wiki-sdk/go` | `go get github.com/voxgig-sdk/jelly-belly-wiki-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:History():list()
 ### TypeScript
 
 ```ts
-import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki'
+import { JellyBellyWikiSDK } from '@voxgig-sdk/jelly-belly-wiki-sdk'
 
 const client = new JellyBellyWikiSDK()
 
