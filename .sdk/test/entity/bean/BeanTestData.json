@@ -61,5 +61,305 @@
         "sugarFree": false
       }
     }
+  },
+  "requests": {
+    "GET /beans": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBeans",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of items per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "currentPage": {
+                      "description": "Current page number",
+                      "type": "integer"
+                    },
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "backgroundColor": {
+                            "description": "Hex color code for the bean's background color",
+                            "type": "string"
+                          },
+                          "beanId": {
+                            "description": "Unique identifier for the bean",
+                            "type": "string"
+                          },
+                          "colorGroup": {
+                            "description": "Color category of the bean",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Detailed description of the bean flavor",
+                            "type": "string"
+                          },
+                          "flavorName": {
+                            "description": "Name of the flavor",
+                            "type": "string"
+                          },
+                          "glutenFree": {
+                            "description": "Indicates if the bean is gluten-free",
+                            "type": "boolean"
+                          },
+                          "groupName": {
+                            "description": "Group or category names the bean belongs to",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "imageUrl": {
+                            "description": "URL to the bean image",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "ingredients": {
+                            "description": "List of ingredients",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "kosher": {
+                            "description": "Indicates if the bean is kosher certified",
+                            "type": "boolean"
+                          },
+                          "sugarFree": {
+                            "description": "Indicates if the bean is sugar-free",
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pageSize": {
+                      "description": "Number of items per page",
+                      "type": "integer"
+                    },
+                    "totalCount": {
+                      "description": "Total number of beans available",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with a list of Jelly Belly beans"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /beans/{beanId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBeanById",
+        "parameters": [
+          {
+            "description": "Unique identifier of the Jelly Belly bean",
+            "in": "path",
+            "name": "beanId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "backgroundColor": {
+                      "description": "Hex color code for the bean's background color",
+                      "type": "string"
+                    },
+                    "beanId": {
+                      "description": "Unique identifier for the bean",
+                      "type": "string"
+                    },
+                    "colorGroup": {
+                      "description": "Color category of the bean",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the bean flavor",
+                      "type": "string"
+                    },
+                    "flavorName": {
+                      "description": "Name of the flavor",
+                      "type": "string"
+                    },
+                    "glutenFree": {
+                      "description": "Indicates if the bean is gluten-free",
+                      "type": "boolean"
+                    },
+                    "groupName": {
+                      "description": "Group or category names the bean belongs to",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "imageUrl": {
+                      "description": "URL to the bean image",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "ingredients": {
+                      "description": "List of ingredients",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kosher": {
+                      "description": "Indicates if the bean is kosher certified",
+                      "type": "boolean"
+                    },
+                    "sugarFree": {
+                      "description": "Indicates if the bean is sugar-free",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with bean details"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bean not found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

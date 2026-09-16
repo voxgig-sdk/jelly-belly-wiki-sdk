@@ -54,5 +54,169 @@
         "totalTime": "s199"
       }
     }
+  },
+  "requests": {
+    "GET /recipes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRecipes",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of items per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "currentPage": {
+                      "description": "Current page number",
+                      "type": "integer"
+                    },
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "cookTime": {
+                            "description": "Cooking time",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Description of the recipe",
+                            "type": "string"
+                          },
+                          "directions": {
+                            "description": "Step-by-step directions",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "imageUrl": {
+                            "description": "URL to the recipe image",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "ingredients": {
+                            "description": "List of ingredients",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "makingAmount": {
+                            "description": "Amount the recipe makes",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name of the recipe",
+                            "type": "string"
+                          },
+                          "prepTime": {
+                            "description": "Preparation time",
+                            "type": "string"
+                          },
+                          "recipeId": {
+                            "description": "Unique identifier for the recipe",
+                            "type": "string"
+                          },
+                          "totalTime": {
+                            "description": "Total time required",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pageSize": {
+                      "description": "Number of items per page",
+                      "type": "integer"
+                    },
+                    "totalCount": {
+                      "description": "Total number of recipes available",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with a list of recipes"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

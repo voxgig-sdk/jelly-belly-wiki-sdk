@@ -51,6 +51,12 @@ main: kit: entity: fact: {
               }
             ]
           }
+          contract: {
+            id: "GET /facts"
+            json: "{\"operationId\":\"getFacts\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"currentPage\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"items\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Full text of the fact\",\"type\":\"string\"},\"factId\":{\"description\":\"Unique identifier for the fact\",\"type\":\"string\"},\"title\":{\"description\":\"Title of the fact\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"pageSize\":{\"description\":\"Number of items per page\",\"type\":\"integer\"},\"totalCount\":{\"description\":\"Total number of facts available\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with a list of Jelly Belly facts\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/facts"
           segments: [

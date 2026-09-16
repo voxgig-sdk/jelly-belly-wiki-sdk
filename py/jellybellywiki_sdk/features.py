@@ -1,12 +1,18 @@
 # JellyBellyWiki SDK feature factory
 
 from jellybellywiki_sdk.feature.base_feature import JellyBellyWikiBaseFeature
+from jellybellywiki_sdk.feature.ratelimit_feature import JellyBellyWikiRatelimitFeature
+from jellybellywiki_sdk.feature.retry_feature import JellyBellyWikiRetryFeature
 from jellybellywiki_sdk.feature.test_feature import JellyBellyWikiTestFeature
+from jellybellywiki_sdk.feature.timeout_feature import JellyBellyWikiTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: JellyBellyWikiBaseFeature(),
+    "ratelimit": lambda: JellyBellyWikiRatelimitFeature(),
+    "retry": lambda: JellyBellyWikiRetryFeature(),
     "test": lambda: JellyBellyWikiTestFeature(),
+    "timeout": lambda: JellyBellyWikiTimeoutFeature(),
 }
 
 
