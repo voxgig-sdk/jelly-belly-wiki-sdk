@@ -127,21 +127,21 @@ class Config {
 
     entity: {
       
-      bean: {
-      },
-
-      combination: {
-      },
-
-      fact: {
-      },
-
-      history: {
-      },
-
-      recipe: {
-      },
-
+        bean: {
+        },
+  
+        combination: {
+        },
+  
+        fact: {
+        },
+  
+        history: {
+        },
+  
+        recipe: {
+        },
+  
     }
   }
 

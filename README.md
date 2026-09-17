@@ -105,12 +105,12 @@ local results, err = client:History():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/jelly-belly-wiki-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
-| Python | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
-| PHP | `voxgig-sdk/jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
+| TypeScript | `@voxgig-sdk/jelly-belly-wiki-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags) |
+| Python | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags) |
+| PHP | `voxgig-sdk/jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/jelly-belly-wiki-sdk/go` | `go get github.com/voxgig-sdk/jelly-belly-wiki-sdk/go@latest` |
-| Ruby | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
-| Lua | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) |
+| Ruby | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags) |
+| Lua | `voxgig-sdk-jelly-belly-wiki` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/jelly-belly-wiki-sdk/go-cli` | `go install github.com/voxgig-sdk/jelly-belly-wiki-sdk/go-cli/cmd/jelly-belly-wiki@latest` |
 | Go MCP server | `github.com/voxgig-sdk/jelly-belly-wiki-sdk/go-mcp` | `go get github.com/voxgig-sdk/jelly-belly-wiki-sdk/go-mcp@latest` |
 

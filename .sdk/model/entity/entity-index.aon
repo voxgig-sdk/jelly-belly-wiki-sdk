@@ -1,7 +1,7 @@
 # Entity Models
 
-@"bean.aon"
-@"combination.aon"
-@"fact.aon"
-@"history.aon"
-@"recipe.aon"
+@"./bean.aon"
+@"./combination.aon"
+@"./fact.aon"
+@"./history.aon"
+@"./recipe.aon"
