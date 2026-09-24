@@ -95,63 +95,75 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "backgroundColor",
-						"short": "Hex color code for the bean's background color",
+						"title": "Background Color",
 						"type": "`$STRING`",
+						"short": "Hex color code for the bean's background color",
 					},
 					map[string]any{
 						"name": "beanId",
-						"short": "Unique identifier for the bean",
+						"title": "Bean Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the bean",
 					},
 					map[string]any{
 						"name": "colorGroup",
-						"short": "Color category of the bean",
+						"title": "Color Group",
 						"type": "`$STRING`",
+						"short": "Color category of the bean",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Detailed description of the bean flavor",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Detailed description of the bean flavor",
 					},
 					map[string]any{
 						"name": "flavorName",
-						"short": "Name of the flavor",
+						"title": "Flavor Name",
 						"type": "`$STRING`",
+						"short": "Name of the flavor",
 					},
 					map[string]any{
 						"name": "glutenFree",
-						"short": "Indicates if the bean is gluten-free",
+						"title": "Gluten Free",
 						"type": "`$BOOLEAN`",
+						"short": "Indicates if the bean is gluten-free",
 					},
 					map[string]any{
 						"name": "groupName",
-						"short": "Group or category names the bean belongs to",
+						"title": "Group Name",
 						"type": "`$ARRAY`",
+						"short": "Group or category names the bean belongs to",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "imageUrl",
-						"short": "URL to the bean image",
+						"title": "Image Url",
 						"type": "`$STRING`",
+						"short": "URL to the bean image",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "ingredients",
-						"short": "List of ingredients",
+						"title": "Ingredients",
 						"type": "`$ARRAY`",
+						"short": "List of ingredients",
 					},
 					map[string]any{
 						"name": "kosher",
-						"short": "Indicates if the bean is kosher certified",
+						"title": "Kosher",
 						"type": "`$BOOLEAN`",
+						"short": "Indicates if the bean is kosher certified",
 					},
 					map[string]any{
 						"name": "sugarFree",
-						"short": "Indicates if the bean is sugar-free",
+						"title": "Sugar Free",
 						"type": "`$BOOLEAN`",
+						"short": "Indicates if the bean is sugar-free",
 					},
 				},
 				"id": map[string]any{
@@ -165,24 +177,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/beans",
@@ -191,18 +185,37 @@ func MakeConfig() map[string]any {
 										"lit": "beans",
 									},
 								},
+								"parts": []any{
+									"beans",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.items`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.items`",
-								},
-								"parts": []any{
-									"beans",
 								},
 							},
 						},
@@ -212,25 +225,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "bean_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/beans/{beanId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"beanId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "beans",
@@ -239,18 +236,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"beans",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"beanId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"beans",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "bean_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -264,23 +277,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "beans",
-						"short": "List of bean flavors in the combination",
+						"title": "Beans",
 						"type": "`$ARRAY`",
+						"short": "List of bean flavors in the combination",
 					},
 					map[string]any{
 						"name": "combinationId",
-						"short": "Unique identifier for the combination",
+						"title": "Combination Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the combination",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Name of the flavor combination",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Name of the flavor combination",
 					},
 					map[string]any{
 						"name": "tag",
-						"short": "Tags associated with the combination",
+						"title": "Tag",
 						"type": "`$ARRAY`",
+						"short": "Tags associated with the combination",
 					},
 				},
 				"name": "combination",
@@ -290,24 +307,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/combinations",
@@ -316,18 +315,37 @@ func MakeConfig() map[string]any {
 										"lit": "combinations",
 									},
 								},
+								"parts": []any{
+									"combinations",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.items`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.items`",
-								},
-								"parts": []any{
-									"combinations",
 								},
 							},
 						},
@@ -341,18 +359,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Full text of the fact",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Full text of the fact",
 					},
 					map[string]any{
 						"name": "factId",
-						"short": "Unique identifier for the fact",
+						"title": "Fact Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the fact",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "Title of the fact",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "Title of the fact",
 					},
 				},
 				"name": "fact",
@@ -362,24 +383,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/facts",
@@ -388,18 +391,37 @@ func MakeConfig() map[string]any {
 										"lit": "facts",
 									},
 								},
+								"parts": []any{
+									"facts",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.items`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.items`",
-								},
-								"parts": []any{
-									"facts",
 								},
 							},
 						},
@@ -413,18 +435,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Description of the historical event",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the historical event",
 					},
 					map[string]any{
 						"name": "historyId",
-						"short": "Unique identifier for the history entry",
+						"title": "History Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the history entry",
 					},
 					map[string]any{
 						"name": "year",
-						"short": "Year of the historical event",
+						"title": "Year",
 						"type": "`$INTEGER`",
+						"short": "Year of the historical event",
 					},
 				},
 				"name": "history",
@@ -434,7 +459,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/history",
@@ -443,14 +467,16 @@ func MakeConfig() map[string]any {
 										"lit": "history",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"history",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.items`",
 								},
-								"parts": []any{
-									"history",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -463,54 +489,64 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cookTime",
-						"short": "Cooking time",
+						"title": "Cook Time",
 						"type": "`$STRING`",
+						"short": "Cooking time",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the recipe",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the recipe",
 					},
 					map[string]any{
 						"name": "directions",
-						"short": "Step-by-step directions",
+						"title": "Directions",
 						"type": "`$ARRAY`",
+						"short": "Step-by-step directions",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "imageUrl",
-						"short": "URL to the recipe image",
+						"title": "Image Url",
 						"type": "`$STRING`",
+						"short": "URL to the recipe image",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "ingredients",
-						"short": "List of ingredients",
+						"title": "Ingredients",
 						"type": "`$ARRAY`",
+						"short": "List of ingredients",
 					},
 					map[string]any{
 						"name": "makingAmount",
-						"short": "Amount the recipe makes",
+						"title": "Making Amount",
 						"type": "`$STRING`",
+						"short": "Amount the recipe makes",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Name of the recipe",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Name of the recipe",
 					},
 					map[string]any{
 						"name": "prepTime",
-						"short": "Preparation time",
+						"title": "Prep Time",
 						"type": "`$STRING`",
+						"short": "Preparation time",
 					},
 					map[string]any{
 						"name": "recipeId",
-						"short": "Unique identifier for the recipe",
+						"title": "Recipe Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the recipe",
 					},
 					map[string]any{
 						"name": "totalTime",
-						"short": "Total time required",
+						"title": "Total Time",
 						"type": "`$STRING`",
+						"short": "Total time required",
 					},
 				},
 				"name": "recipe",
@@ -520,24 +556,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/recipes",
@@ -546,18 +564,37 @@ func MakeConfig() map[string]any {
 										"lit": "recipes",
 									},
 								},
+								"parts": []any{
+									"recipes",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.items`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.items`",
-								},
-								"parts": []any{
-									"recipes",
 								},
 							},
 						},

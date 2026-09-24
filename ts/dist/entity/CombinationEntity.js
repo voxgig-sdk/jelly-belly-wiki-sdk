@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CombinationEntity = void 0;
 const JellyBellyWikiEntityBase_1 = require("../JellyBellyWikiEntityBase");
-// TODO: needs Entity superclass
 class CombinationEntity extends JellyBellyWikiEntityBase_1.JellyBellyWikiEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

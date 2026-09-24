@@ -19,7 +19,6 @@ import type {
   HistoryListMatch,
 } from '../JellyBellyWikiTypes'
 
-// TODO: needs Entity superclass
 class HistoryEntity extends JellyBellyWikiEntityBase<History> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {

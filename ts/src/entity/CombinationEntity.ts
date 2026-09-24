@@ -19,7 +19,6 @@ import type {
   CombinationListMatch,
 } from '../JellyBellyWikiTypes'
 
-// TODO: needs Entity superclass
 class CombinationEntity extends JellyBellyWikiEntityBase<Combination> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {

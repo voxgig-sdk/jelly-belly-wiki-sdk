@@ -1,0 +1,44 @@
+# BasicBeanFlow
+
+main: kit: flow: BasicBeanFlow:
+{
+  entity: "bean",
+  kind: "basic",
+  name: "BasicBeanFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "bean_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "bean_ref01",
+        srcdatavar: "bean_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "bean01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-bean_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBeanFlow"
+}

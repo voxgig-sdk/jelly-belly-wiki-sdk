@@ -1,0 +1,136 @@
+# Entity: recipe
+
+main: kit: entity: recipe: {
+
+  alias: field: {}
+
+  fields: {
+    cookTime: {
+      h: "Cook Time"
+      n: "cookTime"
+      r: false
+      sh: "Cooking time"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description of the recipe"
+      t: "`$STRING`"
+    }
+    directions: {
+      h: "Directions"
+      n: "directions"
+      r: false
+      sh: "Step-by-step directions"
+      t: "`$ARRAY`"
+    }
+    imageUrl: {
+      fo: "uri"
+      h: "Image Url"
+      n: "imageUrl"
+      r: false
+      sh: "URL to the recipe image"
+      t: "`$STRING`"
+    }
+    ingredients: {
+      h: "Ingredients"
+      n: "ingredients"
+      r: false
+      sh: "List of ingredients"
+      t: "`$ARRAY`"
+    }
+    makingAmount: {
+      h: "Making Amount"
+      n: "makingAmount"
+      r: false
+      sh: "Amount the recipe makes"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the recipe"
+      t: "`$STRING`"
+    }
+    prepTime: {
+      h: "Prep Time"
+      n: "prepTime"
+      r: false
+      sh: "Preparation time"
+      t: "`$STRING`"
+    }
+    recipeId: {
+      h: "Recipe Id"
+      n: "recipeId"
+      r: false
+      sh: "Unique identifier for the recipe"
+      t: "`$STRING`"
+    }
+    totalTime: {
+      h: "Total Time"
+      n: "totalTime"
+      r: false
+      sh: "Total time required"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "recipe"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /recipes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 10
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/recipes"
+          q: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          s: [
+            {
+              lit: "recipes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

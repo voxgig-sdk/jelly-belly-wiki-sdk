@@ -43,7 +43,7 @@ local beans, err = client:Bean():list()
 if err then error(err) end
 
 for _, item in ipairs(beans) do
-  print(item["id"], item["backgroundColor"])
+  print(item["id"])
 end
 ```
 

@@ -19,7 +19,6 @@ import type {
   FactListMatch,
 } from '../JellyBellyWikiTypes'
 
-// TODO: needs Entity superclass
 class FactEntity extends JellyBellyWikiEntityBase<Fact> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {

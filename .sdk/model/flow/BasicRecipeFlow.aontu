@@ -1,0 +1,22 @@
+# BasicRecipeFlow
+
+main: kit: flow: BasicRecipeFlow:
+{
+  entity: "recipe",
+  kind: "basic",
+  name: "BasicRecipeFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "recipe_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRecipeFlow"
+}

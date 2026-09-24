@@ -1,0 +1,201 @@
+# Entity: bean
+
+main: kit: entity: bean: {
+
+  alias: field: {}
+
+  fields: {
+    backgroundColor: {
+      h: "Background Color"
+      n: "backgroundColor"
+      r: false
+      sh: "Hex color code for the bean's background color"
+      t: "`$STRING`"
+    }
+    beanId: {
+      h: "Bean Id"
+      n: "beanId"
+      r: false
+      sh: "Unique identifier for the bean"
+      t: "`$STRING`"
+    }
+    colorGroup: {
+      h: "Color Group"
+      n: "colorGroup"
+      r: false
+      sh: "Color category of the bean"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Detailed description of the bean flavor"
+      t: "`$STRING`"
+    }
+    flavorName: {
+      h: "Flavor Name"
+      n: "flavorName"
+      r: false
+      sh: "Name of the flavor"
+      t: "`$STRING`"
+    }
+    glutenFree: {
+      h: "Gluten Free"
+      n: "glutenFree"
+      r: false
+      sh: "Indicates if the bean is gluten-free"
+      t: "`$BOOLEAN`"
+    }
+    groupName: {
+      h: "Group Name"
+      n: "groupName"
+      r: false
+      sh: "Group or category names the bean belongs to"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    imageUrl: {
+      fo: "uri"
+      h: "Image Url"
+      n: "imageUrl"
+      r: false
+      sh: "URL to the bean image"
+      t: "`$STRING`"
+    }
+    ingredients: {
+      h: "Ingredients"
+      n: "ingredients"
+      r: false
+      sh: "List of ingredients"
+      t: "`$ARRAY`"
+    }
+    kosher: {
+      h: "Kosher"
+      n: "kosher"
+      r: false
+      sh: "Indicates if the bean is kosher certified"
+      t: "`$BOOLEAN`"
+    }
+    sugarFree: {
+      h: "Sugar Free"
+      n: "sugarFree"
+      r: false
+      sh: "Indicates if the bean is sugar-free"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bean"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /beans"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 10
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/beans"
+          q: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          s: [
+            {
+              lit: "beans"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /beans/{beanId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "bean_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/beans/{beanId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              beanId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "beans"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

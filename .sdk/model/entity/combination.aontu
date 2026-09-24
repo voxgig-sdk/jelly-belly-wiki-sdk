@@ -1,0 +1,93 @@
+# Entity: combination
+
+main: kit: entity: combination: {
+
+  alias: field: {}
+
+  fields: {
+    beans: {
+      h: "Beans"
+      n: "beans"
+      r: false
+      sh: "List of bean flavors in the combination"
+      t: "`$ARRAY`"
+    }
+    combinationId: {
+      h: "Combination Id"
+      n: "combinationId"
+      r: false
+      sh: "Unique identifier for the combination"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the flavor combination"
+      t: "`$STRING`"
+    }
+    tag: {
+      h: "Tag"
+      n: "tag"
+      r: false
+      sh: "Tags associated with the combination"
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "combination"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /combinations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 10
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/combinations"
+          q: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          s: [
+            {
+              lit: "combinations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

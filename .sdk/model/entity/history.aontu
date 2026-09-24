@@ -1,0 +1,60 @@
+# Entity: history
+
+main: kit: entity: history: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description of the historical event"
+      t: "`$STRING`"
+    }
+    historyId: {
+      h: "History Id"
+      n: "historyId"
+      r: false
+      sh: "Unique identifier for the history entry"
+      t: "`$STRING`"
+    }
+    year: {
+      h: "Year"
+      n: "year"
+      r: false
+      sh: "Year of the historical event"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "history"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /history"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/history"
+          s: [
+            {
+              lit: "history"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

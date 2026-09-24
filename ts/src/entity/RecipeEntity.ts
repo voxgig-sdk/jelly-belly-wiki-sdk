@@ -19,7 +19,6 @@ import type {
   RecipeListMatch,
 } from '../JellyBellyWikiTypes'
 
-// TODO: needs Entity superclass
 class RecipeEntity extends JellyBellyWikiEntityBase<Recipe> {
 
   constructor(client: JellyBellyWikiSDK, entopts: any) {

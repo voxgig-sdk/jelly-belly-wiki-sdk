@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -118,63 +111,75 @@ class Config {
             "fields": [
                 {
                     "name": "backgroundColor",
-                    "short": "Hex color code for the bean's background color",
-                    "type": "`$STRING`"
+                    "title": "Background Color",
+                    "type": "`$STRING`",
+                    "short": "Hex color code for the bean's background color"
                 },
                 {
                     "name": "beanId",
-                    "short": "Unique identifier for the bean",
-                    "type": "`$STRING`"
+                    "title": "Bean Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the bean"
                 },
                 {
                     "name": "colorGroup",
-                    "short": "Color category of the bean",
-                    "type": "`$STRING`"
+                    "title": "Color Group",
+                    "type": "`$STRING`",
+                    "short": "Color category of the bean"
                 },
                 {
                     "name": "description",
-                    "short": "Detailed description of the bean flavor",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Detailed description of the bean flavor"
                 },
                 {
                     "name": "flavorName",
-                    "short": "Name of the flavor",
-                    "type": "`$STRING`"
+                    "title": "Flavor Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the flavor"
                 },
                 {
                     "name": "glutenFree",
-                    "short": "Indicates if the bean is gluten-free",
-                    "type": "`$BOOLEAN`"
+                    "title": "Gluten Free",
+                    "type": "`$BOOLEAN`",
+                    "short": "Indicates if the bean is gluten-free"
                 },
                 {
                     "name": "groupName",
-                    "short": "Group or category names the bean belongs to",
-                    "type": "`$ARRAY`"
+                    "title": "Group Name",
+                    "type": "`$ARRAY`",
+                    "short": "Group or category names the bean belongs to"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "uri",
                     "name": "imageUrl",
+                    "title": "Image Url",
+                    "type": "`$STRING`",
                     "short": "URL to the bean image",
-                    "type": "`$STRING`"
+                    "format": "uri"
                 },
                 {
                     "name": "ingredients",
-                    "short": "List of ingredients",
-                    "type": "`$ARRAY`"
+                    "title": "Ingredients",
+                    "type": "`$ARRAY`",
+                    "short": "List of ingredients"
                 },
                 {
                     "name": "kosher",
-                    "short": "Indicates if the bean is kosher certified",
-                    "type": "`$BOOLEAN`"
+                    "title": "Kosher",
+                    "type": "`$BOOLEAN`",
+                    "short": "Indicates if the bean is kosher certified"
                 },
                 {
                     "name": "sugarFree",
-                    "short": "Indicates if the bean is sugar-free",
-                    "type": "`$BOOLEAN`"
+                    "title": "Sugar Free",
+                    "type": "`$BOOLEAN`",
+                    "short": "Indicates if the bean is sugar-free"
                 }
             ],
             "id": {
@@ -188,24 +193,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/beans",
@@ -214,19 +201,38 @@ class Config {
                                     "lit": "beans"
                                 }
                             ],
+                            "parts": [
+                                "beans"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "limit",
                                     "page"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "beans"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -235,25 +241,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "bean_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/beans/{beanId}",
-                            "rename": {
-                                "param": {
-                                    "beanId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "beans"
@@ -262,19 +252,35 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
+                            "parts": [
+                                "beans",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "beanId": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "beans",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "bean_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -287,23 +293,27 @@ class Config {
             "fields": [
                 {
                     "name": "beans",
-                    "short": "List of bean flavors in the combination",
-                    "type": "`$ARRAY`"
+                    "title": "Beans",
+                    "type": "`$ARRAY`",
+                    "short": "List of bean flavors in the combination"
                 },
                 {
                     "name": "combinationId",
-                    "short": "Unique identifier for the combination",
-                    "type": "`$STRING`"
+                    "title": "Combination Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the combination"
                 },
                 {
                     "name": "name",
-                    "short": "Name of the flavor combination",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the flavor combination"
                 },
                 {
                     "name": "tag",
-                    "short": "Tags associated with the combination",
-                    "type": "`$ARRAY`"
+                    "title": "Tag",
+                    "type": "`$ARRAY`",
+                    "short": "Tags associated with the combination"
                 }
             ],
             "name": "combination",
@@ -313,24 +323,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/combinations",
@@ -339,19 +331,38 @@ class Config {
                                     "lit": "combinations"
                                 }
                             ],
+                            "parts": [
+                                "combinations"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "limit",
                                     "page"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "combinations"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -364,18 +375,21 @@ class Config {
             "fields": [
                 {
                     "name": "description",
-                    "short": "Full text of the fact",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Full text of the fact"
                 },
                 {
                     "name": "factId",
-                    "short": "Unique identifier for the fact",
-                    "type": "`$STRING`"
+                    "title": "Fact Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the fact"
                 },
                 {
                     "name": "title",
-                    "short": "Title of the fact",
-                    "type": "`$STRING`"
+                    "title": "Title",
+                    "type": "`$STRING`",
+                    "short": "Title of the fact"
                 }
             ],
             "name": "fact",
@@ -385,24 +399,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/facts",
@@ -411,19 +407,38 @@ class Config {
                                     "lit": "facts"
                                 }
                             ],
+                            "parts": [
+                                "facts"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "limit",
                                     "page"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "facts"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -436,18 +451,21 @@ class Config {
             "fields": [
                 {
                     "name": "description",
-                    "short": "Description of the historical event",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Description of the historical event"
                 },
                 {
                     "name": "historyId",
-                    "short": "Unique identifier for the history entry",
-                    "type": "`$STRING`"
+                    "title": "History Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the history entry"
                 },
                 {
                     "name": "year",
-                    "short": "Year of the historical event",
-                    "type": "`$INTEGER`"
+                    "title": "Year",
+                    "type": "`$INTEGER`",
+                    "short": "Year of the historical event"
                 }
             ],
             "name": "history",
@@ -457,7 +475,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/history",
@@ -466,14 +483,16 @@ class Config {
                                     "lit": "history"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "history"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.items`"
                             },
-                            "parts": [
-                                "history"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -486,54 +505,64 @@ class Config {
             "fields": [
                 {
                     "name": "cookTime",
-                    "short": "Cooking time",
-                    "type": "`$STRING`"
+                    "title": "Cook Time",
+                    "type": "`$STRING`",
+                    "short": "Cooking time"
                 },
                 {
                     "name": "description",
-                    "short": "Description of the recipe",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Description of the recipe"
                 },
                 {
                     "name": "directions",
-                    "short": "Step-by-step directions",
-                    "type": "`$ARRAY`"
+                    "title": "Directions",
+                    "type": "`$ARRAY`",
+                    "short": "Step-by-step directions"
                 },
                 {
-                    "format": "uri",
                     "name": "imageUrl",
+                    "title": "Image Url",
+                    "type": "`$STRING`",
                     "short": "URL to the recipe image",
-                    "type": "`$STRING`"
+                    "format": "uri"
                 },
                 {
                     "name": "ingredients",
-                    "short": "List of ingredients",
-                    "type": "`$ARRAY`"
+                    "title": "Ingredients",
+                    "type": "`$ARRAY`",
+                    "short": "List of ingredients"
                 },
                 {
                     "name": "makingAmount",
-                    "short": "Amount the recipe makes",
-                    "type": "`$STRING`"
+                    "title": "Making Amount",
+                    "type": "`$STRING`",
+                    "short": "Amount the recipe makes"
                 },
                 {
                     "name": "name",
-                    "short": "Name of the recipe",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the recipe"
                 },
                 {
                     "name": "prepTime",
-                    "short": "Preparation time",
-                    "type": "`$STRING`"
+                    "title": "Prep Time",
+                    "type": "`$STRING`",
+                    "short": "Preparation time"
                 },
                 {
                     "name": "recipeId",
-                    "short": "Unique identifier for the recipe",
-                    "type": "`$STRING`"
+                    "title": "Recipe Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the recipe"
                 },
                 {
                     "name": "totalTime",
-                    "short": "Total time required",
-                    "type": "`$STRING`"
+                    "title": "Total Time",
+                    "type": "`$STRING`",
+                    "short": "Total time required"
                 }
             ],
             "name": "recipe",
@@ -543,24 +572,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/recipes",
@@ -569,19 +580,38 @@ class Config {
                                     "lit": "recipes"
                                 }
                             ],
+                            "parts": [
+                                "recipes"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "limit",
                                     "page"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "recipes"
-                            ]
+                            }
                         }
                     ]
                 }

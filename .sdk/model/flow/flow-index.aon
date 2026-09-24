@@ -1,7 +1,0 @@
-# Flows
-
-@"./BasicBeanFlow.aon"
-@"./BasicCombinationFlow.aon"
-@"./BasicFactFlow.aon"
-@"./BasicHistoryFlow.aon"
-@"./BasicRecipeFlow.aon"

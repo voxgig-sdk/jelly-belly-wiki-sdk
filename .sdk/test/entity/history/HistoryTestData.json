@@ -30,70 +30,8 @@
   "requests": {
     "GET /history": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getHistory",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "items": {
-                      "items": {
-                        "properties": {
-                          "description": {
-                            "description": "Description of the historical event",
-                            "type": "string"
-                          },
-                          "historyId": {
-                            "description": "Unique identifier for the history entry",
-                            "type": "string"
-                          },
-                          "year": {
-                            "description": "Year of the historical event",
-                            "type": "integer"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "type": "array"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Successful response with historical information"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "error": {
-                      "description": "Error message",
-                      "type": "string"
-                    },
-                    "message": {
-                      "description": "Detailed error description",
-                      "type": "string"
-                    },
-                    "statusCode": {
-                      "description": "HTTP status code",
-                      "type": "integer"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Internal server error"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

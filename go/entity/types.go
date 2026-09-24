@@ -1,7 +1,7 @@
 // Typed models for the JellyBellyWiki SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,18 +14,6 @@ import (
 
 // Bean is the typed data model for the bean entity.
 type Bean struct {
-	BackgroundColor *string `json:"backgroundColor,omitempty"`
-	BeanId *string `json:"beanId,omitempty"`
-	ColorGroup *string `json:"colorGroup,omitempty"`
-	Description *string `json:"description,omitempty"`
-	FlavorName *string `json:"flavorName,omitempty"`
-	GlutenFree *bool `json:"glutenFree,omitempty"`
-	GroupName *[]any `json:"groupName,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Ingredients *[]any `json:"ingredients,omitempty"`
-	Kosher *bool `json:"kosher,omitempty"`
-	SugarFree *bool `json:"sugarFree,omitempty"`
 }
 
 // BeanLoadMatch is the typed request payload for Bean.LoadTyped.
@@ -41,10 +29,6 @@ type BeanListMatch struct {
 
 // Combination is the typed data model for the combination entity.
 type Combination struct {
-	Beans *[]any `json:"beans,omitempty"`
-	CombinationId *string `json:"combinationId,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Tag *[]any `json:"tag,omitempty"`
 }
 
 // CombinationListMatch is the typed request payload for Combination.ListTyped.
@@ -55,9 +39,6 @@ type CombinationListMatch struct {
 
 // Fact is the typed data model for the fact entity.
 type Fact struct {
-	Description *string `json:"description,omitempty"`
-	FactId *string `json:"factId,omitempty"`
-	Title *string `json:"title,omitempty"`
 }
 
 // FactListMatch is the typed request payload for Fact.ListTyped.
@@ -68,9 +49,6 @@ type FactListMatch struct {
 
 // History is the typed data model for the history entity.
 type History struct {
-	Description *string `json:"description,omitempty"`
-	HistoryId *string `json:"historyId,omitempty"`
-	Year *int `json:"year,omitempty"`
 }
 
 // HistoryListMatch is the typed request payload for History.ListTyped.
@@ -82,16 +60,6 @@ type HistoryListMatch struct {
 
 // Recipe is the typed data model for the recipe entity.
 type Recipe struct {
-	CookTime *string `json:"cookTime,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Directions *[]any `json:"directions,omitempty"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Ingredients *[]any `json:"ingredients,omitempty"`
-	MakingAmount *string `json:"makingAmount,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PrepTime *string `json:"prepTime,omitempty"`
-	RecipeId *string `json:"recipeId,omitempty"`
-	TotalTime *string `json:"totalTime,omitempty"`
 }
 
 // RecipeListMatch is the typed request payload for Recipe.ListTyped.

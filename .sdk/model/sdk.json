@@ -24,98 +24,176 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "bean": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "backgroundColor",
-              "req": false,
-              "short": "Hex color code for the bean's background color",
-              "type": "`$STRING`"
+          "fields": {
+            "backgroundColor": {
+              "a": true,
+              "h": "Background Color",
+              "n": "backgroundColor",
+              "r": false,
+              "sh": "Hex color code for the bean's background color",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "beanId",
-              "req": false,
-              "short": "Unique identifier for the bean",
-              "type": "`$STRING`"
+            "beanId": {
+              "a": true,
+              "h": "Bean Id",
+              "n": "beanId",
+              "r": false,
+              "sh": "Unique identifier for the bean",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "colorGroup",
-              "req": false,
-              "short": "Color category of the bean",
-              "type": "`$STRING`"
+            "colorGroup": {
+              "a": true,
+              "h": "Color Group",
+              "n": "colorGroup",
+              "r": false,
+              "sh": "Color category of the bean",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Detailed description of the bean flavor",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Detailed description of the bean flavor",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "flavorName",
-              "req": false,
-              "short": "Name of the flavor",
-              "type": "`$STRING`"
+            "flavorName": {
+              "a": true,
+              "h": "Flavor Name",
+              "n": "flavorName",
+              "r": false,
+              "sh": "Name of the flavor",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "glutenFree",
-              "req": false,
-              "short": "Indicates if the bean is gluten-free",
-              "type": "`$BOOLEAN`"
+            "glutenFree": {
+              "a": true,
+              "h": "Gluten Free",
+              "n": "glutenFree",
+              "r": false,
+              "sh": "Indicates if the bean is gluten-free",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "groupName",
-              "req": false,
-              "short": "Group or category names the bean belongs to",
-              "type": "`$ARRAY`"
+            "groupName": {
+              "a": true,
+              "h": "Group Name",
+              "n": "groupName",
+              "r": false,
+              "sh": "Group or category names the bean belongs to",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "imageUrl",
-              "req": false,
-              "short": "URL to the bean image",
-              "type": "`$STRING`"
+            "imageUrl": {
+              "a": true,
+              "fo": "uri",
+              "h": "Image Url",
+              "n": "imageUrl",
+              "r": false,
+              "sh": "URL to the bean image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ingredients",
-              "req": false,
-              "short": "List of ingredients",
-              "type": "`$ARRAY`"
+            "ingredients": {
+              "a": true,
+              "h": "Ingredients",
+              "n": "ingredients",
+              "r": false,
+              "sh": "List of ingredients",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "kosher",
-              "req": false,
-              "short": "Indicates if the bean is kosher certified",
-              "type": "`$BOOLEAN`"
+            "kosher": {
+              "a": true,
+              "h": "Kosher",
+              "n": "kosher",
+              "r": false,
+              "sh": "Indicates if the bean is kosher certified",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "sugarFree",
-              "req": false,
-              "short": "Indicates if the bean is sugar-free",
-              "type": "`$BOOLEAN`"
+            "sugarFree": {
+              "a": true,
+              "h": "Sugar Free",
+              "n": "sugarFree",
+              "r": false,
+              "sh": "Indicates if the bean is sugar-free",
+              "t": "`$BOOLEAN`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -127,50 +205,50 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /beans",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 10,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 10,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /beans",
-                    "json": "{\"operationId\":\"getBeans\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"currentPage\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"items\":{\"items\":{\"properties\":{\"backgroundColor\":{\"description\":\"Hex color code for the bean's background color\",\"type\":\"string\"},\"beanId\":{\"description\":\"Unique identifier for the bean\",\"type\":\"string\"},\"colorGroup\":{\"description\":\"Color category of the bean\",\"type\":\"string\"},\"description\":{\"description\":\"Detailed description of the bean flavor\",\"type\":\"string\"},\"flavorName\":{\"description\":\"Name of the flavor\",\"type\":\"string\"},\"glutenFree\":{\"description\":\"Indicates if the bean is gluten-free\",\"type\":\"boolean\"},\"groupName\":{\"description\":\"Group or category names the bean belongs to\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"imageUrl\":{\"description\":\"URL to the bean image\",\"format\":\"uri\",\"type\":\"string\"},\"ingredients\":{\"description\":\"List of ingredients\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kosher\":{\"description\":\"Indicates if the bean is kosher certified\",\"type\":\"boolean\"},\"sugarFree\":{\"description\":\"Indicates if the bean is sugar-free\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"pageSize\":{\"description\":\"Number of items per page\",\"type\":\"integer\"},\"totalCount\":{\"description\":\"Total number of beans available\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with a list of Jelly Belly beans\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/beans",
-                  "segments": [
-                    {
-                      "lit": "beans"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/beans",
+                  "q": {
                     "exist": [
                       "limit",
                       "page"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "beans"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.items`"
                   }
@@ -182,34 +260,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /beans/{beanId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "bean_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "bean_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /beans/{beanId}",
-                    "json": "{\"operationId\":\"getBeanById\",\"parameters\":[{\"description\":\"Unique identifier of the Jelly Belly bean\",\"in\":\"path\",\"name\":\"beanId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"backgroundColor\":{\"description\":\"Hex color code for the bean's background color\",\"type\":\"string\"},\"beanId\":{\"description\":\"Unique identifier for the bean\",\"type\":\"string\"},\"colorGroup\":{\"description\":\"Color category of the bean\",\"type\":\"string\"},\"description\":{\"description\":\"Detailed description of the bean flavor\",\"type\":\"string\"},\"flavorName\":{\"description\":\"Name of the flavor\",\"type\":\"string\"},\"glutenFree\":{\"description\":\"Indicates if the bean is gluten-free\",\"type\":\"boolean\"},\"groupName\":{\"description\":\"Group or category names the bean belongs to\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"imageUrl\":{\"description\":\"URL to the bean image\",\"format\":\"uri\",\"type\":\"string\"},\"ingredients\":{\"description\":\"List of ingredients\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kosher\":{\"description\":\"Indicates if the bean is kosher certified\",\"type\":\"boolean\"},\"sugarFree\":{\"description\":\"Indicates if the bean is sugar-free\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with bean details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bean not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/beans/{beanId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/beans/{beanId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "beanId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "beans"
                     },
@@ -217,12 +299,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -239,36 +316,40 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "beans",
-              "req": false,
-              "short": "List of bean flavors in the combination",
-              "type": "`$ARRAY`"
+          "fields": {
+            "beans": {
+              "a": true,
+              "h": "Beans",
+              "n": "beans",
+              "r": false,
+              "sh": "List of bean flavors in the combination",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "combinationId",
-              "req": false,
-              "short": "Unique identifier for the combination",
-              "type": "`$STRING`"
+            "combinationId": {
+              "a": true,
+              "h": "Combination Id",
+              "n": "combinationId",
+              "r": false,
+              "sh": "Unique identifier for the combination",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Name of the flavor combination",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Name of the flavor combination",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "tag",
-              "req": false,
-              "short": "Tags associated with the combination",
-              "type": "`$ARRAY`"
+            "tag": {
+              "a": true,
+              "h": "Tag",
+              "n": "tag",
+              "r": false,
+              "sh": "Tags associated with the combination",
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "combination",
           "op": {
             "list": {
@@ -276,50 +357,50 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /combinations",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 10,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 10,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /combinations",
-                    "json": "{\"operationId\":\"getCombinations\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"currentPage\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"items\":{\"items\":{\"properties\":{\"beans\":{\"description\":\"List of bean flavors in the combination\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"combinationId\":{\"description\":\"Unique identifier for the combination\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the flavor combination\",\"type\":\"string\"},\"tag\":{\"description\":\"Tags associated with the combination\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"pageSize\":{\"description\":\"Number of items per page\",\"type\":\"integer\"},\"totalCount\":{\"description\":\"Total number of combinations available\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with a list of flavor combinations\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/combinations",
-                  "segments": [
-                    {
-                      "lit": "combinations"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/combinations",
+                  "q": {
                     "exist": [
                       "limit",
                       "page"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "combinations"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.items`"
                   }
@@ -336,29 +417,32 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Full text of the fact",
-              "type": "`$STRING`"
+          "fields": {
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Full text of the fact",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "factId",
-              "req": false,
-              "short": "Unique identifier for the fact",
-              "type": "`$STRING`"
+            "factId": {
+              "a": true,
+              "h": "Fact Id",
+              "n": "factId",
+              "r": false,
+              "sh": "Unique identifier for the fact",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Title of the fact",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "Title of the fact",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "fact",
           "op": {
             "list": {
@@ -366,50 +450,50 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /facts",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 10,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 10,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /facts",
-                    "json": "{\"operationId\":\"getFacts\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"currentPage\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"items\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Full text of the fact\",\"type\":\"string\"},\"factId\":{\"description\":\"Unique identifier for the fact\",\"type\":\"string\"},\"title\":{\"description\":\"Title of the fact\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"pageSize\":{\"description\":\"Number of items per page\",\"type\":\"integer\"},\"totalCount\":{\"description\":\"Total number of facts available\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with a list of Jelly Belly facts\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/facts",
-                  "segments": [
-                    {
-                      "lit": "facts"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/facts",
+                  "q": {
                     "exist": [
                       "limit",
                       "page"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "facts"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.items`"
                   }
@@ -426,29 +510,32 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Description of the historical event",
-              "type": "`$STRING`"
+          "fields": {
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Description of the historical event",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "historyId",
-              "req": false,
-              "short": "Unique identifier for the history entry",
-              "type": "`$STRING`"
+            "historyId": {
+              "a": true,
+              "h": "History Id",
+              "n": "historyId",
+              "r": false,
+              "sh": "Unique identifier for the history entry",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "year",
-              "req": false,
-              "short": "Year of the historical event",
-              "type": "`$INTEGER`"
+            "year": {
+              "a": true,
+              "h": "Year",
+              "n": "year",
+              "r": false,
+              "sh": "Year of the historical event",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "history",
           "op": {
             "list": {
@@ -456,24 +543,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /history",
-                    "json": "{\"operationId\":\"getHistory\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Description of the historical event\",\"type\":\"string\"},\"historyId\":{\"description\":\"Unique identifier for the history entry\",\"type\":\"string\"},\"year\":{\"description\":\"Year of the historical event\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with historical information\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/history",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/history",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "history"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.items`"
                   }
@@ -490,79 +577,89 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "cookTime",
-              "req": false,
-              "short": "Cooking time",
-              "type": "`$STRING`"
+          "fields": {
+            "cookTime": {
+              "a": true,
+              "h": "Cook Time",
+              "n": "cookTime",
+              "r": false,
+              "sh": "Cooking time",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Description of the recipe",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Description of the recipe",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "directions",
-              "req": false,
-              "short": "Step-by-step directions",
-              "type": "`$ARRAY`"
+            "directions": {
+              "a": true,
+              "h": "Directions",
+              "n": "directions",
+              "r": false,
+              "sh": "Step-by-step directions",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "imageUrl",
-              "req": false,
-              "short": "URL to the recipe image",
-              "type": "`$STRING`"
+            "imageUrl": {
+              "a": true,
+              "fo": "uri",
+              "h": "Image Url",
+              "n": "imageUrl",
+              "r": false,
+              "sh": "URL to the recipe image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ingredients",
-              "req": false,
-              "short": "List of ingredients",
-              "type": "`$ARRAY`"
+            "ingredients": {
+              "a": true,
+              "h": "Ingredients",
+              "n": "ingredients",
+              "r": false,
+              "sh": "List of ingredients",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "makingAmount",
-              "req": false,
-              "short": "Amount the recipe makes",
-              "type": "`$STRING`"
+            "makingAmount": {
+              "a": true,
+              "h": "Making Amount",
+              "n": "makingAmount",
+              "r": false,
+              "sh": "Amount the recipe makes",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Name of the recipe",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Name of the recipe",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "prepTime",
-              "req": false,
-              "short": "Preparation time",
-              "type": "`$STRING`"
+            "prepTime": {
+              "a": true,
+              "h": "Prep Time",
+              "n": "prepTime",
+              "r": false,
+              "sh": "Preparation time",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "recipeId",
-              "req": false,
-              "short": "Unique identifier for the recipe",
-              "type": "`$STRING`"
+            "recipeId": {
+              "a": true,
+              "h": "Recipe Id",
+              "n": "recipeId",
+              "r": false,
+              "sh": "Unique identifier for the recipe",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "totalTime",
-              "req": false,
-              "short": "Total time required",
-              "type": "`$STRING`"
+            "totalTime": {
+              "a": true,
+              "h": "Total Time",
+              "n": "totalTime",
+              "r": false,
+              "sh": "Total time required",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "recipe",
           "op": {
             "list": {
@@ -570,50 +667,50 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /recipes",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 10,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 10,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /recipes",
-                    "json": "{\"operationId\":\"getRecipes\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"currentPage\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"items\":{\"items\":{\"properties\":{\"cookTime\":{\"description\":\"Cooking time\",\"type\":\"string\"},\"description\":{\"description\":\"Description of the recipe\",\"type\":\"string\"},\"directions\":{\"description\":\"Step-by-step directions\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"imageUrl\":{\"description\":\"URL to the recipe image\",\"format\":\"uri\",\"type\":\"string\"},\"ingredients\":{\"description\":\"List of ingredients\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"makingAmount\":{\"description\":\"Amount the recipe makes\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the recipe\",\"type\":\"string\"},\"prepTime\":{\"description\":\"Preparation time\",\"type\":\"string\"},\"recipeId\":{\"description\":\"Unique identifier for the recipe\",\"type\":\"string\"},\"totalTime\":{\"description\":\"Total time required\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"pageSize\":{\"description\":\"Number of items per page\",\"type\":\"integer\"},\"totalCount\":{\"description\":\"Total number of recipes available\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with a list of recipes\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/recipes",
-                  "segments": [
-                    {
-                      "lit": "recipes"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/recipes",
+                  "q": {
                     "exist": [
                       "limit",
                       "page"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "recipes"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.items`"
                   }
@@ -1042,13 +1139,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1058,19 +1155,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "bean_ref01",
                 "srcdatavar": "bean_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "bean01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1090,13 +1187,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1116,13 +1213,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1142,13 +1239,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1168,13 +1265,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

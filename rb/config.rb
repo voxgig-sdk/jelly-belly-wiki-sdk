@@ -103,63 +103,75 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "name" => "backgroundColor",
-              "short" => "Hex color code for the bean's background color",
+              "title" => "Background Color",
               "type" => "`$STRING`",
+              "short" => "Hex color code for the bean's background color",
             },
             {
               "name" => "beanId",
-              "short" => "Unique identifier for the bean",
+              "title" => "Bean Id",
               "type" => "`$STRING`",
+              "short" => "Unique identifier for the bean",
             },
             {
               "name" => "colorGroup",
-              "short" => "Color category of the bean",
+              "title" => "Color Group",
               "type" => "`$STRING`",
+              "short" => "Color category of the bean",
             },
             {
               "name" => "description",
-              "short" => "Detailed description of the bean flavor",
+              "title" => "Description",
               "type" => "`$STRING`",
+              "short" => "Detailed description of the bean flavor",
             },
             {
               "name" => "flavorName",
-              "short" => "Name of the flavor",
+              "title" => "Flavor Name",
               "type" => "`$STRING`",
+              "short" => "Name of the flavor",
             },
             {
               "name" => "glutenFree",
-              "short" => "Indicates if the bean is gluten-free",
+              "title" => "Gluten Free",
               "type" => "`$BOOLEAN`",
+              "short" => "Indicates if the bean is gluten-free",
             },
             {
               "name" => "groupName",
-              "short" => "Group or category names the bean belongs to",
+              "title" => "Group Name",
               "type" => "`$ARRAY`",
+              "short" => "Group or category names the bean belongs to",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
-              "format" => "uri",
               "name" => "imageUrl",
-              "short" => "URL to the bean image",
+              "title" => "Image Url",
               "type" => "`$STRING`",
+              "short" => "URL to the bean image",
+              "format" => "uri",
             },
             {
               "name" => "ingredients",
-              "short" => "List of ingredients",
+              "title" => "Ingredients",
               "type" => "`$ARRAY`",
+              "short" => "List of ingredients",
             },
             {
               "name" => "kosher",
-              "short" => "Indicates if the bean is kosher certified",
+              "title" => "Kosher",
               "type" => "`$BOOLEAN`",
+              "short" => "Indicates if the bean is kosher certified",
             },
             {
               "name" => "sugarFree",
-              "short" => "Indicates if the bean is sugar-free",
+              "title" => "Sugar Free",
               "type" => "`$BOOLEAN`",
+              "short" => "Indicates if the bean is sugar-free",
             },
           ],
           "id" => {
@@ -173,24 +185,6 @@ module JellyBellyWikiConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/beans",
@@ -199,19 +193,38 @@ module JellyBellyWikiConfig
                       "lit" => "beans",
                     },
                   ],
+                  "parts" => [
+                    "beans",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.items`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "limit",
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.items`",
-                  },
-                  "parts" => [
-                    "beans",
-                  ],
                 },
               ],
             },
@@ -220,25 +233,9 @@ module JellyBellyWikiConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "bean_id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/beans/{beanId}",
-                  "rename" => {
-                    "param" => {
-                      "beanId" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "beans",
@@ -247,19 +244,35 @@ module JellyBellyWikiConfig
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "beans",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "beanId" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "beans",
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "bean_id",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -272,23 +285,27 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "name" => "beans",
-              "short" => "List of bean flavors in the combination",
+              "title" => "Beans",
               "type" => "`$ARRAY`",
+              "short" => "List of bean flavors in the combination",
             },
             {
               "name" => "combinationId",
-              "short" => "Unique identifier for the combination",
+              "title" => "Combination Id",
               "type" => "`$STRING`",
+              "short" => "Unique identifier for the combination",
             },
             {
               "name" => "name",
-              "short" => "Name of the flavor combination",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Name of the flavor combination",
             },
             {
               "name" => "tag",
-              "short" => "Tags associated with the combination",
+              "title" => "Tag",
               "type" => "`$ARRAY`",
+              "short" => "Tags associated with the combination",
             },
           ],
           "name" => "combination",
@@ -298,24 +315,6 @@ module JellyBellyWikiConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/combinations",
@@ -324,19 +323,38 @@ module JellyBellyWikiConfig
                       "lit" => "combinations",
                     },
                   ],
+                  "parts" => [
+                    "combinations",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.items`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "limit",
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.items`",
-                  },
-                  "parts" => [
-                    "combinations",
-                  ],
                 },
               ],
             },
@@ -349,18 +367,21 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "name" => "description",
-              "short" => "Full text of the fact",
+              "title" => "Description",
               "type" => "`$STRING`",
+              "short" => "Full text of the fact",
             },
             {
               "name" => "factId",
-              "short" => "Unique identifier for the fact",
+              "title" => "Fact Id",
               "type" => "`$STRING`",
+              "short" => "Unique identifier for the fact",
             },
             {
               "name" => "title",
-              "short" => "Title of the fact",
+              "title" => "Title",
               "type" => "`$STRING`",
+              "short" => "Title of the fact",
             },
           ],
           "name" => "fact",
@@ -370,24 +391,6 @@ module JellyBellyWikiConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/facts",
@@ -396,19 +399,38 @@ module JellyBellyWikiConfig
                       "lit" => "facts",
                     },
                   ],
+                  "parts" => [
+                    "facts",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.items`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "limit",
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.items`",
-                  },
-                  "parts" => [
-                    "facts",
-                  ],
                 },
               ],
             },
@@ -421,18 +443,21 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "name" => "description",
-              "short" => "Description of the historical event",
+              "title" => "Description",
               "type" => "`$STRING`",
+              "short" => "Description of the historical event",
             },
             {
               "name" => "historyId",
-              "short" => "Unique identifier for the history entry",
+              "title" => "History Id",
               "type" => "`$STRING`",
+              "short" => "Unique identifier for the history entry",
             },
             {
               "name" => "year",
-              "short" => "Year of the historical event",
+              "title" => "Year",
               "type" => "`$INTEGER`",
+              "short" => "Year of the historical event",
             },
           ],
           "name" => "history",
@@ -442,7 +467,6 @@ module JellyBellyWikiConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/history",
@@ -451,14 +475,16 @@ module JellyBellyWikiConfig
                       "lit" => "history",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "history",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
-                  "parts" => [
-                    "history",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -471,54 +497,64 @@ module JellyBellyWikiConfig
           "fields" => [
             {
               "name" => "cookTime",
-              "short" => "Cooking time",
+              "title" => "Cook Time",
               "type" => "`$STRING`",
+              "short" => "Cooking time",
             },
             {
               "name" => "description",
-              "short" => "Description of the recipe",
+              "title" => "Description",
               "type" => "`$STRING`",
+              "short" => "Description of the recipe",
             },
             {
               "name" => "directions",
-              "short" => "Step-by-step directions",
+              "title" => "Directions",
               "type" => "`$ARRAY`",
+              "short" => "Step-by-step directions",
             },
             {
-              "format" => "uri",
               "name" => "imageUrl",
-              "short" => "URL to the recipe image",
+              "title" => "Image Url",
               "type" => "`$STRING`",
+              "short" => "URL to the recipe image",
+              "format" => "uri",
             },
             {
               "name" => "ingredients",
-              "short" => "List of ingredients",
+              "title" => "Ingredients",
               "type" => "`$ARRAY`",
+              "short" => "List of ingredients",
             },
             {
               "name" => "makingAmount",
-              "short" => "Amount the recipe makes",
+              "title" => "Making Amount",
               "type" => "`$STRING`",
+              "short" => "Amount the recipe makes",
             },
             {
               "name" => "name",
-              "short" => "Name of the recipe",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Name of the recipe",
             },
             {
               "name" => "prepTime",
-              "short" => "Preparation time",
+              "title" => "Prep Time",
               "type" => "`$STRING`",
+              "short" => "Preparation time",
             },
             {
               "name" => "recipeId",
-              "short" => "Unique identifier for the recipe",
+              "title" => "Recipe Id",
               "type" => "`$STRING`",
+              "short" => "Unique identifier for the recipe",
             },
             {
               "name" => "totalTime",
-              "short" => "Total time required",
+              "title" => "Total Time",
               "type" => "`$STRING`",
+              "short" => "Total time required",
             },
           ],
           "name" => "recipe",
@@ -528,24 +564,6 @@ module JellyBellyWikiConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/recipes",
@@ -554,19 +572,38 @@ module JellyBellyWikiConfig
                       "lit" => "recipes",
                     },
                   ],
+                  "parts" => [
+                    "recipes",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.items`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "limit",
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.items`",
-                  },
-                  "parts" => [
-                    "recipes",
-                  ],
                 },
               ],
             },
