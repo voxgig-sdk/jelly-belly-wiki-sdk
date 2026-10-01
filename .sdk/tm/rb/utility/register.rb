@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 JellyBellyWikiUtility.registrar = ->(u) {
   u.clean = JellyBellyWikiUtilities::Clean
+  u.clean_add = JellyBellyWikiUtilities::CleanAdd
+  u.clean_explain = JellyBellyWikiUtilities::CleanExplain
   u.done = JellyBellyWikiUtilities::Done
   u.make_error = JellyBellyWikiUtilities::MakeError
   u.feature_add = JellyBellyWikiUtilities::FeatureAdd

@@ -161,7 +161,7 @@ main: kit: entity: bean: {
               {
                 k: "param"
                 n: "id"
-                or: "bean_id"
+                or: "beanId"
                 r: true
                 t: "`$STRING`"
               }

@@ -253,7 +253,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "bean_id",
+											"orig": "beanId",
 											"type": "`$STRING`",
 											"kind": "param",
 											"reqd": true,

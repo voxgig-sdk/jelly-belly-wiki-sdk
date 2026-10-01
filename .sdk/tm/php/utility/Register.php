@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 JellyBellyWikiUtility::setRegistrar(function (JellyBellyWikiUtility $u): void {
     $u->clean = [JellyBellyWikiClean::class, 'call'];
+    $u->clean_add = [JellyBellyWikiClean::class, 'add'];
+    $u->clean_explain = [JellyBellyWikiDone::class, 'clean_explain'];
     $u->done = [JellyBellyWikiDone::class, 'call'];
     $u->make_error = [JellyBellyWikiMakeError::class, 'call'];
     $u->feature_add = [JellyBellyWikiFeatureAdd::class, 'call'];
