@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = JellyBellyWikiSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Bean records — iterate directly.
+  # list returns an Array of Bean entities, one per record; data_get reads the record.
   beans = client.Bean.list
   beans.each do |item|
-    puts "#{item["id"]} #{item["backgroundColor"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["backgroundColor"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -59,7 +60,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Bean record (raises on error).
   bean = client.Bean.load({ "id" => "example_id" })
-  puts bean
+  puts bean.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -140,10 +141,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = JellyBellyWikiSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-history = client.History.list()
-puts history
+# list returns an Array of History entities, one per mock record (raises on
+# error); data_get reads each record.
+historys = client.History.list()
+historys.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -231,8 +232,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -242,9 +243,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `JellyBellyWikiError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`JellyBellyWikiError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -379,8 +381,9 @@ bean = client.Bean.load({ "id" => "bean_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Bean records (raises on error).
+# list returns an Array of Bean entities, one per record (raises on error).
 beans = client.Bean.list
+beans.each { |item| puts item.data_get }
 ```
 
 
@@ -406,8 +409,9 @@ Create an instance: `combination = client.Combination`
 #### Example: List
 
 ```ruby
-# list returns an Array of Combination records (raises on error).
+# list returns an Array of Combination entities, one per record (raises on error).
 combinations = client.Combination.list
+combinations.each { |item| puts item.data_get }
 ```
 
 
@@ -432,8 +436,9 @@ Create an instance: `fact = client.Fact`
 #### Example: List
 
 ```ruby
-# list returns an Array of Fact records (raises on error).
+# list returns an Array of Fact entities, one per record (raises on error).
 facts = client.Fact.list
+facts.each { |item| puts item.data_get }
 ```
 
 
@@ -458,8 +463,9 @@ Create an instance: `history = client.History`
 #### Example: List
 
 ```ruby
-# list returns an Array of History records (raises on error).
+# list returns an Array of History entities, one per record (raises on error).
 historys = client.History.list
+historys.each { |item| puts item.data_get }
 ```
 
 
@@ -491,8 +497,9 @@ Create an instance: `recipe = client.Recipe`
 #### Example: List
 
 ```ruby
-# list returns an Array of Recipe records (raises on error).
+# list returns an Array of Recipe entities, one per record (raises on error).
 recipes = client.Recipe.list
+recipes.each { |item| puts item.data_get }
 ```
 
 ## Features

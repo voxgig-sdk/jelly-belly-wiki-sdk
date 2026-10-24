@@ -61,11 +61,9 @@ main: kit: entity: fact: {
           }
           m: "GET"
           o: "/facts"
-          q: {
-            exist: [
-              "limit"
-              "page"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

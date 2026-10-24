@@ -68,11 +68,9 @@ main: kit: entity: combination: {
           }
           m: "GET"
           o: "/combinations"
-          q: {
-            exist: [
-              "limit"
-              "page"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

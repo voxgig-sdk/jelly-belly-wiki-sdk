@@ -16,34 +16,48 @@ const PLAN: any[] = [
     "path": "/beans",
     "args": [],
     "select": {
-      "limit": "v1",
-      "page": "v1"
+      "limit": 10,
+      "page": 1
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "page",
       "limit"
+    ],
+    "queryArgs": [
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "page",
+        "wire": "page"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "items": [
         {
-          "backgroundColor": "x",
           "beanId": "x",
-          "colorGroup": "x",
-          "description": "x",
-          "flavorName": "x",
-          "glutenFree": true,
           "groupName": [
             "x"
           ],
+          "flavorName": "x",
+          "description": "x",
+          "colorGroup": "x",
+          "backgroundColor": "x",
           "imageUrl": "x",
           "ingredients": [
             "x"
           ],
-          "kosher": true,
-          "sugarFree": true
+          "glutenFree": true,
+          "sugarFree": true,
+          "kosher": true
         }
       ],
       "totalCount": 1,
@@ -67,7 +81,12 @@ const PLAN: any[] = [
     ],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
@@ -97,25 +116,39 @@ const PLAN: any[] = [
     "path": "/combinations",
     "args": [],
     "select": {
-      "limit": "v1",
-      "page": "v1"
+      "limit": 10,
+      "page": 1
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "page",
       "limit"
+    ],
+    "queryArgs": [
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "page",
+        "wire": "page"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "items": [
         {
-          "beans": [
-            "x"
-          ],
           "combinationId": "x",
           "name": "x",
           "tag": [
+            "x"
+          ],
+          "beans": [
             "x"
           ]
         }
@@ -134,22 +167,36 @@ const PLAN: any[] = [
     "path": "/facts",
     "args": [],
     "select": {
-      "limit": "v1",
-      "page": "v1"
+      "limit": 10,
+      "page": 1
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "page",
       "limit"
+    ],
+    "queryArgs": [
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "page",
+        "wire": "page"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "items": [
         {
-          "description": "x",
           "factId": "x",
-          "title": "x"
+          "title": "x",
+          "description": "x"
         }
       ],
       "totalCount": 1,
@@ -167,15 +214,20 @@ const PLAN: any[] = [
     "args": [],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
       "items": [
         {
-          "description": "x",
           "historyId": "x",
-          "year": 1
+          "year": 1,
+          "description": "x"
         }
       ]
     },
@@ -189,33 +241,47 @@ const PLAN: any[] = [
     "path": "/recipes",
     "args": [],
     "select": {
-      "limit": "v1",
-      "page": "v1"
+      "limit": 10,
+      "page": 1
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "page",
       "limit"
+    ],
+    "queryArgs": [
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "page",
+        "wire": "page"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "items": [
         {
-          "cookTime": "x",
+          "recipeId": "x",
+          "name": "x",
           "description": "x",
-          "directions": [
-            "x"
-          ],
+          "prepTime": "x",
+          "cookTime": "x",
+          "totalTime": "x",
+          "makingAmount": "x",
           "imageUrl": "x",
           "ingredients": [
             "x"
           ],
-          "makingAmount": "x",
-          "name": "x",
-          "prepTime": "x",
-          "recipeId": "x",
-          "totalTime": "x"
+          "directions": [
+            "x"
+          ]
         }
       ],
       "totalCount": 1,

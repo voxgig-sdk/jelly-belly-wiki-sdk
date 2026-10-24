@@ -111,11 +111,9 @@ main: kit: entity: recipe: {
           }
           m: "GET"
           o: "/recipes"
-          q: {
-            exist: [
-              "limit"
-              "page"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

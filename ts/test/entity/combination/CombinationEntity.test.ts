@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { JellyBellyWikiSDK, BaseFeature, stdutil } from '../../..'
+import { JellyBellyWikiSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('CombinationEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('combination hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of JellyBellyWikiSDK.test(offline).Combination().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of JellyBellyWikiSDK.test(offline).Combination()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = JellyBellyWikiSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Combination().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of JellyBellyWikiSDK.test().Combination().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new JellyBellyWikiSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Combination().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Combination().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = JellyBellyWikiSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Combination().list({"limit":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.JELLY_BELLY_WIKI_TEST_LIVE
@@ -51,7 +109,7 @@ describe('CombinationEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"beans":{"a":true,"h":"Beans","n":"beans","r":false,"sh":"List of bean flavors in the combination","t":"`$ARRAY`","key$":"beans","index$":0},"combinationId":{"a":true,"h":"Combination Id","n":"combinationId","r":false,"sh":"Unique identifier for the combination","t":"`$STRING`","key$":"combinationId","index$":1},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Name of the flavor combination","t":"`$STRING`","key$":"name","index$":2},"tag":{"a":true,"h":"Tag","n":"tag","r":false,"sh":"Tags associated with the combination","t":"`$ARRAY`","key$":"tag","index$":3}},"name":"combination","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /combinations","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":10,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"ex":1,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":1}]},"k":"http","m":"GET","o":"/combinations","q":{"exist":["limit","page"]},"r":{},"s":[{"lit":"combinations"}],"t":{"req":"`reqdata`","res":"`body.items`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"combination","name__orig":"combination","Name":"Combination","name_":"combination","name-":"combination","NAME":"COMBINATION","index$":1}, {"active":true,"entity":"combination","key$":"BasicCombinationFlow","kind":"basic","name":"BasicCombinationFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"combination_ref01"}}],"index$":0}]}, 'Combination', {"GET /combinations":{"protocol":"http","parameters":[{"name":"page","in":"query","description":"Page number for pagination","required":false,"schema":{"type":"integer","minimum":1,"default":1},"index$":0},{"name":"limit","in":"query","description":"Number of items per page","required":false,"schema":{"type":"integer","minimum":1,"maximum":100,"default":10},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"beans":{"a":true,"h":"Beans","n":"beans","r":false,"sh":"List of bean flavors in the combination","t":"`$ARRAY`","key$":"beans","index$":0},"combinationId":{"a":true,"h":"Combination Id","n":"combinationId","r":false,"sh":"Unique identifier for the combination","t":"`$STRING`","key$":"combinationId","index$":1},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Name of the flavor combination","t":"`$STRING`","key$":"name","index$":2},"tag":{"a":true,"h":"Tag","n":"tag","r":false,"sh":"Tags associated with the combination","t":"`$ARRAY`","key$":"tag","index$":3}},"name":"combination","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /combinations","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":10,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"ex":1,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":1}]},"k":"http","m":"GET","o":"/combinations","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"combinations"}],"t":{"req":"`reqdata`","res":"`body.items`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"combination","name__orig":"combination","Name":"Combination","name_":"combination","name-":"combination","NAME":"COMBINATION","index$":1}, {"active":true,"entity":"combination","key$":"BasicCombinationFlow","kind":"basic","name":"BasicCombinationFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"combination_ref01"}}],"index$":0}]}, 'Combination', {"GET /combinations":{"protocol":"http","parameters":[{"name":"page","in":"query","description":"Page number for pagination","required":false,"schema":{"type":"integer","minimum":1,"default":1},"index$":0},{"name":"limit","in":"query","description":"Number of items per page","required":false,"schema":{"type":"integer","minimum":1,"maximum":100,"default":10},"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('CombinationEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

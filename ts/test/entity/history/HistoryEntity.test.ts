@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { JellyBellyWikiSDK, BaseFeature, stdutil } from '../../..'
+import { JellyBellyWikiSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('HistoryEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('history hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of JellyBellyWikiSDK.test(offline).History().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of JellyBellyWikiSDK.test(offline).History()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = JellyBellyWikiSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.History().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of JellyBellyWikiSDK.test().History().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new JellyBellyWikiSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.History().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.History().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = JellyBellyWikiSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.History().list({"description":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.JELLY_BELLY_WIKI_TEST_LIVE
@@ -51,7 +109,7 @@ describe('HistoryEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Description of the historical event","t":"`$STRING`","key$":"description","index$":0},"historyId":{"a":true,"h":"History Id","n":"historyId","r":false,"sh":"Unique identifier for the history entry","t":"`$STRING`","key$":"historyId","index$":1},"year":{"a":true,"h":"Year","n":"year","r":false,"sh":"Year of the historical event","t":"`$INTEGER`","key$":"year","index$":2}},"name":"history","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /history","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/history","q":{},"r":{},"s":[{"lit":"history"}],"t":{"req":"`reqdata`","res":"`body.items`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"history","name__orig":"history","Name":"History","name_":"history","name-":"history","NAME":"HISTORY","index$":3}, {"active":true,"entity":"history","key$":"BasicHistoryFlow","kind":"basic","name":"BasicHistoryFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"history_ref01"}}],"index$":0}]}, 'History', {"GET /history":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Description of the historical event","t":"`$STRING`","key$":"description","index$":0},"historyId":{"a":true,"h":"History Id","n":"historyId","r":false,"sh":"Unique identifier for the history entry","t":"`$STRING`","key$":"historyId","index$":1},"year":{"a":true,"h":"Year","n":"year","r":false,"sh":"Year of the historical event","t":"`$INTEGER`","key$":"year","index$":2}},"name":"history","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /history","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/history","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"history"}],"t":{"req":"`reqdata`","res":"`body.items`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"history","name__orig":"history","Name":"History","name_":"history","name-":"history","NAME":"HISTORY","index$":3}, {"active":true,"entity":"history","key$":"BasicHistoryFlow","kind":"basic","name":"BasicHistoryFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"history_ref01"}}],"index$":0}]}, 'History', {"GET /history":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('HistoryEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

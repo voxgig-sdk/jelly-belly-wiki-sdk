@@ -129,11 +129,9 @@ main: kit: entity: bean: {
           }
           m: "GET"
           o: "/beans"
-          q: {
-            exist: [
-              "limit"
-              "page"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -178,6 +176,10 @@ main: kit: entity: bean: {
             param: {
               beanId: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

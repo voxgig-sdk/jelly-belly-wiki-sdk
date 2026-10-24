@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/jelly-belly-wiki-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/jelly-belly-wiki-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,21 +51,21 @@ import (
 func main() {
     client := sdk.New()
 
-    // List bean records — the value is the array of records itself.
+    // List bean records — the value is a []any of entities, one per record.
     beans, err := client.Bean(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
     for _, item := range beans.([]any) {
-        fmt.Println(item)
+        fmt.Println(item.(sdk.Entity).Data())
     }
 
-    // Load a single bean — the value is the loaded record.
+    // Load a single bean — the value is the entity; Data() reads its record.
     bean, err := client.Bean(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(bean)
+    fmt.Println(bean.(sdk.Entity).Data())
 }
 ```
 
@@ -144,13 +145,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-history, err := client.History(nil).List(
+historys, err := client.History(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(history) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range historys.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -239,8 +243,8 @@ All entities implement the `JellyBellyWikiEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -248,21 +252,21 @@ All entities implement the `JellyBellyWikiEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bean, err := client.Bean(nil).List(map[string]any{/* fields */}, nil)
+    bean, err := client.Bean(nil).List(nil, nil)
     if err != nil { /* handle */ }
-    // bean is the returned record
+    // bean is a []any of entities, one per record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -386,7 +390,7 @@ bean, err := client.Bean(nil).Load(map[string]any{"id": "bean_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(bean) // the loaded record
+fmt.Println(bean.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -396,7 +400,10 @@ beans, err := client.Bean(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(beans) // the array of records
+// A []any of entities, one per record.
+for _, item := range beans.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -426,7 +433,10 @@ combinations, err := client.Combination(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(combinations) // the array of records
+// A []any of entities, one per record.
+for _, item := range combinations.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -455,7 +465,10 @@ facts, err := client.Fact(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(facts) // the array of records
+// A []any of entities, one per record.
+for _, item := range facts.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -484,7 +497,10 @@ historys, err := client.History(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(historys) // the array of records
+// A []any of entities, one per record.
+for _, item := range historys.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -520,7 +536,10 @@ recipes, err := client.Recipe(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(recipes) // the array of records
+// A []any of entities, one per record.
+for _, item := range recipes.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -657,7 +676,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

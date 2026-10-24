@@ -3,5 +3,37 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API for Jelly Belly beans, facts, recipes, combinations, and history sourced from the official Jelly Belly website. Utilizes GET method for data retrieval and showcases full database integration in the UI.",
+      "Color category of the bean",
+      "Cooking time",
+      "Description of the historical event",
+      "Description of the recipe",
+      "Detailed description of the bean flavor",
+      "Full text of the fact",
+      "Hex color code for the bean&#39;s background color",
+      "List of bean flavors in the combination",
+      "List of ingredients",
+      "Name of the flavor",
+      "Name of the flavor combination",
+      "Production server",
+      "Step-by-step directions",
+      "Successful response with a list of Jelly Belly beans",
+      "Successful response with a list of Jelly Belly facts",
+      "Successful response with a list of flavor combinations",
+      "Successful response with a list of recipes",
+      "Successful response with bean details",
+      "Successful response with historical information",
+      "Tags associated with the combination",
+      "Title of the fact",
+      "URL to the recipe image",
+      "Unique identifier for the bean",
+      "Unique identifier for the combination",
+      "Unique identifier for the fact",
+      "Unique identifier for the history entry",
+      "Year of the historical event"
+    ]
+  }
 }

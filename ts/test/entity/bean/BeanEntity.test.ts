@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { JellyBellyWikiSDK, BaseFeature, stdutil } from '../../..'
+import { JellyBellyWikiSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('BeanEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('bean hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of JellyBellyWikiSDK.test(offline).Bean().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of JellyBellyWikiSDK.test(offline).Bean()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = JellyBellyWikiSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Bean().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of JellyBellyWikiSDK.test().Bean().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new JellyBellyWikiSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Bean().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Bean().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = JellyBellyWikiSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Bean().list({"limit":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.JELLY_BELLY_WIKI_TEST_LIVE
@@ -51,7 +109,7 @@ describe('BeanEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"backgroundColor":{"a":true,"h":"Background Color","n":"backgroundColor","r":false,"sh":"Hex color code for the bean's background color","t":"`$STRING`","key$":"backgroundColor","index$":0},"beanId":{"a":true,"h":"Bean Id","n":"beanId","r":false,"sh":"Unique identifier for the bean","t":"`$STRING`","key$":"beanId","index$":1},"colorGroup":{"a":true,"h":"Color Group","n":"colorGroup","r":false,"sh":"Color category of the bean","t":"`$STRING`","key$":"colorGroup","index$":2},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Detailed description of the bean flavor","t":"`$STRING`","key$":"description","index$":3},"flavorName":{"a":true,"h":"Flavor Name","n":"flavorName","r":false,"sh":"Name of the flavor","t":"`$STRING`","key$":"flavorName","index$":4},"glutenFree":{"a":true,"h":"Gluten Free","n":"glutenFree","r":false,"sh":"Indicates if the bean is gluten-free","t":"`$BOOLEAN`","key$":"glutenFree","index$":5},"groupName":{"a":true,"h":"Group Name","n":"groupName","r":false,"sh":"Group or category names the bean belongs to","t":"`$ARRAY`","key$":"groupName","index$":6},"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":7},"imageUrl":{"a":true,"fo":"uri","h":"Image Url","n":"imageUrl","r":false,"sh":"URL to the bean image","t":"`$STRING`","key$":"imageUrl","index$":8},"ingredients":{"a":true,"h":"Ingredients","n":"ingredients","r":false,"sh":"List of ingredients","t":"`$ARRAY`","key$":"ingredients","index$":9},"kosher":{"a":true,"h":"Kosher","n":"kosher","r":false,"sh":"Indicates if the bean is kosher certified","t":"`$BOOLEAN`","key$":"kosher","index$":10},"sugarFree":{"a":true,"h":"Sugar Free","n":"sugarFree","r":false,"sh":"Indicates if the bean is sugar-free","t":"`$BOOLEAN`","key$":"sugarFree","index$":11}},"id":{"field":"id","name":"id"},"name":"bean","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /beans","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":10,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"ex":1,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":1}]},"k":"http","m":"GET","o":"/beans","q":{"exist":["limit","page"]},"r":{},"s":[{"lit":"beans"}],"t":{"req":"`reqdata`","res":"`body.items`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /beans/{beanId}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"beanId","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/beans/{beanId}","q":{"exist":["id"]},"r":{"param":{"beanId":"id"}},"s":[{"lit":"beans"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"bean","name__orig":"bean","Name":"Bean","name_":"bean","name-":"bean","NAME":"BEAN","index$":0}, {"active":true,"entity":"bean","key$":"BasicBeanFlow","kind":"basic","name":"BasicBeanFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"bean_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"bean_ref01","srcdatavar":"bean_ref01_data","suffix":"_dt0"},"m":{"id":"bean01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-bean_ref01"}}],"index$":1}]}, 'Bean', {"GET /beans":{"protocol":"http","parameters":[{"name":"page","in":"query","description":"Page number for pagination","required":false,"schema":{"type":"integer","minimum":1,"default":1},"index$":0},{"name":"limit","in":"query","description":"Number of items per page","required":false,"schema":{"type":"integer","minimum":1,"maximum":100,"default":10},"index$":1}]},"GET /beans/{beanId}":{"protocol":"http","parameters":[{"name":"beanId","in":"path","description":"Unique identifier of the Jelly Belly bean","required":true,"schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"backgroundColor":{"a":true,"h":"Background Color","n":"backgroundColor","r":false,"sh":"Hex color code for the bean's background color","t":"`$STRING`","key$":"backgroundColor","index$":0},"beanId":{"a":true,"h":"Bean Id","n":"beanId","r":false,"sh":"Unique identifier for the bean","t":"`$STRING`","key$":"beanId","index$":1},"colorGroup":{"a":true,"h":"Color Group","n":"colorGroup","r":false,"sh":"Color category of the bean","t":"`$STRING`","key$":"colorGroup","index$":2},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Detailed description of the bean flavor","t":"`$STRING`","key$":"description","index$":3},"flavorName":{"a":true,"h":"Flavor Name","n":"flavorName","r":false,"sh":"Name of the flavor","t":"`$STRING`","key$":"flavorName","index$":4},"glutenFree":{"a":true,"h":"Gluten Free","n":"glutenFree","r":false,"sh":"Indicates if the bean is gluten-free","t":"`$BOOLEAN`","key$":"glutenFree","index$":5},"groupName":{"a":true,"h":"Group Name","n":"groupName","r":false,"sh":"Group or category names the bean belongs to","t":"`$ARRAY`","key$":"groupName","index$":6},"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":7},"imageUrl":{"a":true,"fo":"uri","h":"Image Url","n":"imageUrl","r":false,"sh":"URL to the bean image","t":"`$STRING`","key$":"imageUrl","index$":8},"ingredients":{"a":true,"h":"Ingredients","n":"ingredients","r":false,"sh":"List of ingredients","t":"`$ARRAY`","key$":"ingredients","index$":9},"kosher":{"a":true,"h":"Kosher","n":"kosher","r":false,"sh":"Indicates if the bean is kosher certified","t":"`$BOOLEAN`","key$":"kosher","index$":10},"sugarFree":{"a":true,"h":"Sugar Free","n":"sugarFree","r":false,"sh":"Indicates if the bean is sugar-free","t":"`$BOOLEAN`","key$":"sugarFree","index$":11}},"id":{"field":"id","name":"id"},"name":"bean","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /beans","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":10,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"ex":1,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":1}]},"k":"http","m":"GET","o":"/beans","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"beans"}],"t":{"req":"`reqdata`","res":"`body.items`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /beans/{beanId}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"beanId","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/beans/{beanId}","q":{"exist":["id"]},"r":{"param":{"beanId":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"beans"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"bean","name__orig":"bean","Name":"Bean","name_":"bean","name-":"bean","NAME":"BEAN","index$":0}, {"active":true,"entity":"bean","key$":"BasicBeanFlow","kind":"basic","name":"BasicBeanFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"bean_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"bean_ref01","srcdatavar":"bean_ref01_data","suffix":"_dt0"},"m":{"id":"bean01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-bean_ref01"}}],"index$":1}]}, 'Bean', {"GET /beans":{"protocol":"http","parameters":[{"name":"page","in":"query","description":"Page number for pagination","required":false,"schema":{"type":"integer","minimum":1,"default":1},"index$":0},{"name":"limit","in":"query","description":"Number of items per page","required":false,"schema":{"type":"integer","minimum":1,"maximum":100,"default":10},"index$":1}]},"GET /beans/{beanId}":{"protocol":"http","parameters":[{"name":"beanId","in":"path","description":"Unique identifier of the Jelly Belly bean","required":true,"schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('BeanEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

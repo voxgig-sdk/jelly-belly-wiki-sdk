@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Recipe();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('recipe hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.JellyBellyWikiSDK.test(offline).Recipe().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.JellyBellyWikiSDK.test(offline).Recipe()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.JellyBellyWikiSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Recipe().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.JellyBellyWikiSDK.test().Recipe().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.JellyBellyWikiSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Recipe().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Recipe().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.JellyBellyWikiSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Recipe().list({ "limit": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.JELLY_BELLY_WIKI_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "cookTime": { "a": true, "h": "Cook Time", "n": "cookTime", "r": false, "sh": "Cooking time", "t": "`$STRING`", "key$": "cookTime", "index$": 0 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "sh": "Description of the recipe", "t": "`$STRING`", "key$": "description", "index$": 1 }, "directions": { "a": true, "h": "Directions", "n": "directions", "r": false, "sh": "Step-by-step directions", "t": "`$ARRAY`", "key$": "directions", "index$": 2 }, "imageUrl": { "a": true, "fo": "uri", "h": "Image Url", "n": "imageUrl", "r": false, "sh": "URL to the recipe image", "t": "`$STRING`", "key$": "imageUrl", "index$": 3 }, "ingredients": { "a": true, "h": "Ingredients", "n": "ingredients", "r": false, "sh": "List of ingredients", "t": "`$ARRAY`", "key$": "ingredients", "index$": 4 }, "makingAmount": { "a": true, "h": "Making Amount", "n": "makingAmount", "r": false, "sh": "Amount the recipe makes", "t": "`$STRING`", "key$": "makingAmount", "index$": 5 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Name of the recipe", "t": "`$STRING`", "key$": "name", "index$": 6 }, "prepTime": { "a": true, "h": "Prep Time", "n": "prepTime", "r": false, "sh": "Preparation time", "t": "`$STRING`", "key$": "prepTime", "index$": 7 }, "recipeId": { "a": true, "h": "Recipe Id", "n": "recipeId", "r": false, "sh": "Unique identifier for the recipe", "t": "`$STRING`", "key$": "recipeId", "index$": 8 }, "totalTime": { "a": true, "h": "Total Time", "n": "totalTime", "r": false, "sh": "Total time required", "t": "`$STRING`", "key$": "totalTime", "index$": 9 } }, "name": "recipe", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /recipes", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": 10, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 0 }, { "a": true, "ex": 1, "k": "query", "n": "page", "or": "page", "r": false, "t": "`$INTEGER`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/recipes", "q": { "exist": ["limit", "page"] }, "r": {}, "s": [{ "lit": "recipes" }], "t": { "req": "`reqdata`", "res": "`body.items`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "recipe", "name__orig": "recipe", "Name": "Recipe", "name_": "recipe", "name-": "recipe", "NAME": "RECIPE", "index$": 4 }, { "active": true, "entity": "recipe", "key$": "BasicRecipeFlow", "kind": "basic", "name": "BasicRecipeFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "recipe_ref01" } }], "index$": 0 }] }, 'Recipe', { "GET /recipes": { "protocol": "http", "parameters": [{ "name": "page", "in": "query", "description": "Page number for pagination", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 1 }, "index$": 0 }, { "name": "limit", "in": "query", "description": "Number of items per page", "required": false, "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 10 }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "cookTime": { "a": true, "h": "Cook Time", "n": "cookTime", "r": false, "sh": "Cooking time", "t": "`$STRING`", "key$": "cookTime", "index$": 0 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "sh": "Description of the recipe", "t": "`$STRING`", "key$": "description", "index$": 1 }, "directions": { "a": true, "h": "Directions", "n": "directions", "r": false, "sh": "Step-by-step directions", "t": "`$ARRAY`", "key$": "directions", "index$": 2 }, "imageUrl": { "a": true, "fo": "uri", "h": "Image Url", "n": "imageUrl", "r": false, "sh": "URL to the recipe image", "t": "`$STRING`", "key$": "imageUrl", "index$": 3 }, "ingredients": { "a": true, "h": "Ingredients", "n": "ingredients", "r": false, "sh": "List of ingredients", "t": "`$ARRAY`", "key$": "ingredients", "index$": 4 }, "makingAmount": { "a": true, "h": "Making Amount", "n": "makingAmount", "r": false, "sh": "Amount the recipe makes", "t": "`$STRING`", "key$": "makingAmount", "index$": 5 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Name of the recipe", "t": "`$STRING`", "key$": "name", "index$": 6 }, "prepTime": { "a": true, "h": "Prep Time", "n": "prepTime", "r": false, "sh": "Preparation time", "t": "`$STRING`", "key$": "prepTime", "index$": 7 }, "recipeId": { "a": true, "h": "Recipe Id", "n": "recipeId", "r": false, "sh": "Unique identifier for the recipe", "t": "`$STRING`", "key$": "recipeId", "index$": 8 }, "totalTime": { "a": true, "h": "Total Time", "n": "totalTime", "r": false, "sh": "Total time required", "t": "`$STRING`", "key$": "totalTime", "index$": 9 } }, "name": "recipe", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /recipes", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": 10, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 0 }, { "a": true, "ex": 1, "k": "query", "n": "page", "or": "page", "r": false, "t": "`$INTEGER`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/recipes", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "recipes" }], "t": { "req": "`reqdata`", "res": "`body.items`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "recipe", "name__orig": "recipe", "Name": "Recipe", "name_": "recipe", "name-": "recipe", "NAME": "RECIPE", "index$": 4 }, { "active": true, "entity": "recipe", "key$": "BasicRecipeFlow", "kind": "basic", "name": "BasicRecipeFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "recipe_ref01" } }], "index$": 0 }] }, 'Recipe', { "GET /recipes": { "protocol": "http", "parameters": [{ "name": "page", "in": "query", "description": "Page number for pagination", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 1 }, "index$": 0 }, { "name": "limit", "in": "query", "description": "Number of items per page", "required": false, "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 10 }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const recipe_ref01_list = (await recipe_ref01_ent.list(recipe_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
